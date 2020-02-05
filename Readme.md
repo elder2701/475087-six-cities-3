@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
-* Студент: [Алексей Румянцев](https://up.htmlacademy.ru/react/3/user/475087).
-* Наставник: `Неизвестно`.
+- Студент: [Алексей Румянцев](https://up.htmlacademy.ru/react/3/user/475087).
+- Наставник: `Семён Якушев`.
 
 ---
 
