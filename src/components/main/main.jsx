@@ -32,7 +32,7 @@ const Tabs = () => (
 class Main extends React.Component {
   render() {
     // eslint-disable-next-line react/prop-types
-    const { placeCount } = this.props;
+    const {placeCount} = this.props;
     return (
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
