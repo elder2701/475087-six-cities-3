@@ -30,8 +30,8 @@ const Tabs = () => (
   </div>
 );
 
-function PlaceCard({place}) {
-  return (<article className="cities__place-card place-card">
+const PlaceCard = ({place}) => (
+  <article className="cities__place-card place-card">
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
         <img
@@ -77,49 +77,44 @@ function PlaceCard({place}) {
       <p className="place-card__type">Private room</p>
     </div>
   </article>);
-}
 
-class Main extends React.Component {
-  render() {
-    const {placeCount} = this.props;
-    const {places} = this.props;
-    return (
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <Tabs />
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">
-                {placeCount} places to stay in Amsterdam
-              </b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li
-                    className="places__option places__option--active"
-                    tabIndex="0"
-                  >
-                    Popular
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Price: low to high
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Price: high to low
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Top rated first
-                  </li>
-                </ul>
-                {/* <!--
+const Main = ({placeCount, places}) => (
+  <main className="page__main page__main--index">
+    <h1 className="visually-hidden">Cities</h1>
+    <Tabs />
+    <div className="cities">
+      <div className="cities__places-container container">
+        <section className="cities__places places">
+          <h2 className="visually-hidden">Places</h2>
+          <b className="places__found">
+            {placeCount} places to stay in Amsterdam
+          </b>
+          <form className="places__sorting" action="#" method="get">
+            <span className="places__sorting-caption">Sort by</span>
+            <span className="places__sorting-type" tabIndex="0">
+              Popular
+              <svg className="places__sorting-arrow" width="7" height="4">
+                <use xlinkHref="#icon-arrow-select"></use>
+              </svg>
+            </span>
+            <ul className="places__options places__options--custom places__options--opened">
+              <li
+                className="places__option places__option--active"
+                tabIndex="0"
+              >
+                Popular
+              </li>
+              <li className="places__option" tabIndex="0">
+                Price: low to high
+              </li>
+              <li className="places__option" tabIndex="0">
+                Price: high to low
+              </li>
+              <li className="places__option" tabIndex="0">
+                Top rated first
+              </li>
+            </ul>
+            {/* <!--
                 <select class="places__sorting-type" id="places-sorting">
                   <option class="places__option" value="popular" selected="">Popular</option>
                   <option class="places__option" value="to-high">Price: low to high</option>
@@ -127,20 +122,18 @@ class Main extends React.Component {
                   <option class="places__option" value="top-rated">Top rated first</option>
                 </select>
                 -->*/}
-              </form>
-              <div className="cities__places-list places__list tabs__content">
-                {places.map((place, index) => (<PlaceCard place={place} key={index} />))}
-              </div>
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
+          </form>
+          <div className="cities__places-list places__list tabs__content">
+            {places.map((place, index) => (<PlaceCard place={place} key={index} />))}
           </div>
+        </section>
+        <div className="cities__right-section">
+          <section className="cities__map map"></section>
         </div>
-      </main>
-    );
-  }
-}
+      </div>
+    </div>
+  </main>
+);
 
 Main.propTypes = {
   placeCount: PropTypes.number.isRequired,

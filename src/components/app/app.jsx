@@ -8,12 +8,9 @@ const places = [
   `Wood and stone place`,
   `Nice, cozy, warm big bed apartment`];
 
-class App extends React.Component {
-  render() {
-    const {placeCount} = this.props;
-    return <Main placeCount={placeCount} places={places} />;
-  }
-}
+const App = ({placeCount}) =>(
+  <Main placeCount={placeCount} places={places} />
+);
 
 App.propTypes = {
   placeCount: PropTypes.number.isRequired
