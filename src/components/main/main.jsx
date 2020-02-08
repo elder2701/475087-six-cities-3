@@ -14,13 +14,17 @@ const spanStyles = {
   width: `80%`
 };
 
-const Tabs = () => (
+const Tabs = ({onCityHeaderClick}) => (
   <div className="tabs">
     <section className="locations container">
       <ul className="locations__list tabs__list">
         {tabCities.map((city, index) => (
           <li className="locations__item" key={index}>
-            <a className="locations__item-link tabs__item" href="#">
+            <a
+              className="locations__item-link tabs__item"
+              href="#"
+              onClick={onCityHeaderClick}
+            >
               <span>{city}</span>
             </a>
           </li>
@@ -78,16 +82,16 @@ const PlaceCard = ({place}) => (
     </div>
   </article>);
 
-const Main = ({placeCount, places}) => (
+const Main = ({placesCount, places, onCityHeaderClick = () => {}}) => (
   <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
-    <Tabs />
+    <Tabs onCityHeaderClick={onCityHeaderClick} />
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">
-            {placeCount} places to stay in Amsterdam
+            {placesCount} places to stay in Amsterdam
           </b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
@@ -124,7 +128,9 @@ const Main = ({placeCount, places}) => (
                 -->*/}
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {places.map((place, index) => (<PlaceCard place={place} key={index} />))}
+            {places.map((place, index) => (
+              <PlaceCard place={place} key={index} />
+            ))}
           </div>
         </section>
         <div className="cities__right-section">
@@ -136,8 +142,13 @@ const Main = ({placeCount, places}) => (
 );
 
 Main.propTypes = {
-  placeCount: PropTypes.number.isRequired,
-  places: PropTypes.arrayOf(PropTypes.string).isRequired
+  placesCount: PropTypes.number.isRequired,
+  places: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onCityHeaderClick: PropTypes.func
+};
+
+Tabs.propTypes = {
+  onCityHeaderClick: PropTypes.func
 };
 
 PlaceCard.propTypes = {
