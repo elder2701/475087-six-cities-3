@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "../main/main";
+import Main from "../main/main.jsx";
 import PropTypes from 'prop-types';
 
 const places = [
@@ -8,12 +8,12 @@ const places = [
   `Wood and stone place`,
   `Nice, cozy, warm big bed apartment`];
 
-const App = ({placeCount}) =>(
-  <Main placeCount={placeCount} places={places} />
+const App = ({placesCount}) =>(
+  <Main placesCount={placesCount} places={places} />
 );
 
 App.propTypes = {
-  placeCount: PropTypes.number.isRequired
+  placesCount: PropTypes.number.isRequired
 };
 
 
