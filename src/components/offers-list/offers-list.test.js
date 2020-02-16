@@ -1,8 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import OffersList from "./offers-list.jsx";
 
-const placesCount = 4;
 const offers = [
   {
     id: 2,
@@ -46,9 +45,9 @@ const offers = [
   }
 ];
 
-it(`<App /> sould be render`, () => {
+it(`<OffersList /> sould be render`, () => {
   const tree = renderer
-    .create(<App placesCount={placesCount} offers={offers}/>)
+    .create(<OffersList offers={offers}/>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

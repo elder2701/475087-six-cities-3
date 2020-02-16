@@ -1,26 +1,21 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import App from "./app.jsx";
-
-const placesCount = 4;
-const offers = [
+export default [
   {
-    id: 2,
+    id: 1,
     figure: `img/room.jpg`,
-    mark: ``,
+    mark: `Premium`,
     price: 8220,
     priceText: `night`,
-    rating: 2,
+    rating: 3,
     name: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`
   },
   {
-    id: 10,
+    id: 2,
     figure: `img/room.jpg`,
     mark: ``,
-    price: 101320,
+    price: 100,
     priceText: `night`,
-    rating: 5,
+    rating: 2,
     name: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`
   },
@@ -28,7 +23,7 @@ const offers = [
     id: 3,
     figure: `img/room.jpg`,
     mark: `Premium`,
-    price: 83210,
+    price: 80,
     priceText: `night`,
     rating: 1,
     name: `Beautiful & luxurious apartment at great location`,
@@ -36,19 +31,12 @@ const offers = [
   },
   {
     id: 4,
-    figure: ``,
+    figure: `img/room.jpg`,
     mark: ``,
-    price: 8210,
+    price: 810,
     priceText: `night`,
     rating: 4,
     name: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`
   }
 ];
-
-it(`<App /> sould be render`, () => {
-  const tree = renderer
-    .create(<App placesCount={placesCount} offers={offers}/>)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
