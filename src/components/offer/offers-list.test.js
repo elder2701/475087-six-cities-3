@@ -1,13 +1,13 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import OffersList from "./offers-list.jsx";
+import Offer from "./offer.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
 });
 
-const offers = [
+const offer =
   {
     id: 12,
     figure: ``,
@@ -17,8 +17,7 @@ const offers = [
     rating: 3,
     name: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`
-  }
-];
+  };
 
 const mockEvent = {
   preventDefault() {}
@@ -27,8 +26,8 @@ const mockEvent = {
 it(`Mouseover on place card should pass to the callback id of place card`, () => {
   const onHoverActiveCard = jest.fn((...args) => [...args]);
 
-  const screen = mount(<OffersList
-    offers={offers}
+  const screen = mount(<Offer
+    offer={offer}
     onHoverActiveCard={onHoverActiveCard}
   />);
 
@@ -37,5 +36,5 @@ it(`Mouseover on place card should pass to the callback id of place card`, () =>
 
   firstCard.simulate(`mouseover`, mockEvent);
   expect(onHoverActiveCard).toHaveBeenCalledTimes(1);
-  expect(onHoverActiveCard.mock.calls[0][0]).toBe(offers(0).id);
+  expect(onHoverActiveCard.mock.calls[0][0]).toBe(offer.id);
 });
