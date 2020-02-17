@@ -1,19 +1,29 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Main from "../main/main.jsx";
+import Header from "../header/header.jsx";
 import PropTypes from 'prop-types';
 
-const places = [
-  `Beautiful & luxurious apartment at great location`,
-  `Canal View Prinsengracht`,
-  `Wood and stone place`,
-  `Nice, cozy, warm big bed apartment`];
-
-const App = ({placesCount}) =>(
-  <Main placesCount={placesCount} places={places} />
+const App = ({placesCount, offers}) => (
+  <Fragment>
+    <Header />
+    <Main placesCount={placesCount} offers={offers} />
+  </Fragment>
 );
 
 App.propTypes = {
-  placesCount: PropTypes.number.isRequired
+  placesCount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        figure: PropTypes.string.isRequired,
+        mark: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        priceText: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired
+      }).isRequired
+  ).isRequired
 };
 
 
