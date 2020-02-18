@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Property /> sould be render 1`] = `
+exports[`<PlaceReviews /> sould be render 1`] = `
 <section
   className="property__reviews reviews"
 >

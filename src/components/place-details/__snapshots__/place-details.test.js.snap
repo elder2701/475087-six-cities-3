@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Property /> sould be render 1`] = `
+exports[`<PlaceDetails /> sould be render 1`] = `
 <main
   className="page__main page__main--property"
 >

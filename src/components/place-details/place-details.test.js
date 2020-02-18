@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Property from "./property.jsx";
+import PlaceDetails from "./place-details.jsx";
 
 const offer = {
   id: 3,
@@ -39,7 +39,7 @@ const offer = {
   status: `pro`
 };
 
-it(`<Property /> sould be render`, () => {
-  const tree = renderer.create(<Property {...offer} />).toJSON();
+it(`<PlaceDetails /> sould be render`, () => {
+  const tree = renderer.create(<PlaceDetails {...offer} />).toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import NearOffersList from "../near-offers-list/near-offers-list.jsx";
-import PropertyReviews from "../property-reviews/property-reviews.jsx";
+import PlaceReviews from "../place-reviews/place-reviews.jsx";
 import PropTypes from "prop-types";
 
 const spanStyles = (rating) => {
@@ -8,7 +8,7 @@ const spanStyles = (rating) => {
   return {width: `${calculatedWidth}%`};
 };
 
-const Property = ({
+const PlaceDetails = ({
   mark,
   price,
   rating,
@@ -101,7 +101,7 @@ const Property = ({
               <p className="property__text">{description}</p>
             </div>
           </div>
-          <PropertyReviews/>
+          <PlaceReviews/>
         </div>
       </div>
       <section className="property__map map"></section>
@@ -109,9 +109,9 @@ const Property = ({
     <NearOffersList />
   </main>
 );
-export default Property;
+export default PlaceDetails;
 
-Property.propTypes = {
+PlaceDetails.propTypes = {
   mark: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,

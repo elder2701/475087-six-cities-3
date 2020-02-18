@@ -5,7 +5,7 @@ const spanStyles = (rating) => {
   return {width: `${calculatedWidth}%`};
 };
 
-const PropertyReviews = () => (
+const PlaceReviews = () => (
   <section className="property__reviews reviews">
     <h2 className="reviews__title">
       Reviews &middot; <span className="reviews__amount">1</span>
@@ -157,4 +157,4 @@ const PropertyReviews = () => (
   </section>
 );
 
-export default PropertyReviews;
+export default PlaceReviews;

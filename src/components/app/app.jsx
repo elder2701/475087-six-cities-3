@@ -3,7 +3,7 @@ import Main from "../main/main.jsx";
 import Header from "../header/header.jsx";
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import Property from "../property/property.jsx";
+import PlaceDetails from "../place-details/place-details.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -28,7 +28,7 @@ class App extends PureComponent {
         <Switch>
           <Route exact path="/">
             {offer ? (
-              <Property {...offer} />
+              <PlaceDetails {...offer} />
             ) : (
               <Main
                 placesCount={placesCount}
@@ -38,7 +38,7 @@ class App extends PureComponent {
             )}
           </Route>
           <Route exact path="/dev-component">
-            <Property {...offers[1]} />
+            <PlaceDetails {...offers[1]} />
           </Route>
         </Switch>
       </BrowserRouter>
