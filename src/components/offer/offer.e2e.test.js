@@ -33,7 +33,7 @@ describe(`Mouse events`, () => {
   it(`Title onclick`, () => {
     const title = screen.find(`h2`);
 
-    title.simulate(`onclick`, mockEvent);
+    title.simulate(`click`, mockEvent);
     expect(onSelectOffer).toHaveBeenCalledTimes(1);
   });
 

@@ -116,11 +116,11 @@ Property.propTypes = {
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  allFigures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  insideFeatures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  insideOptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  description: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired
+  allFigures: PropTypes.arrayOf(PropTypes.string),
+  insideFeatures: PropTypes.arrayOf(PropTypes.string),
+  insideOptions: PropTypes.arrayOf(PropTypes.string),
+  description: PropTypes.string,
+  user: PropTypes.string,
+  avatar: PropTypes.string,
+  status: PropTypes.string
 };
