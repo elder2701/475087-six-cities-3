@@ -4,10 +4,9 @@ import Offer from "./offer.jsx";
 
 const offer = {
   id: 4,
-  figure: ``,
+  figurePreview: ``,
   mark: ``,
   price: 8210,
-  priceText: `night`,
   rating: 4,
   name: `Beautiful & luxurious apartment at great location`,
   type: `Apartment`

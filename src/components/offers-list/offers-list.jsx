@@ -16,7 +16,7 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, onSelectOffer} = this.props;
     return (
       <div className="cities__places-list places__list tabs__content">
         {offers.map((offer) => (
@@ -24,6 +24,7 @@ class OffersList extends PureComponent {
             offer={offer}
             key={offer.id}
             onHoverActiveCard={this.onHoverActiveCard}
+            onSelectOffer = {onSelectOffer}
           />
         ))}
       </div>
@@ -35,15 +36,14 @@ OffersList.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        figure: PropTypes.string.isRequired,
         mark: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
-        priceText: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired
       }).isRequired
-  ).isRequired
+  ).isRequired,
+  onSelectOffer: PropTypes.func
 };
 
 export default OffersList;

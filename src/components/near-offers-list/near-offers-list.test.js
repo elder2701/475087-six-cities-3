@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Property from "./property.jsx";
+import NearOffersList from "./near-offers-list.jsx";
 
-it(`<Property /> sould be render`, () => {
+it(`<NearOffersList /> sould be render`, () => {
   const tree = renderer
-    .create(<Property />)
+    .create(<NearOffersList />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
