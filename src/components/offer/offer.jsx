@@ -6,7 +6,7 @@ const spanStyles = (rating) => {
   return {width: `${calculatedWidth}%`};
 };
 
-const Offer = ({offer, onHoverActiveCard}) => (
+const Offer = ({offer, onHoverActiveCard, onSelectOffer}) => (
   <article
     className="cities__place-card place-card"
     onMouseOver={(evt) => {
@@ -27,7 +27,7 @@ const Offer = ({offer, onHoverActiveCard}) => (
       <a href="#">
         <img
           className="place-card__image"
-          src={offer.figure}
+          src={offer.figurePreview}
           width="260"
           height="200"
           alt="Place image"
@@ -38,9 +38,7 @@ const Offer = ({offer, onHoverActiveCard}) => (
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">&euro;{offer.price}</b>
-          <span className="place-card__price-text">
-            &#47;&nbsp;{offer.priceText}
-          </span>
+          <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
         <button
           className="place-card__bookmark-button place-card__bookmark-button--active button"
@@ -58,7 +56,13 @@ const Offer = ({offer, onHoverActiveCard}) => (
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
-      <h2 className="place-card__name">
+      <h2
+        className="place-card__name"
+        onClick={(evt) => {
+          evt.preventDefault();
+          onSelectOffer(offer.id);
+        }}
+      >
         <a href="#">{offer.name}</a>
       </h2>
       <p className="place-card__type">{offer.type}</p>
@@ -69,15 +73,15 @@ const Offer = ({offer, onHoverActiveCard}) => (
 Offer.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    figure: PropTypes.string.isRequired,
+    figurePreview: PropTypes.string,
     mark: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    priceText: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
   }).isRequired,
-  onHoverActiveCard: PropTypes.func.isRequired
+  onHoverActiveCard: PropTypes.func,
+  onSelectOffer: PropTypes.func
 };
 
 export default Offer;

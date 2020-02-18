@@ -32,7 +32,7 @@ const Tabs = ({onCityHeaderClick}) => (
   </div>
 );
 
-const Main = ({placesCount, offers, onCityHeaderClick = () => {}}) => (
+const Main = ({placesCount, offers, onSelectOffer, onCityHeaderClick = () => {}}) => (
   <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <Tabs onCityHeaderClick={onCityHeaderClick} />
@@ -77,7 +77,7 @@ const Main = ({placesCount, offers, onCityHeaderClick = () => {}}) => (
                 </select>
                 -->*/}
           </form>
-          <OffersList offers={offers}/>
+          <OffersList offers={offers} onSelectOffer={onSelectOffer}/>
         </section>
         <div className="cities__right-section">
           <section className="cities__map map"></section>
@@ -90,13 +90,12 @@ const Main = ({placesCount, offers, onCityHeaderClick = () => {}}) => (
 Main.propTypes = {
   placesCount: PropTypes.number.isRequired,
   onCityHeaderClick: PropTypes.func,
+  onSelectOffer: PropTypes.func,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        figure: PropTypes.string.isRequired,
         mark: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
-        priceText: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired

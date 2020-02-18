@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Property /> sould be render 1`] = `
+exports[`<PlaceDetails /> sould be render 1`] = `
 <main
   className="page__main page__main--property"
 >
@@ -88,7 +88,7 @@ exports[`<Property /> sould be render 1`] = `
           <h1
             className="property__name"
           >
-            Beautiful & luxurious studio at great location
+            Beautiful & luxurious apartment at great location
           </h1>
           <button
             className="property__bookmark-button button"
@@ -117,7 +117,11 @@ exports[`<Property /> sould be render 1`] = `
             className="property__stars rating__stars"
           >
             <span
-              style="width: 80%"
+              style={
+                Object {
+                  "width": "20%",
+                }
+              }
             />
             <span
               className="visually-hidden"
@@ -128,7 +132,7 @@ exports[`<Property /> sould be render 1`] = `
           <span
             className="property__rating-value rating__value"
           >
-            4.8
+            1
           </span>
         </div>
         <ul
@@ -156,7 +160,8 @@ exports[`<Property /> sould be render 1`] = `
           <b
             className="property__price-value"
           >
-            €120
+            €
+            82
           </b>
           <span
             className="property__price-text"
@@ -271,12 +276,7 @@ exports[`<Property /> sould be render 1`] = `
             <p
               className="property__text"
             >
-              A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-            </p>
-            <p
-              className="property__text"
-            >
-              An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+              A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
             </p>
           </div>
         </div>
@@ -329,7 +329,11 @@ exports[`<Property /> sould be render 1`] = `
                     className="reviews__stars rating__stars"
                   >
                     <span
-                      style="width: 80%"
+                      style={
+                        Object {
+                          "width": "20%",
+                        }
+                      }
                     />
                     <span
                       className="visually-hidden"
@@ -534,10 +538,19 @@ exports[`<Property /> sould be render 1`] = `
         className="near-places__list places__list"
       >
         <article
-          className="near-places__card place-card"
+          className="cities__place-card place-card"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
-            className="near-places__image-wrapper place-card__image-wrapper"
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
+          <div
+            className="cities__image-wrapper place-card__image-wrapper"
           >
             <a
               href="#"
@@ -563,7 +576,8 @@ exports[`<Property /> sould be render 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €80
+                  €
+                  8220
                 </b>
                 <span
                   className="place-card__price-text"
@@ -598,7 +612,11 @@ exports[`<Property /> sould be render 1`] = `
                 className="place-card__stars rating__stars"
               >
                 <span
-                  style="width: 80%"
+                  style={
+                    Object {
+                      "width": "80%",
+                    }
+                  }
                 />
                 <span
                   className="visually-hidden"
@@ -609,101 +627,12 @@ exports[`<Property /> sould be render 1`] = `
             </div>
             <h2
               className="place-card__name"
+              onClick={[Function]}
             >
               <a
                 href="#"
               >
-                Wood and stone place
-              </a>
-            </h2>
-            <p
-              className="place-card__type"
-            >
-              Private room
-            </p>
-          </div>
-        </article>
-        <article
-          className="near-places__card place-card"
-        >
-          <div
-            className="near-places__image-wrapper place-card__image-wrapper"
-          >
-            <a
-              href="#"
-            >
-              <img
-                alt="Place image"
-                className="place-card__image"
-                height="200"
-                src="img/apartment-02.jpg"
-                width="260"
-              />
-            </a>
-          </div>
-          <div
-            className="place-card__info"
-          >
-            <div
-              className="place-card__price-wrapper"
-            >
-              <div
-                className="place-card__price"
-              >
-                <b
-                  className="place-card__price-value"
-                >
-                  €132
-                </b>
-                <span
-                  className="place-card__price-text"
-                >
-                  / night
-                </span>
-              </div>
-              <button
-                className="place-card__bookmark-button button"
-                type="button"
-              >
-                <svg
-                  className="place-card__bookmark-icon"
-                  height="19"
-                  width="18"
-                >
-                  <use
-                    xlinkHref="#icon-bookmark"
-                  />
-                </svg>
-                <span
-                  className="visually-hidden"
-                >
-                  To bookmarks
-                </span>
-              </button>
-            </div>
-            <div
-              className="place-card__rating rating"
-            >
-              <div
-                className="place-card__stars rating__stars"
-              >
-                <span
-                  style="width: 80%"
-                />
-                <span
-                  className="visually-hidden"
-                >
-                  Rating
-                </span>
-              </div>
-            </div>
-            <h2
-              className="place-card__name"
-            >
-              <a
-                href="#"
-              >
-                Canal View Prinsengracht
+                Beautiful & luxurious apartment at great location
               </a>
             </h2>
             <p
@@ -714,10 +643,12 @@ exports[`<Property /> sould be render 1`] = `
           </div>
         </article>
         <article
-          className="near-places__card place-card"
+          className="cities__place-card place-card"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
-            className="near-places__image-wrapper place-card__image-wrapper"
+            className="cities__image-wrapper place-card__image-wrapper"
           >
             <a
               href="#"
@@ -726,7 +657,7 @@ exports[`<Property /> sould be render 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-03.jpg"
+                src="img/room.jpg"
                 width="260"
               />
             </a>
@@ -743,7 +674,8 @@ exports[`<Property /> sould be render 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €180
+                  €
+                  220
                 </b>
                 <span
                   className="place-card__price-text"
@@ -752,7 +684,7 @@ exports[`<Property /> sould be render 1`] = `
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button button"
+                className="place-card__bookmark-button place-card__bookmark-button--active button"
                 type="button"
               >
                 <svg
@@ -767,7 +699,7 @@ exports[`<Property /> sould be render 1`] = `
                 <span
                   className="visually-hidden"
                 >
-                  To bookmarks
+                  In bookmarks
                 </span>
               </button>
             </div>
@@ -778,7 +710,11 @@ exports[`<Property /> sould be render 1`] = `
                 className="place-card__stars rating__stars"
               >
                 <span
-                  style="width: 100%"
+                  style={
+                    Object {
+                      "width": "60%",
+                    }
+                  }
                 />
                 <span
                   className="visually-hidden"
@@ -789,11 +725,110 @@ exports[`<Property /> sould be render 1`] = `
             </div>
             <h2
               className="place-card__name"
+              onClick={[Function]}
             >
               <a
                 href="#"
               >
-                Nice, cozy, warm big bed apartment
+                Beautiful & luxurious apartment at great location
+              </a>
+            </h2>
+            <p
+              className="place-card__type"
+            >
+              Apartment
+            </p>
+          </div>
+        </article>
+        <article
+          className="cities__place-card place-card"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <div
+            className="cities__image-wrapper place-card__image-wrapper"
+          >
+            <a
+              href="#"
+            >
+              <img
+                alt="Place image"
+                className="place-card__image"
+                height="200"
+                src="img/room.jpg"
+                width="260"
+              />
+            </a>
+          </div>
+          <div
+            className="place-card__info"
+          >
+            <div
+              className="place-card__price-wrapper"
+            >
+              <div
+                className="place-card__price"
+              >
+                <b
+                  className="place-card__price-value"
+                >
+                  €
+                  820
+                </b>
+                <span
+                  className="place-card__price-text"
+                >
+                  / night
+                </span>
+              </div>
+              <button
+                className="place-card__bookmark-button place-card__bookmark-button--active button"
+                type="button"
+              >
+                <svg
+                  className="place-card__bookmark-icon"
+                  height="19"
+                  width="18"
+                >
+                  <use
+                    xlinkHref="#icon-bookmark"
+                  />
+                </svg>
+                <span
+                  className="visually-hidden"
+                >
+                  In bookmarks
+                </span>
+              </button>
+            </div>
+            <div
+              className="place-card__rating rating"
+            >
+              <div
+                className="place-card__stars rating__stars"
+              >
+                <span
+                  style={
+                    Object {
+                      "width": "20%",
+                    }
+                  }
+                />
+                <span
+                  className="visually-hidden"
+                >
+                  Rating
+                </span>
+              </div>
+            </div>
+            <h2
+              className="place-card__name"
+              onClick={[Function]}
+            >
+              <a
+                href="#"
+              >
+                Beautiful & luxurious apartment at great location
               </a>
             </h2>
             <p
