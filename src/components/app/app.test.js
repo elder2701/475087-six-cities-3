@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
+import createMapBlock from "../map/create-map-block.js";
 
 const placesCount = 4;
 const offers = [
@@ -47,6 +48,7 @@ const offers = [
 ];
 
 it(`<App /> sould be render`, () => {
+  createMapBlock();
   const tree = renderer
     .create(<App placesCount={placesCount} offers={offers}/>)
     .toJSON();

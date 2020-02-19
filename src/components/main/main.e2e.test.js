@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
+import createMapBlock from "../map/create-map-block.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -58,6 +59,7 @@ const offers = [
 ];
 
 it(`Sould welcome button be pressed`, () => {
+  createMapBlock();
   const onCityHeaderClick = jest.fn();
 
   const main = mount(

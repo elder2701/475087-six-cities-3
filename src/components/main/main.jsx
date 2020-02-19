@@ -80,7 +80,7 @@ const Main = ({placesCount, offers, onSelectOffer, onCityHeaderClick = () => {}}
           <OffersList offers={offers} onSelectOffer={onSelectOffer}/>
         </section>
         <div className="cities__right-section">
-          <Map offersCords = {Array.from(offers, (item)=> item.coordinates)}/>
+          <Map offersCoords = {Array.from(offers, (item)=> item.coordinates)}/>
         </div>
       </div>
     </div>

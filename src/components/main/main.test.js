@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import createMapBlock from "../map/create-map-block.js";
 
 const places = [
   `Beautiful & luxurious apartment at great location`,
@@ -55,6 +56,7 @@ const offers = [
 ];
 
 it(`<Main /> sould be render`, () => {
+  createMapBlock();
   const tree = renderer
     .create(<Main placesCount={placesCount} places={places} offers={offers} />)
     .toJSON();
