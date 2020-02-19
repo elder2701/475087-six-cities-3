@@ -13,7 +13,8 @@ const offers = [
     priceText: `night`,
     rating: 2,
     name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
+    type: `Apartment`,
+    coordinates: [53.369553943508, 5.85309666406198]
   },
   {
     id: 10,
@@ -23,7 +24,8 @@ const offers = [
     priceText: `night`,
     rating: 5,
     name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
+    type: `Apartment`,
+    coordinates: [53.369553943508, 5.85309666406198]
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ const offers = [
     priceText: `night`,
     rating: 1,
     name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
+    type: `Apartment`,
+    coordinates: [53.369553943508, 5.85309666406198]
   },
   {
     id: 4,
@@ -43,7 +46,8 @@ const offers = [
     priceText: `night`,
     rating: 4,
     name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
+    type: `Apartment`,
+    coordinates: [53.369553943508, 5.85309666406198]
   }
 ];
 
