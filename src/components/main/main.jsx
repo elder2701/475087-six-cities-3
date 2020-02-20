@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list.jsx";
-
+import Map from "../map/map.jsx";
 
 const tabCities = [
   `Paris`,
@@ -80,7 +80,7 @@ const Main = ({placesCount, offers, onSelectOffer, onCityHeaderClick = () => {}}
           <OffersList offers={offers} onSelectOffer={onSelectOffer}/>
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+          <Map offersCoords = {Array.from(offers, (item)=> item.coordinates)}/>
         </div>
       </div>
     </div>
