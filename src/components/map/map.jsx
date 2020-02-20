@@ -20,6 +20,7 @@ class Map extends PureComponent {
       zoomControl: false,
       marker: true
     });
+    map.setView(city, zoom);
     l.tileLayer(
         `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
         {
@@ -31,8 +32,9 @@ class Map extends PureComponent {
   }
 
   render() {
+    const {name} = this.props;
     return (
-      <section className="cities__map map" id="map"></section>
+      <section className={name} id="map"></section>
     );
   }
 }
@@ -40,5 +42,6 @@ class Map extends PureComponent {
 export default Map;
 
 Map.propTypes = {
-  offersCoords: PropTypes.arrayOf(PropTypes.arrayOf(number)).isRequired
+  offersCoords: PropTypes.arrayOf(PropTypes.arrayOf(number)).isRequired,
+  name: PropTypes.string.isRequired
 };

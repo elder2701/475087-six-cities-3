@@ -22,13 +22,14 @@ class App extends PureComponent {
     const {placesCount, offers} = this.props;
     const {selectedOffer} = this.state;
     const offer = offers.find((item) => item.id === selectedOffer);
+    const nearPlaces = offers.filter((item)=> item.id !== selectedOffer);
     return (
       <BrowserRouter>
         <Header />
         <Switch>
           <Route exact path="/">
             {offer ? (
-              <PlaceDetails {...offer} />
+              <PlaceDetails {...offer} nearPlaces={nearPlaces} />
             ) : (
               <Main
                 placesCount={placesCount}

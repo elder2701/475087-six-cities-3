@@ -34,7 +34,31 @@ export const offers = [
     user: `Angelina`,
     avatar: `img/avatar-angelina.jpg`,
     status: `pro`,
-    coordinates: [52.3909553943508, 4.85309666406198]
+    coordinates: [52.3909553943508, 4.85309666406198],
+    comments: [
+      {avatar: `img/avatar-max.jpg`,
+        name: `Tex`,
+        rating: 4,
+        text: `A quiet cozy and picturesque that hides behind a a river by the
+      unique lightness of Amsterdam. The building is green and from 18th
+      century.`,
+        time: `June 3019`
+      },
+      {avatar: `img/avatar-max.jpg`,
+        name: `Vex`,
+        rating: 1,
+        text: `atatatatatatat. The building is green and from 18th
+    century.`,
+        time: `May 2019`
+      },
+      {avatar: `img/avatar-max.jpg`,
+        name: `Rex`,
+        rating: 3,
+        text: `A quiet cozy and picturesque that hides behind a a river by the
+  unique lightness of Amsterdam. ataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.`,
+        time: `April 2018`
+      }
+    ]
   },
   {
     id: 2,
@@ -72,7 +96,31 @@ export const offers = [
     user: `Angelina`,
     avatar: `img/avatar-angelina.jpg`,
     status: ``,
-    coordinates: [52.369553943508, 4.85309666406198]
+    coordinates: [52.369553943508, 4.85309666406198],
+    comments: [
+      {avatar: `img/avatar-max.jpg`,
+        name: `Vasya`,
+        rating: 4,
+        text: `A quiet cozy and picturesque that hides behind a a river by the
+      unique lightness of Amsterdam. The building is green and from 18th
+      century.`,
+        time: `June 3019`
+      },
+      {avatar: `img/avatar-max.jpg`,
+        name: `Max`,
+        rating: 1,
+        text: `yiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. The building is green and from 18th
+    century.`,
+        time: `May 2019`
+      },
+      {avatar: `img/avatar-max.jpg`,
+        name: `Olga`,
+        rating: 3,
+        text: `A quiet cozy and picturesque that hides behind a a river by the
+  unique lightness of Amsterdam. Yiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.`,
+        time: `April 2018`
+      }
+    ]
   },
   {
     id: 3,
@@ -109,7 +157,31 @@ export const offers = [
     user: `Angelina`,
     avatar: `img/avatar-angelina.jpg`,
     status: `pro`,
-    coordinates: [52.3909553943508, 4.929309666406198]
+    coordinates: [52.3909553943508, 4.929309666406198],
+    comments: [
+      {avatar: `img/avatar-max.jpg`,
+        name: `Syn-Vyn`,
+        rating: 4,
+        text: `A quiet cozy and picturesque that hides behind a a river by the
+      unique lightness of Amsterdam. The building is green and from 18th
+      century.`,
+        time: `June 3019`
+      },
+      {avatar: `img/avatar-max.jpg`,
+        name: `Maximka`,
+        rating: 1,
+        text: `opsopsopospospopsopopoppo. The building is green and from 18th
+    century.`,
+        time: `May 2019`
+      },
+      {avatar: `img/avatar-max.jpg`,
+        name: `Oledga`,
+        rating: 3,
+        text: `A quiet cozy and picturesque that hides behind a a river by the
+  unique lightness of Amsterdam. opssssssssssssssssssssssssssssssssssssssssssssssss.`,
+        time: `April 2018`
+      }
+    ]
   },
   {
     id: 4,
@@ -146,36 +218,30 @@ export const offers = [
     user: `Angelina`,
     avatar: `img/avatar-angelina.jpg`,
     status: ``,
-    coordinates: [52.3809553943508, 4.939309666406198]
-  }
-];
-
-export const nearOffers = [
-  {
-    id: 41,
-    figurePreview: `img/room.jpg`,
-    mark: `Premium`,
-    price: 8220,
-    rating: 4,
-    name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
-  },
-  {
-    id: 42,
-    figurePreview: `img/room.jpg`,
-    mark: ``,
-    price: 220,
-    rating: 3,
-    name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
-  },
-  {
-    id: 43,
-    figurePreview: `img/room.jpg`,
-    mark: ``,
-    price: 820,
-    rating: 1,
-    name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
+    coordinates: [52.3809553943508, 4.939309666406198],
+    comments: [
+      {avatar: `img/avatar-max.jpg`,
+        name: `Vasya`,
+        rating: 4,
+        text: `A quiet cozy and picturesque that hides behind a a river by the
+      unique lightness of Amsterdam. The building is green and from 18th
+      century.`,
+        time: `June 3019`
+      },
+      {avatar: `img/avatar-max.jpg`,
+        name: `Max`,
+        rating: 1,
+        text: `bla-blaaaaaaaaaaaaaaaaaaaaaaaaablaaaaaaaaaaaaaaaaaaaaaaaaaaaa. The building is green and from 18th
+    century.`,
+        time: `May 2019`
+      },
+      {avatar: `img/avatar-max.jpg`,
+        name: `Olga`,
+        rating: 3,
+        text: `A quiet cozy and picturesque that hides behind a a river by the
+  unique lightness of Amsterdam. Blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.`,
+        time: `April 2018`
+      }
+    ]
   }
 ];

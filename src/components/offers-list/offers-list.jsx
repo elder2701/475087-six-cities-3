@@ -16,9 +16,9 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {offers, onSelectOffer} = this.props;
+    const {offers, onSelectOffer, type} = this.props;
     return (
-      <div className="cities__places-list places__list tabs__content">
+      <div className={`${type} places__list`}>
         {offers.map((offer) => (
           <Offer
             offer={offer}
@@ -43,7 +43,8 @@ OffersList.propTypes = {
         type: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  onSelectOffer: PropTypes.func
+  onSelectOffer: PropTypes.func,
+  type: PropTypes.string
 };
 
 export default OffersList;
