@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
 
 const spanStyles = (rating) => {
@@ -6,8 +6,7 @@ const spanStyles = (rating) => {
   return {width: `${calculatedWidth}%`};
 };
 
-
-const Comment = ({ avatar, name, rating, text, time }) => (
+const Comment = ({avatar, name, rating, text, time}) => (
   <li className="reviews__item">
     <div className="reviews__user user">
       <div className="reviews__avatar-wrapper user__avatar-wrapper">
@@ -40,8 +39,8 @@ export default Comment;
 
 Comment.propTypes = {
   avatar: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired ,
+  name: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired
-}
+};
