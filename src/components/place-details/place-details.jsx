@@ -1,6 +1,7 @@
 import React from "react";
 import NearOffersList from "../near-offers-list/near-offers-list.jsx";
 import PlaceReviews from "../place-reviews/place-reviews.jsx";
+import Map from "../map/map.jsx";
 import PropTypes from "prop-types";
 
 const spanStyles = (rating) => {
@@ -19,7 +20,9 @@ const PlaceDetails = ({
   description,
   user,
   avatar,
-  status
+  status,
+  comments,
+  nearPlaces
 }) => (
   <main className="page__main page__main--property">
     <section className="property">
@@ -53,7 +56,9 @@ const PlaceDetails = ({
               <span style={spanStyles(rating)}></span>
               <span className="visually-hidden">Rating</span>
             </div>
-            <span className="property__rating-value rating__value">{rating}</span>
+            <span className="property__rating-value rating__value">
+              {rating}
+            </span>
           </div>
           <ul className="property__features">
             {insideFeatures.map((feature, index) => (
@@ -101,17 +106,22 @@ const PlaceDetails = ({
               <p className="property__text">{description}</p>
             </div>
           </div>
-          <PlaceReviews/>
+          <PlaceReviews comments={comments} />
         </div>
       </div>
-      <section className="property__map map"></section>
+      <Map
+        offersCoords={Array.from(nearPlaces, (item)=> item.coordinates)}
+        name={`property__map`}
+      />
     </section>
-    <NearOffersList />
+    <NearOffersList places={nearPlaces} />
   </main>
 );
+
 export default PlaceDetails;
 
 PlaceDetails.propTypes = {
+  id: PropTypes.number.isRequired,
   mark: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
@@ -122,5 +132,7 @@ PlaceDetails.propTypes = {
   description: PropTypes.string,
   user: PropTypes.string,
   avatar: PropTypes.string,
-  status: PropTypes.string
+  status: PropTypes.string,
+  comments: PropTypes.array,
+  nearPlaces: PropTypes.array
 };

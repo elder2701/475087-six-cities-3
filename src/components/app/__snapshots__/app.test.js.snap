@@ -630,7 +630,7 @@ Array [
           className="cities__right-section"
         >
           <section
-            className="cities__map map"
+            className="cities__map"
             id="map"
           />
         </div>

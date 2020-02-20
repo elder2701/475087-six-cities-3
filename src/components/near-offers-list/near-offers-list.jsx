@@ -1,19 +1,18 @@
 import React from 'react';
-import {nearOffers} from "../../mock/offers.js";
 import Offer from "../offer/offer.jsx";
+import PropTypes from "prop-types";
 
-
-const NearOffersList = () => (
+const NearOffersList = ({places}) => (
   <div className="container">
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        {nearOffers.map((nearOffer) => (
+        {places.map((nearOffer) => (
           <Offer
             offer={nearOffer}
             key={nearOffer.id}
             onHoverActiveCard={() => {}}
-            onSelectOffers={()=>{}}
+            onSelectOffer={()=>{}}
           />
         ))}
       </div>
@@ -22,3 +21,7 @@ const NearOffersList = () => (
 );
 
 export default NearOffersList;
+
+NearOffersList.propTypes = {
+  places: PropTypes.array.isRequired
+};
