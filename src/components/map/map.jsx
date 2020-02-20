@@ -20,6 +20,7 @@ class Map extends PureComponent {
       zoomControl: false,
       marker: true
     });
+    map.setView(city, zoom);
     l.tileLayer(
         `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
         {

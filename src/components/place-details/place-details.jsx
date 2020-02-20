@@ -1,5 +1,5 @@
 import React from "react";
-import NearOffersList from "../near-offers-list/near-offers-list.jsx";
+import OffersList from "../offers-list/offers-list.jsx";
 import PlaceReviews from "../place-reviews/place-reviews.jsx";
 import Map from "../map/map.jsx";
 import PropTypes from "prop-types";
@@ -110,11 +110,22 @@ const PlaceDetails = ({
         </div>
       </div>
       <Map
-        offersCoords={Array.from(nearPlaces, (item)=> item.coordinates)}
+        offersCoords={Array.from(nearPlaces, (item) => item.coordinates)}
         name={`property__map`}
       />
     </section>
-    <NearOffersList places={nearPlaces} />
+    <div className="container">
+      <section className="near-places places">
+        <h2 className="near-places__title">
+          Other places in the neighbourhood
+        </h2>
+        <OffersList
+          offers={nearPlaces}
+          onSelectOffer={() => {}}
+          type={`near-places__list`}
+        />
+      </section>
+    </div>
   </main>
 );
 

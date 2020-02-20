@@ -77,7 +77,7 @@ const Main = ({placesCount, offers, onSelectOffer, onCityHeaderClick = () => {}}
                 </select>
                 -->*/}
           </form>
-          <OffersList offers={offers} onSelectOffer={onSelectOffer}/>
+          <OffersList offers={offers} onSelectOffer={onSelectOffer} type={`cities__places-list tabs__content`}/>
         </section>
         <div className="cities__right-section">
           <Map offersCoords = {Array.from(offers, (item)=> item.coordinates)} name={`cities__map`}/>
@@ -89,6 +89,7 @@ const Main = ({placesCount, offers, onSelectOffer, onCityHeaderClick = () => {}}
 
 Main.propTypes = {
   placesCount: PropTypes.number.isRequired,
+  type: PropTypes.string,
   onCityHeaderClick: PropTypes.func,
   onSelectOffer: PropTypes.func,
   offers: PropTypes.arrayOf(
