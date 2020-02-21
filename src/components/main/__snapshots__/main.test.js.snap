@@ -174,7 +174,7 @@ exports[`<Main /> sould be render 1`] = `
           </ul>
         </form>
         <div
-          className="cities__places-list places__list tabs__content"
+          className="cities__places-list tabs__content places__list"
         >
           <article
             className="cities__place-card place-card"
@@ -577,7 +577,7 @@ exports[`<Main /> sould be render 1`] = `
         className="cities__right-section"
       >
         <section
-          className="cities__map map"
+          className="cities__map"
           id="map"
         />
       </div>
