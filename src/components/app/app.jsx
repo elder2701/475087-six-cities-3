@@ -20,8 +20,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {cityOffers} = this.props;
-    const placesCount = cityOffers.length;
+    const {city, cityOffers} = this.props;
     const {selectedOffer} = this.state;
     const offer = cityOffers.find((item) => item.id === selectedOffer);
     const nearPlaces = cityOffers.filter((item)=> item.id !== selectedOffer);
@@ -34,9 +33,9 @@ class App extends PureComponent {
               <PlaceDetails {...offer} nearPlaces={nearPlaces} />
             ) : (
               <Main
-                placesCount={placesCount}
                 cityOffers={cityOffers}
                 onSelectOffer={this.onSelectOffer}
+                city={city}
               />
             )}
           </Route>
@@ -49,9 +48,8 @@ class App extends PureComponent {
   }
 }
 
-/* App.propTypes = {
-  placesCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(
+App.propTypes = {
+  cityOffers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         figurePreview: PropTypes.string,
@@ -68,10 +66,13 @@ class App extends PureComponent {
         avatar: PropTypes.string,
         status: PropTypes.string
       }).isRequired
-  ).isRequired
-};*/
+  ).isRequired,
+  city: PropTypes.string.isRequired
+};
 
-const mapStateToProps = (state) => ({cityOffers: state.cityOffers});
-
+const mapStateToProps = (state) => ({
+  city: state.city,
+  cityOffers: state.cityOffers
+});
 
 export default connect(mapStateToProps)(App);

@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 const cities = [
   `Paris`,
@@ -39,7 +40,7 @@ class NavCities extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => (state);
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCity(city) {
@@ -49,5 +50,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.getCityOffers(city));
   }
 });
+
+NavCities.propTypes = {
+  onChangeCity: PropTypes.func.isRequired,
+  getCityOffers: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavCities);
