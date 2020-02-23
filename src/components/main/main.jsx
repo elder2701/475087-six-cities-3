@@ -1,41 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list.jsx";
+import NavCities from "../nav-cities/nav-cities.jsx";
 import Map from "../map/map.jsx";
 
-const tabCities = [
-  `Paris`,
-  `Cologne`,
-  `Brussels`,
-  `Amsterdam`,
-  `Hamburg`,
-  `Dusseldorf`
-];
-
-const Tabs = ({onCityHeaderClick}) => (
-  <div className="tabs">
-    <section className="locations container">
-      <ul className="locations__list tabs__list">
-        {tabCities.map((city, index) => (
-          <li className="locations__item" key={index}>
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={onCityHeaderClick}
-            >
-              <span>{city}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  </div>
-);
-
-const Main = ({placesCount, offers, onSelectOffer, onCityHeaderClick = () => {}}) => (
+const Main = ({placesCount, cityOffers, onSelectOffer}) => (
   <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
-    <Tabs onCityHeaderClick={onCityHeaderClick} />
+    <NavCities />
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
@@ -77,10 +49,10 @@ const Main = ({placesCount, offers, onSelectOffer, onCityHeaderClick = () => {}}
                 </select>
                 -->*/}
           </form>
-          <OffersList offers={offers} onSelectOffer={onSelectOffer} type={`cities__places-list tabs__content`}/>
+          <OffersList offers={cityOffers} onSelectOffer={onSelectOffer} type={`cities__places-list tabs__content`}/>
         </section>
         <div className="cities__right-section">
-          <Map offersCoords = {Array.from(offers, (item)=> item.coordinates)} name={`cities__map`}/>
+          <Map offersCoords = {Array.from(cityOffers, (item)=> item.coordinates)} name={`cities__map`}/>
         </div>
       </div>
     </div>
@@ -102,10 +74,6 @@ Main.propTypes = {
         type: PropTypes.string.isRequired
       }).isRequired
   ).isRequired
-};
-
-Tabs.propTypes = {
-  onCityHeaderClick: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
 import Header from "../header/header.jsx";
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 
@@ -19,10 +20,11 @@ class App extends PureComponent {
   }
 
   render() {
-    const {placesCount, offers} = this.props;
+    const {cityOffers} = this.props;
+    const placesCount = cityOffers.length;
     const {selectedOffer} = this.state;
-    const offer = offers.find((item) => item.id === selectedOffer);
-    const nearPlaces = offers.filter((item)=> item.id !== selectedOffer);
+    const offer = cityOffers.find((item) => item.id === selectedOffer);
+    const nearPlaces = cityOffers.filter((item)=> item.id !== selectedOffer);
     return (
       <BrowserRouter>
         <Header />
@@ -33,13 +35,13 @@ class App extends PureComponent {
             ) : (
               <Main
                 placesCount={placesCount}
-                offers={offers}
+                cityOffers={cityOffers}
                 onSelectOffer={this.onSelectOffer}
               />
             )}
           </Route>
           <Route exact path="/dev-component">
-            <PlaceDetails {...offers[1]} />
+            <PlaceDetails {...cityOffers[1]} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -47,7 +49,7 @@ class App extends PureComponent {
   }
 }
 
-App.propTypes = {
+/* App.propTypes = {
   placesCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
@@ -67,7 +69,9 @@ App.propTypes = {
         status: PropTypes.string
       }).isRequired
   ).isRequired
-};
+};*/
+
+const mapStateToProps = (state) => ({cityOffers: state.cityOffers});
 
 
-export default App;
+export default connect(mapStateToProps)(App);
