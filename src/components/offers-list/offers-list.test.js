@@ -47,7 +47,7 @@ const offers = [
 
 it(`<OffersList /> sould be render`, () => {
   const tree = renderer
-    .create(<OffersList offers={offers}/>)
+    .create(<OffersList cityOffers={offers}/>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

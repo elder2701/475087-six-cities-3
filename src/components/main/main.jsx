@@ -59,7 +59,7 @@ const Main = ({cityOffers, onSelectOffer, city}) => {
                 -->*/}
               </form>
               <OffersList
-                offers={cityOffers}
+                cityOffers={cityOffers}
                 onSelectOffer={onSelectOffer}
                 type={`cities__places-list tabs__content`}
               />
@@ -88,6 +88,7 @@ const Main = ({cityOffers, onSelectOffer, city}) => {
 };
 
 Main.propTypes = {
+  city: PropTypes.string,
   type: PropTypes.string,
   onCityHeaderClick: PropTypes.func,
   onSelectOffer: PropTypes.func,

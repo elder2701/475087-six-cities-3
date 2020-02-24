@@ -120,7 +120,7 @@ const PlaceDetails = ({
           Other places in the neighbourhood
         </h2>
         <OffersList
-          offers={nearPlaces}
+          cityOffers={nearPlaces}
           onSelectOffer={() => {}}
           type={`near-places__list`}
         />

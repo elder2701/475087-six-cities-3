@@ -75,4 +75,5 @@ const mapStateToProps = (state) => ({
   cityOffers: state.cityOffers
 });
 
+export {App};
 export default connect(mapStateToProps)(App);

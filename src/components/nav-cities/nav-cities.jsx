@@ -56,4 +56,5 @@ NavCities.propTypes = {
   getCityOffers: PropTypes.func.isRequired
 };
 
+export {NavCities};
 export default connect(mapStateToProps, mapDispatchToProps)(NavCities);

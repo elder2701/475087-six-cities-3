@@ -2,6 +2,8 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import createMapBlock from "../map/create-map-block.js";
 
 Enzyme.configure({
@@ -14,6 +16,8 @@ const places = [
   `Wood and stone place`,
   `Nice, cozy, warm big bed apartment`
 ];
+
+const city = ``;
 
 const offers = [
   {
@@ -62,17 +66,22 @@ const offers = [
   }
 ];
 
+const mockStore = configureStore([]);
+
 it(`Sould welcome button be pressed`, () => {
+  const store = mockStore({});
   createMapBlock();
   const onCityHeaderClick = jest.fn();
 
   const main = mount(
-      <Main
-        placesCount={3}
-        onCityHeaderClick={onCityHeaderClick}
-        places={places}
-        offers={offers}
-      />
+      <Provider store={store}>
+        <Main
+          city={city}
+          onCityHeaderClick={onCityHeaderClick}
+          places={places}
+          cityOffers={offers}
+        />
+      </Provider>
   );
   let headerButton = main.find(`a.locations__item-link`);
   for (let i = 0; i < headerButton.length; i++) {
