@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import createMapBlock from "../map/create-map-block.js";
 
 const places = [
@@ -9,8 +11,8 @@ const places = [
   `Wood and stone place`,
   `Nice, cozy, warm big bed apartment`
 ];
-
-const placesCount = 4;
+const city = ``;
+const mockStore = configureStore([]);
 
 const offers = [
   {
@@ -60,9 +62,14 @@ const offers = [
 ];
 
 it(`<Main /> sould be render`, () => {
+  const store = mockStore({});
   createMapBlock();
   const tree = renderer
-    .create(<Main placesCount={placesCount} places={places} offers={offers} />)
+    .create(
+        <Provider store={store}>
+          <Main city={city} places={places} cityOffers={offers} />
+        </Provider>
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

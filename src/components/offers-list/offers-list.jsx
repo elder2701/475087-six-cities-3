@@ -16,10 +16,10 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {offers, onSelectOffer, type} = this.props;
+    const {cityOffers, onSelectOffer, type} = this.props;
     return (
       <div className={`${type} places__list`}>
-        {offers.map((offer) => (
+        {cityOffers.map((offer) => (
           <Offer
             offer={offer}
             key={offer.id}
@@ -33,7 +33,7 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(
+  cityOffers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         mark: PropTypes.string.isRequired,
