@@ -90,7 +90,6 @@ const Main = ({cityOffers, onSelectOffer, city}) => {
 Main.propTypes = {
   city: PropTypes.string,
   type: PropTypes.string,
-  onCityHeaderClick: PropTypes.func,
   onSelectOffer: PropTypes.func,
   cityOffers: PropTypes.arrayOf(
       PropTypes.shape({
