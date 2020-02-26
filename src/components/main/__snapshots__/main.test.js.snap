@@ -103,7 +103,7 @@ exports[`<Main /> sould be render 1`] = `
     className="cities"
   >
     <div
-      className="cities__places-container container"
+      className="cities__places-container container "
     >
       <section
         className="cities__places places"

@@ -5,6 +5,9 @@ import l from "leaflet";
 class Map extends PureComponent {
   constructor(props) {
     super(props);
+    this.state = {
+      map: null
+    };
   }
 
   componentDidMount() {
@@ -14,7 +17,7 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
     const zoom = 12;
-    const map = l.map(`map`, {
+    let map = l.map(`map`, {
       center: city,
       zoom,
       zoomControl: false,
@@ -29,6 +32,11 @@ class Map extends PureComponent {
     ).addTo(map);
     const {offersCoords} = this.props;
     offersCoords.forEach((coords) => l.marker(coords, {icon}).addTo(map));
+    this.setState({map});
+  }
+
+  componentWillUnmount() {
+    this.setState({map: null});
   }
 
   render() {

@@ -120,7 +120,7 @@ const PlaceDetails = ({
           Other places in the neighbourhood
         </h2>
         <OffersList
-          offers={nearPlaces}
+          cityOffers={nearPlaces}
           onSelectOffer={() => {}}
           type={`near-places__list`}
         />
@@ -132,11 +132,10 @@ const PlaceDetails = ({
 export default PlaceDetails;
 
 PlaceDetails.propTypes = {
-  id: PropTypes.number.isRequired,
-  mark: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  mark: PropTypes.string,
+  price: PropTypes.number,
+  rating: PropTypes.number,
+  name: PropTypes.string,
   allFigures: PropTypes.arrayOf(PropTypes.string),
   insideFeatures: PropTypes.arrayOf(PropTypes.string),
   insideOptions: PropTypes.arrayOf(PropTypes.string),

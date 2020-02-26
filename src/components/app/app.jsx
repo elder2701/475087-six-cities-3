@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
 import Header from "../header/header.jsx";
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 
@@ -19,10 +20,10 @@ class App extends PureComponent {
   }
 
   render() {
-    const {placesCount, offers} = this.props;
+    const {city, cityOffers} = this.props;
     const {selectedOffer} = this.state;
-    const offer = offers.find((item) => item.id === selectedOffer);
-    const nearPlaces = offers.filter((item)=> item.id !== selectedOffer);
+    const offer = cityOffers.find((item) => item.id === selectedOffer);
+    const nearPlaces = cityOffers.filter((item)=> item.id !== selectedOffer);
     return (
       <BrowserRouter>
         <Header />
@@ -32,14 +33,14 @@ class App extends PureComponent {
               <PlaceDetails {...offer} nearPlaces={nearPlaces} />
             ) : (
               <Main
-                placesCount={placesCount}
-                offers={offers}
+                cityOffers={cityOffers}
                 onSelectOffer={this.onSelectOffer}
+                city={city}
               />
             )}
           </Route>
           <Route exact path="/dev-component">
-            <PlaceDetails {...offers[1]} />
+            <PlaceDetails {...cityOffers[1]} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -48,8 +49,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  placesCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(
+  cityOffers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         figurePreview: PropTypes.string,
@@ -66,8 +66,14 @@ App.propTypes = {
         avatar: PropTypes.string,
         status: PropTypes.string
       }).isRequired
-  ).isRequired
+  ).isRequired,
+  city: PropTypes.string.isRequired
 };
 
+const mapStateToProps = (state) => ({
+  city: state.city,
+  cityOffers: state.cityOffers
+});
 
-export default App;
+export {App};
+export default connect(mapStateToProps)(App);
