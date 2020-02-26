@@ -5,25 +5,19 @@ import Offer from "../offer/offer.jsx";
 class OffersList extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      activeCard: null
-    };
-    this.onHoverActiveCard = this.onHoverActiveCard.bind(this);
-  }
-
-  onHoverActiveCard(activeCard) {
-    this.setState({activeCard});
   }
 
   render() {
-    const {cityOffers, onSelectOffer, type} = this.props;
+    const {onHoverActiveCard, cityOffers, onSelectOffer, type} = this.props;
     return (
       <div className={`${type} places__list`}>
         {cityOffers.map((offer) => (
           <Offer
             offer={offer}
             key={offer.id}
-            onHoverActiveCard={this.onHoverActiveCard}
+            onHoverActiveCard={()=>{
+              onHoverActiveCard(offer.id);
+            }}
             onSelectOffer = {onSelectOffer}
           />
         ))}
@@ -33,6 +27,7 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
+  onHoverActiveCard: PropTypes.func,
   cityOffers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
