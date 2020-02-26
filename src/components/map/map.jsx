@@ -12,7 +12,6 @@ class Map extends PureComponent {
 
   componentDidMount() {
     const {offersCoords, hoveredPlace} = this.props;
-    console.log(hoveredPlace);
     const city = [52.38333, 4.9];
     let icon = l.icon({
       iconUrl: `img/pin.svg`,
@@ -61,5 +60,6 @@ export default Map;
 
 Map.propTypes = {
   offersCoords: PropTypes.array.isRequired,
+  hoveredPlace: PropTypes.any,
   name: PropTypes.string.isRequired
 };

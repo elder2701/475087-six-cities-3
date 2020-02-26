@@ -15,9 +15,7 @@ class OffersList extends PureComponent {
           <Offer
             offer={offer}
             key={offer.id}
-            onHoverActiveCard={()=>{
-              onHoverActiveCard(offer.id);
-            }}
+            onHoverActiveCard={onHoverActiveCard}
             onSelectOffer = {onSelectOffer}
           />
         ))}
