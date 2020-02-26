@@ -110,7 +110,7 @@ const PlaceDetails = ({
         </div>
       </div>
       <Map
-        offersCoords={Array.from(nearPlaces, (item) => item.coordinates)}
+        offersCoords={Array.from(nearPlaces, (item) => [item.id, item.coordinates])}
         name={`property__map`}
       />
     </section>
