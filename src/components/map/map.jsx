@@ -1,17 +1,16 @@
-import React, {PureComponent} from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import l from "leaflet";
 
-class Map extends PureComponent {
+class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      map: null
-    };
+    this.myMap = null;
   }
 
   componentDidMount() {
     const {offersCoords, hoveredPlace} = this.props;
+    let markers = new l.LayerGroup();
     const city = [52.38333, 4.9];
     let icon = l.icon({
       iconUrl: `img/pin.svg`,
@@ -22,30 +21,26 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
     const zoom = 12;
-    let map = l.map(`map`, {
-      center: city,
-      zoom,
-      zoomControl: false,
-      marker: true
-    });
-    map.setView(city, zoom);
     l.tileLayer(
         `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
         {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         }
-    ).addTo(map);
+    ).addTo(this.myMap);
     offersCoords.forEach((coords) => {
-      if (hoveredPlace && coords[0] === hoveredPlace) {
-        icon = iconActive;
-      }
-      l.marker(coords[1], {icon}).addTo(map);
+      l.marker(coords[1], {icon}).addTo(markers);
     });
-    this.setState({map});
+    l.control.layers({"markers": markers});
+    this.myMap = l.map(`map`, {
+      center: city,
+      zoom,
+      zoomControl: false,
+      layers: [markers]
+    });
+    this.myMap.setView(city, zoom);
   }
 
-  componentWillUnmount() {
-    this.setState({map: null});
+  componentDidUpdate() {
   }
 
   render() {
