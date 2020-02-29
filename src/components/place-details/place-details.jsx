@@ -122,6 +122,7 @@ const PlaceDetails = ({
         <OffersList
           cityOffers={nearPlaces}
           onSelectOffer={() => {}}
+          onHoverActiveCard={() => {}}
           type={`near-places__list`}
         />
       </section>

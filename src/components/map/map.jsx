@@ -7,18 +7,19 @@ class Map extends Component {
     super(props);
     this.myMap = null;
     this.markers = null;
-  }
-
-  componentDidMount() {
-    const {offersCoords} = this.props;
-    const city = [52.38333, 4.9];
-    let icon = l.icon({
+    this.icon = l.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
+    this.iconActive = l.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
+  }
+
+  initMapWithPinLayer(places) {
+    const city = [52.38333, 4.9];
     const zoom = 12;
-    const places = Array.from(offersCoords, (coords) =>
-      l.marker(coords[1], {icon}));
     this.markers = l.layerGroup(places);
     this.myMap = l.map(`map`, {
       center: city,
@@ -33,42 +34,30 @@ class Map extends Component {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         }
     ).addTo(this.myMap);
-    l.control.layers({"markers": this.markers});
+    l.control.layers({markers: this.markers});
+  }
+
+  componentDidMount() {
+    const {offersCoords} = this.props;
+    const places = Array.from(offersCoords, (coords) =>
+      l.marker(coords[1], {icon: this.icon})
+    );
+    this.initMapWithPinLayer(places);
   }
 
   componentDidUpdate() {
     const {offersCoords, hoveredPlace} = this.props;
-    let icon = l.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
-    const iconActive = l.icon({
-      iconUrl: `img/pin-active.svg`,
-      iconSize: [30, 30]
-    });
     this.markers.clearLayers();
-    const places = Array.from(offersCoords, (coords) =>{
-      if (coords[0] === hoveredPlace) {
-        icon = iconActive;
-      }
-      return l.marker(coords[1], {icon});
+    offersCoords.map((coords) => {
+      l.marker(coords[1], {
+        icon: coords[0] === hoveredPlace ? this.iconActive : this.icon
+      }).addTo(this.markers);
     });
-    this.markers = l.layerGroup(places);
-    l.tileLayer(
-        `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
-        {
-          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-        }
-    ).addTo(this.myMap);
-    l.control.layers({"markers": this.markers});
-
   }
 
   render() {
     const {name} = this.props;
-    return (
-      <section className={name} id="map"></section>
-    );
+    return <section className={name} id="map"></section>;
   }
 }
 
