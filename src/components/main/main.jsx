@@ -25,11 +25,11 @@ class Main extends PureComponent {
 
     switch (optionSorting) {
       case `Price: low to high`:
-        return offers.sort((a, b)=> a.price - b.price);
+        return offers.slice().sort((a, b) => a.price - b.price);
       case `Price: high to low`:
-        return offers.sort((a, b)=> -a.price + b.price);
+        return offers.slice().sort((a, b) => -a.price + b.price);
       case `Top rated first`:
-        return offers.sort((a, b)=> -a.rating + b.rating);
+        return offers.slice().sort((a, b) => -a.rating + b.rating);
     }
     return offers;
   }

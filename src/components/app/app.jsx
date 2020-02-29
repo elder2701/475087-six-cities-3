@@ -30,7 +30,7 @@ class App extends PureComponent {
         <Switch>
           <Route exact path="/">
             {offer ? (
-              <PlaceDetails {...offer} nearPlaces={nearPlaces} />
+              <PlaceDetails {...offer} nearPlaces={nearPlaces} onSelectOffer={this.onSelectOffer}/>
             ) : (
               <Main
                 cityOffers={cityOffers}
