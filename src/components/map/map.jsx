@@ -1,55 +1,70 @@
-import React, {PureComponent} from "react";
-import PropTypes, {number} from "prop-types";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import l from "leaflet";
 
-class Map extends PureComponent {
+class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      map: null
-    };
-  }
-
-  componentDidMount() {
-    const city = [52.38333, 4.9];
-    const icon = l.icon({
+    this.myMap = null;
+    this.markers = null;
+    this.icon = l.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
+    this.iconActive = l.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
+  }
+
+  initMapWithPinLayer(places) {
+    const city = [52.38333, 4.9];
     const zoom = 12;
-    let map = l.map(`map`, {
+    this.markers = l.layerGroup(places);
+    this.myMap = l.map(`map`, {
       center: city,
       zoom,
       zoomControl: false,
-      marker: true
+      layers: [this.markers]
     });
-    map.setView(city, zoom);
+    this.myMap.setView(city, zoom);
     l.tileLayer(
         `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
         {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         }
-    ).addTo(map);
-    const {offersCoords} = this.props;
-    offersCoords.forEach((coords) => l.marker(coords, {icon}).addTo(map));
-    this.setState({map});
+    ).addTo(this.myMap);
+    l.control.layers({markers: this.markers});
   }
 
-  componentWillUnmount() {
-    this.setState({map: null});
+  componentDidMount() {
+    const {offersCoords} = this.props;
+    const places = Array.from(offersCoords, (coords) =>
+      l.marker(coords[1], {icon: this.icon})
+    );
+    this.initMapWithPinLayer(places);
+  }
+
+  componentDidUpdate() {
+    const {offersCoords, hoveredPlace} = this.props;
+    this.markers.clearLayers();
+    offersCoords.map((coords) => {
+      l.marker(coords[1], {
+        icon: coords[0] === hoveredPlace ? this.iconActive : this.icon
+      }).addTo(this.markers);
+    });
   }
 
   render() {
     const {name} = this.props;
-    return (
-      <section className={name} id="map"></section>
-    );
+    return <section className={name} id="map"></section>;
   }
 }
 
 export default Map;
 
 Map.propTypes = {
-  offersCoords: PropTypes.arrayOf(PropTypes.arrayOf(number)).isRequired,
+  offersCoords: PropTypes.array.isRequired,
+  hoveredPlace: PropTypes.any,
   name: PropTypes.string.isRequired
 };
