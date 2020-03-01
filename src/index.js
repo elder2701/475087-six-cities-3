@@ -4,6 +4,7 @@ import App from "./components/app/app.jsx";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import {reducer} from "./reducer.js";
+import withSelectedOffer from "./hoc/with-selected-offer/with-selected-offer.js";
 
 const store = createStore(
     reducer,
@@ -12,9 +13,11 @@ const store = createStore(
       : (f) => f
 );
 
+const AppWrapper = withSelectedOffer(App);
+
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <AppWrapper />
     </Provider>,
     document.getElementById(`root`)
 );
