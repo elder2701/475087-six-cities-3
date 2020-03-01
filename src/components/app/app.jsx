@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
+import withHoveredPlace from "../../hoc/with-hovered-place/with-hovered-place.js";
+import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
+
+const MainWrapper = withOptionSorting(withHoveredPlace(Main));
+const PlaceDetailsWrapper = withHoveredPlace(PlaceDetails);
 
 class App extends PureComponent {
   constructor(props) {
@@ -30,9 +35,9 @@ class App extends PureComponent {
         <Switch>
           <Route exact path="/">
             {offer ? (
-              <PlaceDetails {...offer} nearPlaces={nearPlaces} onSelectOffer={this.onSelectOffer}/>
+              <PlaceDetailsWrapper {...offer} nearPlaces={nearPlaces} onSelectOffer={this.onSelectOffer}/>
             ) : (
-              <Main
+              <MainWrapper
                 cityOffers={cityOffers}
                 onSelectOffer={this.onSelectOffer}
                 city={city}
@@ -40,7 +45,7 @@ class App extends PureComponent {
             )}
           </Route>
           <Route exact path="/dev-component">
-            <PlaceDetails {...cityOffers[1]} />
+            <PlaceDetailsWrapper {...cityOffers[1]} />
           </Route>
         </Switch>
       </BrowserRouter>
