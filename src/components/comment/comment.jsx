@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import PropTypes from "prop-types";
 
 const spanStyles = (rating) => {
@@ -35,7 +35,7 @@ const Comment = ({avatar, name, rating, text, time}) => (
   </li>
 );
 
-export default Comment;
+export default memo(Comment);
 
 Comment.propTypes = {
   avatar: PropTypes.string.isRequired,

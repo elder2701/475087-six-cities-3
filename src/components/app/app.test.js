@@ -60,7 +60,7 @@ it(`<App /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App city={``} cityOffers={offers} />
+          <App city={``} cityOffers={offers} onSelectOffer={() => {}} />
         </Provider>
     )
     .toJSON();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import CommentList from "../comment-list/comment-list.jsx";
 import PropTypes from "prop-types";
 
@@ -123,7 +123,7 @@ const PlaceReviews = ({comments}) => (
   </section>
 );
 
-export default PlaceReviews;
+export default memo(PlaceReviews);
 
 PlaceReviews.propTypes = {
   comments: PropTypes.array.isRequired

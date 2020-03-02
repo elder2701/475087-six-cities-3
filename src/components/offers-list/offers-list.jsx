@@ -1,15 +1,15 @@
-import React from "react";
+import React, {memo} from "react";
 import PropTypes from "prop-types";
 import Offer from "../offer/offer.jsx";
 
-const OffersList = ({onHoverActiveCard, cityOffers, onSelectOffer, type}) => (
+const OffersList = ({onHoverActiveCard, cityOffers, handleSelectOffer, type}) => (
   <div className={`${type} places__list`}>
     {cityOffers.map((offer) => (
       <Offer
         offer={offer}
         key={offer.id}
         onHoverActiveCard={onHoverActiveCard}
-        onSelectOffer={onSelectOffer}
+        handleSelectOffer={handleSelectOffer}
       />
     ))}
   </div>
@@ -27,8 +27,8 @@ OffersList.propTypes = {
         type: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  onSelectOffer: PropTypes.func,
+  handleSelectOffer: PropTypes.func,
   type: PropTypes.string
 };
 
-export default OffersList;
+export default memo(OffersList);

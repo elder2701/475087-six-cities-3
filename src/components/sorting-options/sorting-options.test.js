@@ -5,7 +5,13 @@ import SortingOptions from "./sorting-options.jsx";
 it(`<SortingOptions /> sould be render`, () => {
   const tree = renderer
     .create(
-        <SortingOptions onSelectOption={() => {}} optionSorting={`Popular`} />
+        <SortingOptions
+          onSelectOption={() => {}}
+          optionSorting={`Popular`}
+          open={false}
+          handleClose={() => {}}
+          handleCloseOrOpen={() => {}}
+        />
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
