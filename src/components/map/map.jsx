@@ -46,11 +46,12 @@ class Map extends Component {
   }
 
   componentDidUpdate() {
-    const {offersCoords, hoveredPlace} = this.props;
+    const {offersCoords, selectedOffer} = this.props;
+    console.log(selectedOffer);
     this.markers.clearLayers();
     offersCoords.map((coords) => {
       l.marker(coords[1], {
-        icon: coords[0] === hoveredPlace ? this.iconActive : this.icon
+        icon: coords[0] === selectedOffer ? this.iconActive : this.icon
       }).addTo(this.markers);
     });
   }
@@ -65,6 +66,6 @@ export default Map;
 
 Map.propTypes = {
   offersCoords: PropTypes.array.isRequired,
-  hoveredPlace: PropTypes.any,
+  selectedOffer: PropTypes.any,
   name: PropTypes.string.isRequired
 };

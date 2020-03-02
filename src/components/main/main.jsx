@@ -23,13 +23,14 @@ const offersSortingByOption = (offers, option) => {
 
 const Main = ({
   onSelectOffer,
+  selectOffer,
   city,
   cityOffers,
-  onHoverActiveCard,
-  hoveredPlace,
+  handleSelectOffer,
   changeOptionSorting,
   optionSorting
 }) => {
+  console.log(selectOffer)
   const cityOffersResult = offersSortingByOption(cityOffers, optionSorting);
   const placesCount = cityOffersResult.length;
   const offersCoords = Array.from(cityOffersResult, (item) => {
@@ -58,8 +59,8 @@ const Main = ({
               />
               <OffersList
                 cityOffers={cityOffersResult}
-                onSelectOffer={onSelectOffer}
-                onHoverActiveCard={onHoverActiveCard}
+                handleSelectOffer={handleSelectOffer}
+                onHoverActiveCard={onSelectOffer}
                 type={`cities__places-list tabs__content`}
               />
             </section>
@@ -76,7 +77,7 @@ const Main = ({
           <div className="cities__right-section">
             {placesCount ? (
               <Map
-                hoveredPlace={hoveredPlace}
+                selectOffer={selectOffer}
                 offersCoords={offersCoords}
                 name={`cities__map`}
               />
@@ -93,8 +94,8 @@ const Main = ({
 Main.propTypes = {
   changeOptionSorting: PropTypes.func,
   optionSorting: PropTypes.string,
-  hoveredPlace: PropTypes.number,
-  onHoverActiveCard: PropTypes.func,
+  selectOffer: PropTypes.number,
+  handleSelectOffer: PropTypes.func,
   city: PropTypes.string,
   type: PropTypes.string,
   onSelectOffer: PropTypes.func,

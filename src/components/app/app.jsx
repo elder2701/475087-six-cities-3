@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
-import withHoveredPlace from "../../hoc/with-hovered-place/with-hovered-place.js";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
+import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
 
-const MainWrapper = withOptionSorting(withHoveredPlace(Main));
-const PlaceDetailsWrapper = withHoveredPlace(PlaceDetails);
+const MainWrapper = withOptionSorting(withSelectedOffer(Main));
+const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
 const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
   const offer = cityOffers.find((item) => item.id === selectedOffer);
@@ -23,12 +23,12 @@ const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
             <PlaceDetailsWrapper
               {...offer}
               nearPlaces={nearPlaces}
-              onSelectOffer={onSelectOffer}
+              handleSelectOffer={onSelectOffer}
             />
           ) : (
             <MainWrapper
               cityOffers={cityOffers}
-              onSelectOffer={onSelectOffer}
+              handleSelectOffer={onSelectOffer}
               city={city}
             />
           )}

@@ -10,8 +10,8 @@ const spanStyles = (rating) => {
 };
 
 const PlaceDetails = ({
-  hoveredPlace,
-  onHoverActiveCard,
+  selectedOffer,
+  onSelectOffer,
   mark,
   price,
   rating,
@@ -25,7 +25,7 @@ const PlaceDetails = ({
   status,
   comments,
   nearPlaces,
-  onSelectOffer
+  handleSelectOffer
 }) => (
   <main className="page__main page__main--property">
     <section className="property">
@@ -113,7 +113,7 @@ const PlaceDetails = ({
         </div>
       </div>
       <Map
-        hoveredPlace={hoveredPlace}
+        selectedOffer={selectedOffer}
         offersCoords={Array.from(nearPlaces, (item) => [item.id, item.coordinates])}
         name={`property__map`}
       />
@@ -125,8 +125,8 @@ const PlaceDetails = ({
         </h2>
         <OffersList
           cityOffers={nearPlaces}
-          onSelectOffer={onSelectOffer}
-          onHoverActiveCard={onHoverActiveCard}
+          handleSelectOffer={handleSelectOffer}
+          onHoverActiveCard={onSelectOffer}
           type={`near-places__list`}
         />
       </section>
@@ -137,8 +137,8 @@ const PlaceDetails = ({
 export default PlaceDetails;
 
 PlaceDetails.propTypes = {
-  hoveredPlace: PropTypes.number,
-  onHoverActiveCard: PropTypes.func,
+  selectedOffer: PropTypes.number,
+  handleSelectOffer: PropTypes.func,
   onSelectOffer: PropTypes.func,
   mark: PropTypes.string,
   price: PropTypes.number,
