@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 const Login = () => (
   <main className="page__main page__main--login">
@@ -42,4 +42,4 @@ const Login = () => (
   </main>
 );
 
-export default Login;
+export default memo(Login);

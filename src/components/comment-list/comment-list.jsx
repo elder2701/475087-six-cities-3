@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import Comment from "../comment/comment.jsx";
 import PropTypes from "prop-types";
 
@@ -10,7 +10,7 @@ const CommentList = ({comments}) => (
   </ul>
 );
 
-export default CommentList;
+export default memo(CommentList);
 
 CommentList.propTypes = {
   comments: PropTypes.array.isRequired

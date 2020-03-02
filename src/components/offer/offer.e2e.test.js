@@ -27,7 +27,7 @@ describe(`Mouse events`, () => {
   const onSelectOffer = jest.fn();
 
   const screen = mount(
-      <Offer offer={offer} onHoverActiveCard={onHoverActiveCard} onSelectOffer={onSelectOffer} />
+      <Offer offer={offer} onHoverActiveCard={onHoverActiveCard} handleSelectOffer={onSelectOffer} />
   );
 
   it(`Title onclick`, () => {

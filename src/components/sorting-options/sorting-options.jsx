@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import PropTypes from "prop-types";
 
 const sortingOptions = [
@@ -64,7 +64,7 @@ const SortingOptions = ({
   </form>
 );
 
-export default SortingOptions;
+export default memo(SortingOptions);
 
 SortingOptions.propTypes = {
   handleCloseOrOpen: PropTypes.func.isRequired,

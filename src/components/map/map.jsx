@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import l from "leaflet";
 
-class Map extends Component {
+class Map extends PureComponent {
   constructor(props) {
     super(props);
     this.myMap = null;
@@ -47,7 +47,6 @@ class Map extends Component {
 
   componentDidUpdate() {
     const {offersCoords, selectedOffer} = this.props;
-    console.log(selectedOffer);
     this.markers.clearLayers();
     offersCoords.map((coords) => {
       l.marker(coords[1], {

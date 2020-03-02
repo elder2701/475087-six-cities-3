@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import PropTypes from "prop-types";
 
 const spanStyles = (rating) => {
@@ -11,7 +11,6 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
     className="cities__place-card place-card"
     onMouseOver={(evt) => {
       evt.preventDefault();
-      console.log(offer.id)
       onHoverActiveCard(offer.id);
     }}
     onMouseOut={(evt) => {
@@ -85,4 +84,4 @@ Offer.propTypes = {
   handleSelectOffer: PropTypes.func
 };
 
-export default Offer;
+export default memo(Offer);

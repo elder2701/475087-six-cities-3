@@ -23,14 +23,13 @@ const offersSortingByOption = (offers, option) => {
 
 const Main = ({
   onSelectOffer,
-  selectOffer,
+  selectedOffer,
   city,
   cityOffers,
   handleSelectOffer,
   changeOptionSorting,
   optionSorting
 }) => {
-  console.log(selectOffer)
   const cityOffersResult = offersSortingByOption(cityOffers, optionSorting);
   const placesCount = cityOffersResult.length;
   const offersCoords = Array.from(cityOffersResult, (item) => {
@@ -77,7 +76,7 @@ const Main = ({
           <div className="cities__right-section">
             {placesCount ? (
               <Map
-                selectOffer={selectOffer}
+                selectedOffer={selectedOffer}
                 offersCoords={offersCoords}
                 name={`cities__map`}
               />
@@ -94,7 +93,7 @@ const Main = ({
 Main.propTypes = {
   changeOptionSorting: PropTypes.func,
   optionSorting: PropTypes.string,
-  selectOffer: PropTypes.number,
+  selectedOffer: PropTypes.number,
   handleSelectOffer: PropTypes.func,
   city: PropTypes.string,
   type: PropTypes.string,

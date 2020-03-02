@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import PropTypes from "prop-types";
 import Offer from "../offer/offer.jsx";
 
@@ -31,4 +31,4 @@ OffersList.propTypes = {
   type: PropTypes.string
 };
 
-export default OffersList;
+export default memo(OffersList);
