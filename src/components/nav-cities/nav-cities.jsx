@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {memo} from "react";
 import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -12,33 +12,28 @@ const cities = [
   `Dusseldorf`
 ];
 
-class NavCities extends PureComponent {
-
-  render() {
-    const {onChangeCity, getCityOffers} = this.props;
-    return (
-      <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            {cities.map((city) => (
-              <li className="locations__item" key={city}>
-                <a
-                  className="locations__item-link tabs__item"
-                  href="#"
-                  onClick={()=>{
-                    onChangeCity(city);
-                    getCityOffers(city);
-                  }}
-                >
-                  <span>{city}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>);
-  }
-}
+const NavCities = ({onChangeCity, getCityOffers}) => (
+  <div className="tabs">
+    <section className="locations container">
+      <ul className="locations__list tabs__list">
+        {cities.map((city) => (
+          <li className="locations__item" key={city}>
+            <a
+              className="locations__item-link tabs__item"
+              href="#"
+              onClick={() => {
+                onChangeCity(city);
+                getCityOffers(city);
+              }}
+            >
+              <span>{city}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+);
 
 const mapStateToProps = () => ({});
 
@@ -57,4 +52,4 @@ NavCities.propTypes = {
 };
 
 export {NavCities};
-export default connect(mapStateToProps, mapDispatchToProps)(NavCities);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(NavCities));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import PropTypes from "prop-types";
 
 const spanStyles = (rating) => {
@@ -6,7 +6,7 @@ const spanStyles = (rating) => {
   return {width: `${calculatedWidth}%`};
 };
 
-const Offer = ({offer, onHoverActiveCard, onSelectOffer}) => (
+const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
   <article
     className="cities__place-card place-card"
     onMouseOver={(evt) => {
@@ -60,7 +60,7 @@ const Offer = ({offer, onHoverActiveCard, onSelectOffer}) => (
         className="place-card__name"
         onClick={(evt) => {
           evt.preventDefault();
-          onSelectOffer(offer.id);
+          handleSelectOffer(offer.id);
         }}
       >
         <a href="#">{offer.name}</a>
@@ -81,7 +81,7 @@ Offer.propTypes = {
     type: PropTypes.string.isRequired
   }).isRequired,
   onHoverActiveCard: PropTypes.func,
-  onSelectOffer: PropTypes.func
+  handleSelectOffer: PropTypes.func
 };
 
-export default Offer;
+export default memo(Offer);

@@ -14,7 +14,13 @@ const mockEvent = {
 it(`Option onclick`, () => {
   const onSelectOffer = jest.fn();
   const screen = mount(
-      <SortingOptions onSelectOption={onSelectOffer} optionSorting="Popular" />
+      <SortingOptions
+        onSelectOption={onSelectOffer}
+        open={true}
+        handleCloseOrOpen={() => {}}
+        handleClose={() => {}}
+        optionSorting="Popular"
+      />
   );
   const title = screen.find(`li`).at(0);
 
