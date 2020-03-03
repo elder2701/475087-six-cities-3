@@ -3,6 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import withOpen from "./with-open.js";
 
+
 const MockComponent = () => {
   return <div></div>;
 };
