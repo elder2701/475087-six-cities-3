@@ -1,7 +1,7 @@
 import {extend} from "./utils.js";
 
 const initialState = {
-  city: `Paris`,
+  city: ``,
   cityOffers: [],
   offers: []
 };
@@ -18,11 +18,6 @@ const ActionCreator = {
     payload: city
   }),
 
-  getCityOffers: (offers)=>({
-    type: ActionType.GET_CITY_OFFERS,
-    payload: offers
-  }),
-
   loadOffers: (offers)=>({
     type: ActionType.LOAD_OFFERS,
     payload: offers
@@ -33,10 +28,22 @@ const OperationOffers = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        dispatch(ActionCreator.loadOffers(response.data));
-        const cityOffers = response.data.filter((item)=>item.city.name === getState().city);
-        console.log(cityOffers);
-        dispatch(ActionCreator.getCityOffers(cityOffers));
+        const myOffers = response.data.reduce((result, offer) => {
+          if (!result[offer.city.name]) {
+            result[offer.city.name] = {
+              city: offer.city,
+              offers: [],
+            };
+          }
+          result[offer.city.name][`offers`].push(offer);
+
+          return result;
+        }, {});
+
+        const cities = Object.keys(myOffers).sort();
+        dispatch(ActionCreator.loadOffers(myOffers));
+        dispatch(ActionCreator.changeCity(cities[0]));
+
       });
   },
 };
