@@ -1,17 +1,15 @@
 import {extend} from "./utils.js";
-import offers from "./mock/offers.js";
-
-const firstCity = Object.keys(offers)[0];
-const firstCityOffers = offers[firstCity];
 
 const initialState = {
-  city: firstCity,
-  cityOffers: firstCityOffers
+  city: `Paris`,
+  cityOffers: [],
+  offers: []
 };
 
 const ActionType = {
   CHENGE_CITY: `CHENGE_CITY`,
   GET_CITY_OFFERS: `GET_CITY_OFFERS`,
+  LOAD_OFFERS: `LOAD_OFFERS`
 };
 
 const ActionCreator = {
@@ -20,10 +18,27 @@ const ActionCreator = {
     payload: city
   }),
 
-  getCityOffers: (city)=>({
+  getCityOffers: (offers)=>({
     type: ActionType.GET_CITY_OFFERS,
-    payload: offers[city]
+    payload: offers
+  }),
+
+  loadOffers: (offers)=>({
+    type: ActionType.LOAD_OFFERS,
+    payload: offers
   })
+};
+
+const OperationOffers = {
+  loadOffers: () => (dispatch, getState, api) => {
+    return api.get(`/hotels`)
+      .then((response) => {
+        dispatch(ActionCreator.loadOffers(response.data));
+        const cityOffers = response.data.filter((item)=>item.city.name === getState().city);
+        console.log(cityOffers);
+        dispatch(ActionCreator.getCityOffers(cityOffers));
+      });
+  },
 };
 
 const reducer = (state = initialState, action)=>{
@@ -31,9 +46,11 @@ const reducer = (state = initialState, action)=>{
     case ActionType.CHENGE_CITY:
       return extend(state, {city: action.payload});
     case ActionType.GET_CITY_OFFERS:
-      return extend(state, {cityOffers: action.payload});
+      return extend(state, {cityOffers: state.offers.filter((item)=>item.city.name === action.payload)});
+    case ActionType.LOAD_OFFERS:
+      return extend(state, {offers: action.payload});
   }
   return state;
 };
 
-export {reducer, ActionType, ActionCreator};
+export {reducer, ActionType, OperationOffers, ActionCreator};

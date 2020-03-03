@@ -12,6 +12,8 @@ const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
 const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
+  console.log(city);
+  console.log(cityOffers);
   const offer = cityOffers.find((item) => item.id === selectedOffer);
   const nearPlaces = cityOffers.filter((item) => item.id !== selectedOffer);
   return (
