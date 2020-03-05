@@ -17,16 +17,7 @@ const OffersList = ({onHoverActiveCard, cityOffers, handleSelectOffer, type}) =>
 
 OffersList.propTypes = {
   onHoverActiveCard: PropTypes.func,
-  cityOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        mark: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired
-      }).isRequired
-  ).isRequired,
+  cityOffers: PropTypes.array.isRequired,
   handleSelectOffer: PropTypes.func,
   type: PropTypes.string
 };

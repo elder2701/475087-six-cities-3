@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import PropTypes from "prop-types";
 
 const spanStyles = (rating) => {
-  let calculatedWidth = rating * 20;
+  let calculatedWidth = Math.round(rating) * 20;
   return {width: `${calculatedWidth}%`};
 };
 
@@ -18,7 +18,7 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
       onHoverActiveCard(null);
     }}
   >
-    {offer.mark ? (
+    {offer.is_premium ? (
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
@@ -27,7 +27,7 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
       <a href="#">
         <img
           className="place-card__image"
-          src={offer.figurePreview}
+          src={offer.preview_image}
           width="260"
           height="200"
           alt="Place image"
@@ -63,7 +63,7 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
           handleSelectOffer(offer.id);
         }}
       >
-        <a href="#">{offer.name}</a>
+        <a href="#">{offer.title}</a>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>
@@ -71,15 +71,7 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
 );
 
 Offer.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    figurePreview: PropTypes.string,
-    mark: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
-  }).isRequired,
+  offer: PropTypes.object.isRequired,
   onHoverActiveCard: PropTypes.func,
   handleSelectOffer: PropTypes.func
 };

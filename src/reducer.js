@@ -2,7 +2,6 @@ import {extend} from "./utils.js";
 
 const initialState = {
   city: ``,
-  cityOffers: [],
   offers: []
 };
 
@@ -24,9 +23,9 @@ const ActionCreator = {
 };
 
 const getCities = (state) => Object.keys(state.offers).sort();
-const getCityOffers = (state) =>{ 
-  console.log(state)
-  return state.offers[state.city];}
+const getCityOffers = (state) => {
+  return state.offers[state.city];
+};
 
 const OperationOffers = {
   loadOffers: () => (dispatch, getState, api) => {

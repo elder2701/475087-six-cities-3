@@ -30,11 +30,13 @@ const Main = ({
   changeOptionSorting,
   optionSorting
 }) => {
-  const cityOffersResult = offersSortingByOption(cityOffers, optionSorting);
+  const cityOffersResult = offersSortingByOption(cityOffers.offers, optionSorting);
   const placesCount = cityOffersResult.length;
+  const cityLocation = cityOffers.city.location;
   const offersCoords = Array.from(cityOffersResult, (item) => {
-    return [item.id, item.coordinates];
+    return [item.id, item.location];
   });
+
   const cityPlaceContainerType = placesCount
     ? ``
     : `cities__places-container--empty`;
@@ -50,7 +52,7 @@ const Main = ({
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {placesCount} places to stay in Amsterdam
+                {placesCount} places to stay in {city}
               </b>
               <SortingOptionsWrapper
                 onSelectOption={changeOptionSorting}
@@ -78,6 +80,7 @@ const Main = ({
               <Map
                 selectedOffer={selectedOffer}
                 offersCoords={offersCoords}
+                cityLocation={cityLocation}
                 name={`cities__map`}
               />
             ) : (
@@ -95,19 +98,10 @@ Main.propTypes = {
   optionSorting: PropTypes.string,
   selectedOffer: PropTypes.number,
   handleSelectOffer: PropTypes.func,
-  city: PropTypes.string,
+  city: PropTypes.any,
   type: PropTypes.string,
   onSelectOffer: PropTypes.func,
-  cityOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        mark: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired
-      }).isRequired
-  ).isRequired
+  cityOffers: PropTypes.object.isRequired
 };
 
 export default Main;
