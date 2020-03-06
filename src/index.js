@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
-import {reducer} from "./reducer.js";
+import {reducer} from "./reducer/reducer.js";
 import thunk from "redux-thunk";
 import withSelectedOffer from "./hoc/with-selected-offer/with-selected-offer.js";
 import {createAPI} from "./api.js";
-import {OperationOffers} from "./reducer.js";
+import {OperationOffers} from "./reducer/reducer.js";
 
 const api = createAPI(()=>{});
 

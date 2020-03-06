@@ -1,8 +1,8 @@
 import React, {memo} from "react";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/reducer.js";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {getCities} from "../../reducer.js";
+import {getCities} from "../../reducer/reducer.js";
 
 const NavCities = ({onChangeCity, cities}) => (
   <div className="tabs">

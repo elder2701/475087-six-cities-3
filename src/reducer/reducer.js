@@ -1,4 +1,4 @@
-import {extend} from "./utils.js";
+import {extend} from "../utils.js";
 
 const initialState = {
   city: ``,
@@ -41,8 +41,29 @@ const OperationOffers = {
 
         return result;
       }, {});
-
       const cities = Object.keys(myOffers).sort();
+      cities.map((city)=>{
+        const renameKeysArrayOffers = Array.from(myOffers[city].offers, (offer)=> {
+          const newObj = Object.assign({}, offer, {
+            previewImage: offer.preview_image,
+            isFavorite: offer.is_favorite,
+            isPremium: offer.is_premium,
+            maxAdults: offer.max_adults,
+            hostId: offer.host.id,
+            hostName: offer.host.name,
+            hostIsPro: offer.host.is_pro,
+            hostAvatarUrl: offer.host.avatar_url
+          });
+          delete newObj.city;
+          delete newObj.preview_image;
+          delete newObj.is_favorite;
+          delete newObj.is_premium;
+          delete newObj.max_adults;
+          delete newObj.host;
+          return newObj;
+        });
+        myOffers[city].offers = renameKeysArrayOffers;
+      });
       dispatch(ActionCreator.loadOffers(myOffers));
       dispatch(ActionCreator.changeCity(cities[0]));
     });

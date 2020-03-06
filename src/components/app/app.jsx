@@ -7,15 +7,18 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
-import {getCityOffers} from "../../reducer.js";
+import {getCityOffers} from "../../reducer/reducer.js";
 
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
-// const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
+const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
 
 const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
-  // const offer = cityOffers.find((item) => item.id === selectedOffer);
+  let offer = null;
+  if (cityOffers) {
+    offer = cityOffers.offers.find((item) => item.id === selectedOffer);
+  }
   // const nearPlaces = cityOffers.filter((item) => item.id !== selectedOffer);
   return (
     <BrowserRouter>
@@ -23,19 +26,19 @@ const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
       <Switch>
         <Route exact path="/">
           {cityOffers ? (<React.Fragment>
-            {/* {offer ? (
+            {offer ? (
               <PlaceDetailsWrapper
                 {...offer}
-                nearPlaces={nearPlaces}
+                /* nearPlaces={nearPlaces}*/
                 handleSelectOffer={onSelectOffer}
               />
-            ) : (*/
+            ) : (
               <MainWrapper
                 cityOffers={cityOffers}
                 handleSelectOffer={onSelectOffer}
                 city={city}
-              />
-            }</React.Fragment>) : (<div>Loading...</div>)}
+              />)}
+          </React.Fragment>) : (<div>Loading...</div>)}
         </Route>
       </Switch>
     </BrowserRouter>

@@ -27,7 +27,7 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
       <a href="#">
         <img
           className="place-card__image"
-          src={offer.preview_image}
+          src={offer.previewImage}
           width="260"
           height="200"
           alt="Place image"

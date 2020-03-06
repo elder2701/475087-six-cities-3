@@ -47,11 +47,15 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate() {
-    console.log(this.props);
     const {offersCoords, selectedOffer} = this.props;
+    const {cityLocation} = this.props;
+    const {latitude, longitude, zoom} = cityLocation;
+    const city = [latitude, longitude];
+    this.myMap.setView(city, zoom);
     this.markers.clearLayers();
     offersCoords.map((coords) => {
-      l.marker(coords[1], {
+      const placeCoords = [coords[1].latitude, coords[1].longitude];
+      l.marker(placeCoords, {
         icon: coords[0] === selectedOffer ? this.iconActive : this.icon
       }).addTo(this.markers);
     });
