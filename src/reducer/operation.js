@@ -12,7 +12,6 @@ const OperationOffers = {
           };
         }
         result[offer.city.name][`offers`].push(offer);
-
         return result;
       }, {});
       const cities = Object.keys(myOffers).sort();

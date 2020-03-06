@@ -49,7 +49,7 @@ App.propTypes = {
   selectedOffer: PropTypes.number,
   onSelectOffer: PropTypes.func.isRequired,
   cityOffers: PropTypes.object,
-  city: PropTypes.string.isRequired
+  city: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({

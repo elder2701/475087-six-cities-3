@@ -9,9 +9,9 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  changeCity: (city) => ({
-    type: ActionType.CHENGE_CITY,
-    payload: city
+  loadOffers: (offers) => ({
+    type: ActionType.LOAD_OFFERS,
+    payload: offers
   })
 };
 
