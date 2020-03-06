@@ -7,7 +7,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
-import {getCityOffers} from "../../reducer/reducer.js";
+import {getCityOffers} from "../../reducer/data/selectors.js";
 
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
