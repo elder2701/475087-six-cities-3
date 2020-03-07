@@ -19,7 +19,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
           <img
             alt="Photo studio"
             className="property__image"
-            src="img/room.jpg"
+            src=""
           />
         </div>
         <div
@@ -28,43 +28,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
           <img
             alt="Photo studio"
             className="property__image"
-            src="img/apartment-01.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/apartment-02.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/apartment-03.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/studio-01.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/apartment-01.jpg"
+            src=""
           />
         </div>
       </div>
@@ -144,14 +108,17 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             Apartment
           </li>
           <li
-            className="property__feature property__feature--entire"
+            className="property__feature property__feature--bedrooms"
           >
-            3 Bedrooms
+            0
+             Bedrooms
           </li>
           <li
-            className="property__feature property__feature--entire"
+            className="property__feature property__feature--adults"
           >
-            Max 4 adults
+            Max 
+            0
+             adults
           </li>
         </ul>
         <div
@@ -260,7 +227,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
                 alt="Host avatar"
                 className="property__avatar user__avatar"
                 height="74"
-                src="img/avatar-angelina.jpg"
+                src=""
                 width="74"
               />
             </div>
@@ -290,194 +257,12 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             <span
               className="reviews__amount"
             >
-              3
+              0
             </span>
           </h2>
           <ul
             className="reviews__list"
-          >
-            <li
-              className="reviews__item"
-            >
-              <div
-                className="reviews__user user"
-              >
-                <div
-                  className="reviews__avatar-wrapper user__avatar-wrapper"
-                >
-                  <img
-                    alt="Reviews avatar"
-                    className="reviews__avatar user__avatar"
-                    height="54"
-                    src="img/avatar-max.jpg"
-                    width="54"
-                  />
-                </div>
-                <span
-                  className="reviews__user-name"
-                >
-                  Tex
-                </span>
-              </div>
-              <div
-                className="reviews__info"
-              >
-                <div
-                  className="reviews__rating rating"
-                >
-                  <div
-                    className="reviews__stars rating__stars"
-                  >
-                    <span
-                      style={
-                        Object {
-                          "width": "80%",
-                        }
-                      }
-                    />
-                    <span
-                      className="visually-hidden"
-                    >
-                      Rating
-                    </span>
-                  </div>
-                </div>
-                <p
-                  className="reviews__text"
-                >
-                  A quiet cozy and picturesque that hides behind a a river by the
-      unique lightness of Amsterdam. The building is green and from 18th
-      century.
-                </p>
-                <time
-                  className="reviews__time"
-                  dateTime="2019-04-24"
-                >
-                  June 3019
-                </time>
-              </div>
-            </li>
-            <li
-              className="reviews__item"
-            >
-              <div
-                className="reviews__user user"
-              >
-                <div
-                  className="reviews__avatar-wrapper user__avatar-wrapper"
-                >
-                  <img
-                    alt="Reviews avatar"
-                    className="reviews__avatar user__avatar"
-                    height="54"
-                    src="img/avatar-max.jpg"
-                    width="54"
-                  />
-                </div>
-                <span
-                  className="reviews__user-name"
-                >
-                  Vex
-                </span>
-              </div>
-              <div
-                className="reviews__info"
-              >
-                <div
-                  className="reviews__rating rating"
-                >
-                  <div
-                    className="reviews__stars rating__stars"
-                  >
-                    <span
-                      style={
-                        Object {
-                          "width": "20%",
-                        }
-                      }
-                    />
-                    <span
-                      className="visually-hidden"
-                    >
-                      Rating
-                    </span>
-                  </div>
-                </div>
-                <p
-                  className="reviews__text"
-                >
-                  atatatatatatat. The building is green and from 18th
-    century.
-                </p>
-                <time
-                  className="reviews__time"
-                  dateTime="2019-04-24"
-                >
-                  May 2019
-                </time>
-              </div>
-            </li>
-            <li
-              className="reviews__item"
-            >
-              <div
-                className="reviews__user user"
-              >
-                <div
-                  className="reviews__avatar-wrapper user__avatar-wrapper"
-                >
-                  <img
-                    alt="Reviews avatar"
-                    className="reviews__avatar user__avatar"
-                    height="54"
-                    src="img/avatar-max.jpg"
-                    width="54"
-                  />
-                </div>
-                <span
-                  className="reviews__user-name"
-                >
-                  Rex
-                </span>
-              </div>
-              <div
-                className="reviews__info"
-              >
-                <div
-                  className="reviews__rating rating"
-                >
-                  <div
-                    className="reviews__stars rating__stars"
-                  >
-                    <span
-                      style={
-                        Object {
-                          "width": "60%",
-                        }
-                      }
-                    />
-                    <span
-                      className="visually-hidden"
-                    >
-                      Rating
-                    </span>
-                  </div>
-                </div>
-                <p
-                  className="reviews__text"
-                >
-                  A quiet cozy and picturesque that hides behind a a river by the
-  unique lightness of Amsterdam. ataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.
-                </p>
-                <time
-                  className="reviews__time"
-                  dateTime="2019-04-24"
-                >
-                  April 2018
-                </time>
-              </div>
-            </li>
-          </ul>
+          />
           <form
             action="#"
             className="reviews__form form"
@@ -641,10 +426,6 @@ exports[`<PlaceDetails /> sould be render 1`] = `
         </section>
       </div>
     </div>
-    <section
-      className="property__map"
-      id="map"
-    />
   </section>
   <div
     className="container"
@@ -657,220 +438,6 @@ exports[`<PlaceDetails /> sould be render 1`] = `
       >
         Other places in the neighbourhood
       </h2>
-      <div
-        className="near-places__list places__list"
-      >
-        <article
-          className="cities__place-card place-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
-          <div
-            className="cities__image-wrapper place-card__image-wrapper"
-          >
-            <a
-              href="#"
-            >
-              <img
-                alt="Place image"
-                className="place-card__image"
-                height="200"
-                src="img/room.jpg"
-                width="260"
-              />
-            </a>
-          </div>
-          <div
-            className="place-card__info"
-          >
-            <div
-              className="place-card__price-wrapper"
-            >
-              <div
-                className="place-card__price"
-              >
-                <b
-                  className="place-card__price-value"
-                >
-                  €
-                  822
-                </b>
-                <span
-                  className="place-card__price-text"
-                >
-                  / night
-                </span>
-              </div>
-              <button
-                className="place-card__bookmark-button place-card__bookmark-button--active button"
-                type="button"
-              >
-                <svg
-                  className="place-card__bookmark-icon"
-                  height="19"
-                  width="18"
-                >
-                  <use
-                    xlinkHref="#icon-bookmark"
-                  />
-                </svg>
-                <span
-                  className="visually-hidden"
-                >
-                  In bookmarks
-                </span>
-              </button>
-            </div>
-            <div
-              className="place-card__rating rating"
-            >
-              <div
-                className="place-card__stars rating__stars"
-              >
-                <span
-                  style={
-                    Object {
-                      "width": "80%",
-                    }
-                  }
-                />
-                <span
-                  className="visually-hidden"
-                >
-                  Rating
-                </span>
-              </div>
-            </div>
-            <h2
-              className="place-card__name"
-              onClick={[Function]}
-            >
-              <a
-                href="#"
-              >
-                Beautiful & luxurious apartment at great location
-              </a>
-            </h2>
-            <p
-              className="place-card__type"
-            >
-              Apartment
-            </p>
-          </div>
-        </article>
-        <article
-          className="cities__place-card place-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
-          <div
-            className="cities__image-wrapper place-card__image-wrapper"
-          >
-            <a
-              href="#"
-            >
-              <img
-                alt="Place image"
-                className="place-card__image"
-                height="200"
-                src="img/room.jpg"
-                width="260"
-              />
-            </a>
-          </div>
-          <div
-            className="place-card__info"
-          >
-            <div
-              className="place-card__price-wrapper"
-            >
-              <div
-                className="place-card__price"
-              >
-                <b
-                  className="place-card__price-value"
-                >
-                  €
-                  822
-                </b>
-                <span
-                  className="place-card__price-text"
-                >
-                  / night
-                </span>
-              </div>
-              <button
-                className="place-card__bookmark-button place-card__bookmark-button--active button"
-                type="button"
-              >
-                <svg
-                  className="place-card__bookmark-icon"
-                  height="19"
-                  width="18"
-                >
-                  <use
-                    xlinkHref="#icon-bookmark"
-                  />
-                </svg>
-                <span
-                  className="visually-hidden"
-                >
-                  In bookmarks
-                </span>
-              </button>
-            </div>
-            <div
-              className="place-card__rating rating"
-            >
-              <div
-                className="place-card__stars rating__stars"
-              >
-                <span
-                  style={
-                    Object {
-                      "width": "80%",
-                    }
-                  }
-                />
-                <span
-                  className="visually-hidden"
-                >
-                  Rating
-                </span>
-              </div>
-            </div>
-            <h2
-              className="place-card__name"
-              onClick={[Function]}
-            >
-              <a
-                href="#"
-              >
-                Beautiful & luxurious apartment at great location
-              </a>
-            </h2>
-            <p
-              className="place-card__type"
-            >
-              Apartment
-            </p>
-          </div>
-        </article>
-      </div>
     </section>
   </div>
 </main>
