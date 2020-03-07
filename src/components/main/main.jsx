@@ -5,35 +5,24 @@ import NavCities from "../nav-cities/nav-cities.jsx";
 import SortingOptions from "../sorting-options/sorting-options.jsx";
 import Map from "../map/map.jsx";
 import withOpen from "../../hoc/with-open/with-open.js";
+import {connect} from "react-redux";
+import {getSortedOffers, getCityInfo} from "../../reducer/selectors.js";
 
 const SortingOptionsWrapper = withOpen(SortingOptions);
-
-const offersSortingByOption = (offers, option) => {
-  switch (option) {
-    case `Price: low to high`:
-      return offers.slice().sort((a, b) => a.price - b.price);
-    case `Price: high to low`:
-      return offers.slice().sort((a, b) => -a.price + b.price);
-    case `Top rated first`:
-      return offers.slice().sort((a, b) => -a.rating + b.rating);
-  }
-  return offers;
-};
-
 
 const Main = ({
   onSelectOffer,
   selectedOffer,
-  city,
+  cityInfo,
   cityOffers,
   handleSelectOffer,
   changeOptionSorting,
   optionSorting
 }) => {
-  const cityOffersResult = offersSortingByOption(cityOffers.offers, optionSorting);
-  const placesCount = cityOffersResult.length;
-  const cityLocation = cityOffers.city.location;
-  const offersCoords = Array.from(cityOffersResult, (item) => {
+  const placesCount = cityOffers.length;
+  const {location} = cityInfo;
+  const city = cityInfo.name;
+  const offersCoords = Array.from(cityOffers, (item) => {
     return [item.id, item.location];
   });
 
@@ -59,7 +48,7 @@ const Main = ({
                 optionSorting={optionSorting}
               />
               <OffersList
-                cityOffers={cityOffersResult}
+                cityOffers={cityOffers}
                 handleSelectOffer={handleSelectOffer}
                 onHoverActiveCard={onSelectOffer}
                 type={`cities__places-list tabs__content`}
@@ -80,7 +69,7 @@ const Main = ({
               <Map
                 selectedOffer={selectedOffer}
                 offersCoords={offersCoords}
-                cityLocation={cityLocation}
+                cityLocation={location}
                 name={`cities__map`}
               />
             ) : (
@@ -93,15 +82,22 @@ const Main = ({
   );
 };
 
+const mapStateToProps = (state, props) => {
+  return {
+    cityOffers: getSortedOffers(state, props),
+    cityInfo: getCityInfo(state)
+  };
+};
+
 Main.propTypes = {
   changeOptionSorting: PropTypes.func,
   optionSorting: PropTypes.string,
   selectedOffer: PropTypes.number,
   handleSelectOffer: PropTypes.func,
-  city: PropTypes.any,
   type: PropTypes.string,
   onSelectOffer: PropTypes.func,
-  cityOffers: PropTypes.object.isRequired
+  cityInfo: PropTypes.object.isRequired,
+  cityOffers: PropTypes.array.isRequired
 };
 
-export default Main;
+export default connect(mapStateToProps)(Main);

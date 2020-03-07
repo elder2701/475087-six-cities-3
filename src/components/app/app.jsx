@@ -14,7 +14,7 @@ const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
 
-const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
+const App = ({cityOffers, selectedOffer, onSelectOffer}) => {
   let offer = null;
   if (cityOffers) {
     offer = cityOffers.offers.find((item) => item.id === selectedOffer);
@@ -34,9 +34,7 @@ const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
               />
             ) : (
               <MainWrapper
-                cityOffers={cityOffers}
                 handleSelectOffer={onSelectOffer}
-                city={city}
               />)}
           </React.Fragment>) : (<div>Loading...</div>)}
         </Route>
@@ -53,7 +51,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  city: state.city,
   cityOffers: getCityOffers(state)
 });
 
