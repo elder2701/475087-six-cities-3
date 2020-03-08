@@ -1,7 +1,7 @@
 import {ActionCreator as ActionLoadOffer} from "../data/data.js";
 import {ActionCreator as ActionChangeCity} from "../city/city.js";
 
-const changeNameKeys = (offer)=>{
+const changeNameKeys = (offer) => {
   const newObj = Object.assign({}, offer, {
     previewImage: offer.preview_image,
     isFavorite: offer.is_favorite,
@@ -21,19 +21,22 @@ const changeNameKeys = (offer)=>{
   return newObj;
 };
 
+const changeStructureLoadData = (data) =>
+  data.reduce((result, offer) => {
+    if (!result[offer.city.name]) {
+      result[offer.city.name] = {
+        city: offer.city,
+        offers: []
+      };
+    }
+    result[offer.city.name][`offers`].push(changeNameKeys(offer));
+    return result;
+  }, {});
+
 const OperationOffers = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`).then((response) => {
-      const myOffers = response.data.reduce((result, offer) => {
-        if (!result[offer.city.name]) {
-          result[offer.city.name] = {
-            city: offer.city,
-            offers: []
-          };
-        }
-        result[offer.city.name][`offers`].push(changeNameKeys(offer));
-        return result;
-      }, {});
+      const myOffers = changeStructureLoadData(response.data);
       const cities = Object.keys(myOffers).sort();
       dispatch(ActionLoadOffer.loadOffers(myOffers));
       dispatch(ActionChangeCity.changeCity(cities[0]));
@@ -41,4 +44,4 @@ const OperationOffers = {
   }
 };
 
-export {OperationOffers};
+export {OperationOffers, changeStructureLoadData};

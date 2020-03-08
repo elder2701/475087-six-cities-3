@@ -134,7 +134,7 @@ it(`<App /> sould be render`, () => {
         offers: []
       }
     },
-    [NameSpace.CITY]: `Amsterdam`
+    [NameSpace.CITY]: {city: `Amsterdam`}
   });
   const tree = renderer
     .create(
