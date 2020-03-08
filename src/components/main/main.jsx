@@ -6,7 +6,7 @@ import SortingOptions from "../sorting-options/sorting-options.jsx";
 import Map from "../map/map.jsx";
 import withOpen from "../../hoc/with-open/with-open.js";
 import {connect} from "react-redux";
-import {getSortedOffers, getCityInfo} from "../../reducer/selectors.js";
+import {getSortedOffers, getCityInfo} from "../../reducer/data/selectors.js";
 
 const SortingOptionsWrapper = withOpen(SortingOptions);
 

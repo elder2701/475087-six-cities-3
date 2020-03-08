@@ -7,7 +7,7 @@ import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";
 import withSelectedOffer from "./hoc/with-selected-offer/with-selected-offer.js";
 import {createAPI} from "./api.js";
-import {OperationOffers} from "./reducer/operation.js";
+import {OperationOffers} from "./reducer/operation/operation.js";
 
 const api = createAPI(()=>{});
 
