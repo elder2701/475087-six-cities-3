@@ -19,7 +19,7 @@ exports[`<NavCities /> sould be render 1`] = `
           onClick={[Function]}
         >
           <span>
-            Paris
+            qwe
           </span>
         </a>
       </li>
@@ -32,59 +32,7 @@ exports[`<NavCities /> sould be render 1`] = `
           onClick={[Function]}
         >
           <span>
-            Cologne
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item"
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Brussels
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item"
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Amsterdam
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item"
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Hamburg
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item"
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Dusseldorf
+            das
           </span>
         </a>
       </li>

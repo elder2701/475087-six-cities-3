@@ -90,9 +90,7 @@ exports[`<OffersList /> sould be render 1`] = `
       >
         <a
           href="#"
-        >
-          Beautiful & luxurious apartment at great location
-        </a>
+        />
       </h2>
       <p
         className="place-card__type"
@@ -187,9 +185,7 @@ exports[`<OffersList /> sould be render 1`] = `
       >
         <a
           href="#"
-        >
-          Beautiful & luxurious apartment at great location
-        </a>
+        />
       </h2>
       <p
         className="place-card__type"
@@ -203,13 +199,6 @@ exports[`<OffersList /> sould be render 1`] = `
     onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -291,9 +280,7 @@ exports[`<OffersList /> sould be render 1`] = `
       >
         <a
           href="#"
-        >
-          Beautiful & luxurious apartment at great location
-        </a>
+        />
       </h2>
       <p
         className="place-card__type"
@@ -388,9 +375,7 @@ exports[`<OffersList /> sould be render 1`] = `
       >
         <a
           href="#"
-        >
-          Beautiful & luxurious apartment at great location
-        </a>
+        />
       </h2>
       <p
         className="place-card__type"
