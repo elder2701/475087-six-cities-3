@@ -7,56 +7,56 @@ import {ActionType as CityActionType} from "../city/city.js";
 const api = createAPI(() => {});
 const forTest = [
   {
-    city: {
-      name: `Paris`,
-      location: {latitude: 48.85661, longitude: 2.351499, zoom: 13}
+    "city": {
+      "name": `Paris`,
+      "location": {latitude: 48.85661, longitude: 2.351499, zoom: 13}
     },
-    preview_image: ``,
-    images: [``, ``],
-    title: `Amazing and Extremely Central Flat`,
-    is_favorite: false,
-    is_premium: false,
-    rating: 4.5,
-    type: `apartment`,
-    bedrooms: 4,
-    max_adults: 5,
-    price: 467,
-    goods: [`Breakfast`, `Laptop friendly workspace`, `Washer`],
-    host: {
-      id: 25,
-      name: `Angelina`,
-      is_pro: true,
-      avatar_url: `img/avatar-angelina.jpg`
+    'preview_image': ``,
+    "images": [``, ``],
+    "title": `Amazing and Extremely Central Flat`,
+    'is_favorite': false,
+    'is_premium': false,
+    "rating": 4.5,
+    "type": `apartment`,
+    "bedrooms": 4,
+    "max_adults": 5,
+    "price": 467,
+    "goods": [`Breakfast`, `Laptop friendly workspace`, `Washer`],
+    "host": {
+      "id": 25,
+      "name": `Angelina`,
+      'is_pro': true,
+      'avatar_url': `img/avatar-angelina.jpg`
     },
-    description: ``,
-    location: {latitude: 48.868610000000004, longitude: 2.342499, zoom: 16},
-    id: 1
+    "description": ``,
+    "location": {latitude: 48.868610000000004, longitude: 2.342499, zoom: 16},
+    "id": 1
   },
   {
-    city: {
-      name: `Berlin`,
-      location: {latitude: 48.85661, longitude: 2.351499, zoom: 13}
+    "city": {
+      "name": `Berlin`,
+      "location": {latitude: 48.85661, longitude: 2.351499, zoom: 13}
     },
-    preview_image: ``,
-    images: [``, ``],
-    title: `Amazing and Extremely Central Flat`,
-    is_favorite: false,
-    is_premium: false,
-    rating: 4.5,
-    type: `apartment`,
-    bedrooms: 4,
-    max_adults: 5,
-    price: 467,
-    goods: [`Breakfast`, `Laptop friendly workspace`, `Washer`],
-    host: {
-      id: 25,
-      name: `Angelina`,
-      is_pro: true,
-      avatar_url: `img/avatar-angelina.jpg`
+    'preview_image': ``,
+    "images": [``, ``],
+    "title": `Amazing and Extremely Central Flat`,
+    'is_favorite': false,
+    'is_premium': false,
+    "rating": 4.5,
+    "type": `apartment`,
+    "bedrooms": 4,
+    'max_adults': 5,
+    "price": 467,
+    "goods": [`Breakfast`, `Laptop friendly workspace`, `Washer`],
+    "host": {
+      "id": 25,
+      "name": `Angelina`,
+      "is_pro": true,
+      "avatar_url": `img/avatar-angelina.jpg`
     },
-    description: ``,
-    location: {latitude: 48.868610000000004, longitude: 2.342499, zoom: 16},
-    id: 1
+    "description": ``,
+    "location": {latitude: 48.868610000000004, longitude: 2.342499, zoom: 16},
+    "id": 1
   }
 ];
 
