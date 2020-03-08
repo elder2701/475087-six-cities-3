@@ -4,7 +4,13 @@ import renderer from "react-test-renderer";
 
 it(`<NavCities /> sould be render`, () => {
   const tree = renderer
-    .create(<NavCities onChangeCity={() => {}} getCityOffers={() => {}} />)
+    .create(
+        <NavCities
+          cities={[`qwe`, `das`]}
+          onChangeCity={() => {}}
+          getCityOffers={() => {}}
+        />
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

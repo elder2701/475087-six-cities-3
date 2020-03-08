@@ -1,18 +1,10 @@
 import React, {memo} from "react";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/city/city.js";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {getCities} from "../../reducer/data/selectors.js";
 
-const cities = [
-  `Paris`,
-  `Cologne`,
-  `Brussels`,
-  `Amsterdam`,
-  `Hamburg`,
-  `Dusseldorf`
-];
-
-const NavCities = ({onChangeCity, getCityOffers}) => (
+const NavCities = ({onChangeCity, cities}) => (
   <div className="tabs">
     <section className="locations container">
       <ul className="locations__list tabs__list">
@@ -23,7 +15,6 @@ const NavCities = ({onChangeCity, getCityOffers}) => (
               href="#"
               onClick={() => {
                 onChangeCity(city);
-                getCityOffers(city);
               }}
             >
               <span>{city}</span>
@@ -35,20 +26,19 @@ const NavCities = ({onChangeCity, getCityOffers}) => (
   </div>
 );
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+  cities: getCities(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCity(city) {
     dispatch(ActionCreator.changeCity(city));
-  },
-  getCityOffers(city) {
-    dispatch(ActionCreator.getCityOffers(city));
   }
 });
 
 NavCities.propTypes = {
   onChangeCity: PropTypes.func.isRequired,
-  getCityOffers: PropTypes.func.isRequired
+  cities: PropTypes.array.isRequired
 };
 
 export {NavCities};

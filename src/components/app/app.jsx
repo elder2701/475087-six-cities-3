@@ -7,34 +7,36 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
+import {getCityOffers} from "../../reducer/data/selectors.js";
+
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
-const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
-  const offer = cityOffers.find((item) => item.id === selectedOffer);
-  const nearPlaces = cityOffers.filter((item) => item.id !== selectedOffer);
+
+const App = ({cityOffers, selectedOffer, onSelectOffer}) => {
+  let offer = null;
+  if (cityOffers) {
+    offer = cityOffers.offers.find((item) => item.id === selectedOffer);
+  }
+  // const nearPlaces = cityOffers.filter((item) => item.id !== selectedOffer);
   return (
     <BrowserRouter>
       <Header />
       <Switch>
         <Route exact path="/">
-          {offer ? (
-            <PlaceDetailsWrapper
-              {...offer}
-              nearPlaces={nearPlaces}
-              handleSelectOffer={onSelectOffer}
-            />
-          ) : (
-            <MainWrapper
-              cityOffers={cityOffers}
-              handleSelectOffer={onSelectOffer}
-              city={city}
-            />
-          )}
-        </Route>
-        <Route exact path="/dev-component">
-          <PlaceDetailsWrapper {...cityOffers[1]} />
+          {cityOffers ? (<React.Fragment>
+            {offer ? (
+              <PlaceDetailsWrapper
+                {...offer}
+                /* nearPlaces={nearPlaces}*/
+                handleSelectOffer={onSelectOffer}
+              />
+            ) : (
+              <MainWrapper
+                handleSelectOffer={onSelectOffer}
+              />)}
+          </React.Fragment>) : (<div>Loading...</div>)}
         </Route>
       </Switch>
     </BrowserRouter>
@@ -44,30 +46,12 @@ const App = ({city, cityOffers, selectedOffer, onSelectOffer}) => {
 App.propTypes = {
   selectedOffer: PropTypes.number,
   onSelectOffer: PropTypes.func.isRequired,
-  cityOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        figurePreview: PropTypes.string,
-        mark: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        allFigures: PropTypes.arrayOf(PropTypes.string),
-        insideFeatures: PropTypes.arrayOf(PropTypes.string),
-        insideOptions: PropTypes.arrayOf(PropTypes.string),
-        description: PropTypes.string,
-        user: PropTypes.string,
-        avatar: PropTypes.string,
-        status: PropTypes.string
-      }).isRequired
-  ).isRequired,
-  city: PropTypes.string.isRequired
+  cityOffers: PropTypes.object,
+  city: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-  city: state.city,
-  cityOffers: state.cityOffers
+  cityOffers: getCityOffers(state)
 });
 
 export {App};

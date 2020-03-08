@@ -16,7 +16,6 @@ exports[`<Offer /> sould be render 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src=""
         width="260"
       />
     </a>
@@ -88,9 +87,7 @@ exports[`<Offer /> sould be render 1`] = `
     >
       <a
         href="#"
-      >
-        Beautiful & luxurious apartment at great location
-      </a>
+      />
     </h2>
     <p
       className="place-card__type"

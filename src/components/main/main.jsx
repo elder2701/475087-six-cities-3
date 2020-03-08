@@ -5,36 +5,27 @@ import NavCities from "../nav-cities/nav-cities.jsx";
 import SortingOptions from "../sorting-options/sorting-options.jsx";
 import Map from "../map/map.jsx";
 import withOpen from "../../hoc/with-open/with-open.js";
+import {connect} from "react-redux";
+import {getSortedOffers, getCityInfo} from "../../reducer/data/selectors.js";
 
 const SortingOptionsWrapper = withOpen(SortingOptions);
-
-const offersSortingByOption = (offers, option) => {
-  switch (option) {
-    case `Price: low to high`:
-      return offers.slice().sort((a, b) => a.price - b.price);
-    case `Price: high to low`:
-      return offers.slice().sort((a, b) => -a.price + b.price);
-    case `Top rated first`:
-      return offers.slice().sort((a, b) => -a.rating + b.rating);
-  }
-  return offers;
-};
-
 
 const Main = ({
   onSelectOffer,
   selectedOffer,
-  city,
+  cityInfo,
   cityOffers,
   handleSelectOffer,
   changeOptionSorting,
   optionSorting
 }) => {
-  const cityOffersResult = offersSortingByOption(cityOffers, optionSorting);
-  const placesCount = cityOffersResult.length;
-  const offersCoords = Array.from(cityOffersResult, (item) => {
-    return [item.id, item.coordinates];
+  const placesCount = cityOffers.length;
+  const {location} = cityInfo;
+  const city = cityInfo.name;
+  const offersCoords = Array.from(cityOffers, (item) => {
+    return [item.id, item.location];
   });
+
   const cityPlaceContainerType = placesCount
     ? ``
     : `cities__places-container--empty`;
@@ -50,14 +41,14 @@ const Main = ({
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {placesCount} places to stay in Amsterdam
+                {placesCount} places to stay in {city}
               </b>
               <SortingOptionsWrapper
                 onSelectOption={changeOptionSorting}
                 optionSorting={optionSorting}
               />
               <OffersList
-                cityOffers={cityOffersResult}
+                cityOffers={cityOffers}
                 handleSelectOffer={handleSelectOffer}
                 onHoverActiveCard={onSelectOffer}
                 type={`cities__places-list tabs__content`}
@@ -78,6 +69,7 @@ const Main = ({
               <Map
                 selectedOffer={selectedOffer}
                 offersCoords={offersCoords}
+                cityLocation={location}
                 name={`cities__map`}
               />
             ) : (
@@ -90,24 +82,22 @@ const Main = ({
   );
 };
 
+const mapStateToProps = (state, props) => {
+  return {
+    cityOffers: getSortedOffers(state, props),
+    cityInfo: getCityInfo(state)
+  };
+};
+
 Main.propTypes = {
   changeOptionSorting: PropTypes.func,
   optionSorting: PropTypes.string,
   selectedOffer: PropTypes.number,
   handleSelectOffer: PropTypes.func,
-  city: PropTypes.string,
   type: PropTypes.string,
   onSelectOffer: PropTypes.func,
-  cityOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        mark: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired
-      }).isRequired
-  ).isRequired
+  cityInfo: PropTypes.object.isRequired,
+  cityOffers: PropTypes.array.isRequired
 };
 
-export default Main;
+export default connect(mapStateToProps)(Main);

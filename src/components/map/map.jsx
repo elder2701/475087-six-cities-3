@@ -18,8 +18,9 @@ class Map extends PureComponent {
   }
 
   initMapWithPinLayer(places) {
-    const city = [52.38333, 4.9];
-    const zoom = 12;
+    const {cityLocation} = this.props;
+    const {latitude, longitude, zoom} = cityLocation;
+    const city = [latitude, longitude];
     this.markers = l.layerGroup(places);
     this.myMap = l.map(`map`, {
       center: city,
@@ -40,16 +41,21 @@ class Map extends PureComponent {
   componentDidMount() {
     const {offersCoords} = this.props;
     const places = Array.from(offersCoords, (coords) =>
-      l.marker(coords[1], {icon: this.icon})
+      l.marker([coords[1].latitude, coords[1].longitude], {icon: this.icon})
     );
     this.initMapWithPinLayer(places);
   }
 
   componentDidUpdate() {
     const {offersCoords, selectedOffer} = this.props;
+    const {cityLocation} = this.props;
+    const {latitude, longitude, zoom} = cityLocation;
+    const city = [latitude, longitude];
+    this.myMap.setView(city, zoom);
     this.markers.clearLayers();
     offersCoords.map((coords) => {
-      l.marker(coords[1], {
+      const placeCoords = [coords[1].latitude, coords[1].longitude];
+      l.marker(placeCoords, {
         icon: coords[0] === selectedOffer ? this.iconActive : this.icon
       }).addTo(this.markers);
     });
@@ -66,5 +72,10 @@ export default Map;
 Map.propTypes = {
   offersCoords: PropTypes.array.isRequired,
   selectedOffer: PropTypes.any,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  cityLocation: PropTypes.shape({
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired
+  }).isRequired
 };
