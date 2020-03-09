@@ -14,6 +14,7 @@ import {Operation as UserOperation} from "./reducer/user/operation.js";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(ActionCreator.loadUserInfo({}));
 };
 
 const api = createAPI(onUnauthorized);

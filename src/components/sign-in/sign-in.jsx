@@ -1,4 +1,7 @@
 import React, {PureComponent, createRef} from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getFirstCity} from "../../reducer/data/selectors.js";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -11,9 +14,7 @@ class SignIn extends PureComponent {
 
   handleSubmit(evt) {
     const {onSubmit} = this.props;
-
     evt.preventDefault();
-    console.log(this.loginRef);
     onSubmit({
       login: this.loginRef.current.value,
       password: this.passRef.current.value
@@ -21,6 +22,7 @@ class SignIn extends PureComponent {
   }
 
   render() {
+    const {firstCity} = this.props;
     return (
       <div className="page__login-container container">
         <section className="login">
@@ -61,7 +63,7 @@ class SignIn extends PureComponent {
         <section className="locations locations--login locations--current">
           <div className="locations__item">
             <a className="locations__item-link" href="#">
-              <span>Amsterdam</span>
+              <span>{firstCity}</span>
             </a>
           </div>
         </section>
@@ -70,4 +72,14 @@ class SignIn extends PureComponent {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => ({
+  firstCity: getFirstCity(state)
+});
+
+
+SignIn.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  firstCity: PropTypes.string.isRequired
+};
+
+export default connect(mapStateToProps)(SignIn);

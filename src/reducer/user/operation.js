@@ -3,8 +3,9 @@ import {ActionCreator, AuthorizationStatus} from "./user.js";
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-        .then(() => {
+        .then((res) => {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+          dispatch(ActionCreator.loadUserInfo(res.data));
         })
         .catch((err) => {
           throw err;
@@ -16,9 +17,10 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
-        .then(() => {
-          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        });
+    .then((res) => {
+      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(ActionCreator.loadUserInfo(res.data));
+    });
   },
 };
 
