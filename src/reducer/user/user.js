@@ -6,7 +6,7 @@ const AuthorizationStatus = {
 };
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.AUTH,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
   userInfo: {}
 };
 
@@ -45,4 +45,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {ActionCreator, reducer, AuthorizationStatus};
+export {ActionCreator, reducer, AuthorizationStatus, ActionType};

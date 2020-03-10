@@ -1,7 +1,5 @@
 import React from "react";
-import OffersList from "../offers-list/offers-list.jsx";
 import PlaceReviews from "../place-reviews/place-reviews.jsx";
-import Map from "../map/map.jsx";
 import PropTypes from "prop-types";
 
 const spanStyles = (rating) => {
@@ -10,10 +8,7 @@ const spanStyles = (rating) => {
 };
 
 const PlaceDetails = ({
-  selectedOffer,
-  onSelectOffer,
   isPremium,
-  isFavorite,
   price,
   rating,
   hostIsPro,
@@ -25,9 +20,7 @@ const PlaceDetails = ({
   bedrooms,
   images,
   goods,
-  description,
-  nearPlaces,
-  handleSelectOffer
+  description
 }) => (
   <main className="page__main page__main--property">
     <section className="property">

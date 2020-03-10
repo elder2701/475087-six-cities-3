@@ -40,7 +40,7 @@ class SignIn extends PureComponent {
                 type="email"
                 name="email"
                 placeholder="Email"
-                required=""
+                required="Неверный email"
                 ref={this.loginRef}
               />
             </div>
@@ -51,7 +51,7 @@ class SignIn extends PureComponent {
                 type="password"
                 name="password"
                 placeholder="Password"
-                required=""
+                required="Неверный пароль"
                 ref={this.passRef}
               />
             </div>

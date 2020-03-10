@@ -5,6 +5,7 @@ import createMapBlock from "../map/create-map-block.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const cityOffers = {
   offers: [
@@ -134,12 +135,21 @@ it(`<App /> sould be render`, () => {
         offers: []
       }
     },
-    [NameSpace.CITY]: {city: `Amsterdam`}
+    [NameSpace.CITY]: {city: `Amsterdam`},
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      userInfo: {id: 1, email: ``}
+    }
   });
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App city={``} cityOffers={cityOffers} onSelectOffer={() => {}} />
+          <App
+            city={``}
+            login={() => {}}
+            cityOffers={cityOffers}
+            onSelectOffer={() => {}}
+          />
         </Provider>
     )
     .toJSON();

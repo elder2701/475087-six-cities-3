@@ -9,13 +9,19 @@ import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
 import {getCityOffers} from "../../reducer/data/selectors.js";
 import SignIn from "../sign-in/sign-in.jsx";
-import {Operation as UserOperation} from "../../reducer/user/operation.js";
+import {OperationAuth} from "../../reducer/operation/operation.js";
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
-
-const App = ({cityOffers, selectedOffer, onSelectOffer, login, authorizationStatus, userInfo}) => {
+const App = ({
+  cityOffers,
+  selectedOffer,
+  onSelectOffer,
+  login,
+  authorizationStatus,
+  userInfo
+}) => {
   let offer = null;
   if (cityOffers) {
     offer = cityOffers.offers.find((item) => item.id === selectedOffer);
@@ -23,21 +29,24 @@ const App = ({cityOffers, selectedOffer, onSelectOffer, login, authorizationStat
   // const nearPlaces = cityOffers.filter((item) => item.id !== selectedOffer);
   return (
     <BrowserRouter>
-      <Header authorizationStatus={authorizationStatus} userInfo={userInfo}/>
+      <Header authorizationStatus={authorizationStatus} userInfo={userInfo} />
       <Switch>
         <Route exact path="/">
-          {cityOffers ? (<React.Fragment>
-            {offer ? (
-              <PlaceDetailsWrapper
-                {...offer}
-                /* nearPlaces={nearPlaces}*/
-                handleSelectOffer={onSelectOffer}
-              />
-            ) : (
-              <MainWrapper
-                handleSelectOffer={onSelectOffer}
-              />)}
-          </React.Fragment>) : (<div>Loading...</div>)}
+          {cityOffers ? (
+            <React.Fragment>
+              {offer ? (
+                <PlaceDetailsWrapper
+                  {...offer}
+                  /* nearPlaces={nearPlaces}*/
+                  handleSelectOffer={onSelectOffer}
+                />
+              ) : (
+                <MainWrapper handleSelectOffer={onSelectOffer} />
+              )}
+            </React.Fragment>
+          ) : (
+            <div>Loading...</div>
+          )}
         </Route>
         <Route exact path="/dev-auth">
           <SignIn onSubmit={login}></SignIn>
@@ -51,15 +60,18 @@ App.propTypes = {
   selectedOffer: PropTypes.number,
   onSelectOffer: PropTypes.func.isRequired,
   cityOffers: PropTypes.object,
-  city: PropTypes.string
+  city: PropTypes.string,
+  login: PropTypes.func.isRequired,
+  userInfo: PropTypes.object,
+  authorizationStatus: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-  cityOffers: getCityOffers(state),
+  cityOffers: getCityOffers(state)
 });
-const mapDispatchToProps = (dispatch)=>({
+const mapDispatchToProps = (dispatch) => ({
   login(authData) {
-    dispatch(UserOperation.login(authData));
+    dispatch(OperationAuth.login(authData));
   }
 });
 
