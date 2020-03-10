@@ -6,6 +6,11 @@ const getCityOffers = (state) => {
   return state[NameSpace.DATA].offers[state[NameSpace.CITY].city];
 };
 
+const getFirstCity = createSelector(
+    getCities,
+    (cities) => cities[0]
+);
+
 const citySelector = (state) => state[NameSpace.CITY].city;
 const cityOffersSelector = (state) => state[NameSpace.DATA].offers;
 const optionSelector = (state, props) => props.optionSorting;
@@ -30,4 +35,4 @@ const getCityInfo = (state)=> {
   return offers[city].city;
 };
 
-export {getCities, getCityOffers, getSortedOffers, getCityInfo};
+export {getCities, getCityOffers, getSortedOffers, getCityInfo, getFirstCity};

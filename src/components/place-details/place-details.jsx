@@ -20,7 +20,7 @@ const PlaceDetails = ({
   bedrooms,
   images,
   goods,
-  description,
+  description
 }) => (
   <main className="page__main page__main--property">
     <section className="property">
@@ -108,12 +108,23 @@ const PlaceDetails = ({
           <PlaceReviews comments={[]} />
         </div>
       </div>
+      {/* <Map
+        selectedOffer={selectedOffer}
+        offersCoords={Array.from(nearPlaces, (item) => [item.id, item.coordinates])}
+        name={`property__map`}
+      />*/}
     </section>
     <div className="container">
       <section className="near-places places">
         <h2 className="near-places__title">
           Other places in the neighbourhood
         </h2>
+        {/* <OffersList
+          cityOffers={nearPlaces}
+          handleSelectOffer={handleSelectOffer}
+          onHoverActiveCard={onSelectOffer}
+          type={`near-places__list`}
+        />*/}
       </section>
     </div>
   </main>
@@ -142,3 +153,4 @@ PlaceDetails.propTypes = {
   maxAdults: PropTypes.number,
   bedrooms: PropTypes.number
 };
+
