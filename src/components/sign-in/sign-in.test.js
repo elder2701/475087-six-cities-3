@@ -1,14 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Header from "./header.jsx";
+import SignIn from "./sign-in.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
-it(`<Header /> sould be render`, () => {
+it(`<SignIn /> sould be render`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
       offers: {
@@ -85,16 +84,12 @@ it(`<Header /> sould be render`, () => {
         offers: []
       }
     },
-    [NameSpace.CITY]: {city: `Amsterdam`},
-    [NameSpace.USER]: {
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
-      userInfo: {id: 1, email: ``}
-    }
+    [NameSpace.CITY]: {city: `Amsterdam`}
   });
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Header />
+          <SignIn onSubmit={()=>{}} />
         </Provider>
     )
     .toJSON();

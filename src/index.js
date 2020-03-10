@@ -1,25 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-import {createStore, applyMiddleware, compose} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";
 import withSelectedOffer from "./hoc/with-selected-offer/with-selected-offer.js";
 import {createAPI} from "./api.js";
 import {OperationOffers} from "./reducer/operation/operation.js";
+import {composeWithDevTools} from "redux-devtools-extension";
+import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
+import {OperationAuth} from "./reducer/operation/operation.js";
 
-const api = createAPI(()=>{});
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(ActionCreator.loadUserInfo({}));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
-    compose(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
     )
 );
 
 store.dispatch(OperationOffers.loadOffers());
+store.dispatch(OperationAuth.checkAuth());
 
 const AppWrapper = withSelectedOffer(App);
 

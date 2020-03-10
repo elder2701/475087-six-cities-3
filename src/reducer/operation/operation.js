@@ -1,5 +1,7 @@
 import {ActionCreator as ActionLoadOffer} from "../data/data.js";
 import {ActionCreator as ActionChangeCity} from "../city/city.js";
+import {ActionCreator, AuthorizationStatus} from "../user/user.js";
+
 
 const changeNameKeys = (offer) => {
   const newObj = Object.assign({}, offer, {
@@ -44,4 +46,30 @@ const OperationOffers = {
   }
 };
 
-export {OperationOffers, changeStructureLoadData};
+
+const OperationAuth = {
+  checkAuth: () => (dispatch, getState, api) => {
+    return api.get(`/login`)
+        .then((res) => {
+          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+          dispatch(ActionCreator.loadUserInfo(res.data));
+        })
+        .catch(() => {
+          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+        });
+  },
+
+  login: (authData) => (dispatch, getState, api) => {
+    return api.post(`/login`, {
+      email: authData.login,
+      password: authData.password,
+    })
+    .then((res) => {
+      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(ActionCreator.loadUserInfo(res.data));
+    });
+  },
+};
+
+
+export {OperationOffers, changeStructureLoadData, OperationAuth};
