@@ -5,7 +5,6 @@ import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";
-import withSelectedOffer from "./hoc/with-selected-offer/with-selected-offer.js";
 import {createAPI} from "./api.js";
 import {OperationOffers} from "./reducer/operation/operation.js";
 import {composeWithDevTools} from "redux-devtools-extension";
@@ -29,11 +28,9 @@ const store = createStore(
 store.dispatch(OperationOffers.loadOffers());
 store.dispatch(OperationAuth.checkAuth());
 
-const AppWrapper = withSelectedOffer(App);
-
 ReactDOM.render(
     <Provider store={store}>
-      <AppWrapper />
+      <App />
     </Provider>,
     document.getElementById(`root`)
 );

@@ -1,7 +1,7 @@
 import {ActionCreator as ActionLoadOffer} from "../data/data.js";
 import {ActionCreator as ActionChangeCity} from "../city/city.js";
 import {ActionCreator, AuthorizationStatus} from "../user/user.js";
-
+import {ActionCreator as ActionLoadOfferInfo} from "../offer/offer.js";
 
 const changeNameKeys = (offer) => {
   const newObj = Object.assign({}, offer, {
@@ -46,30 +46,67 @@ const OperationOffers = {
   }
 };
 
-
 const OperationAuth = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
-        .then((res) => {
-          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-          dispatch(ActionCreator.loadUserInfo(res.data));
-        })
-        .catch(() => {
-          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-        });
+    return api
+      .get(`/login`)
+      .then((res) => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.loadUserInfo(res.data));
+      })
+      .catch(() => {
+        dispatch(
+            ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)
+        );
+      });
   },
 
   login: (authData) => (dispatch, getState, api) => {
-    return api.post(`/login`, {
-      email: authData.login,
-      password: authData.password,
-    })
-    .then((res) => {
-      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(ActionCreator.loadUserInfo(res.data));
-    });
-  },
+    return api
+      .post(`/login`, {
+        email: authData.login,
+        password: authData.password
+      })
+      .then((res) => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.loadUserInfo(res.data));
+      });
+  }
 };
 
+const OperationOffer = {
+  loadOfferComments: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`).then((res) => {
+      dispatch(ActionLoadOfferInfo.loadOfferComments(res.data));
+    });
+  },
+  loadOffersAround: (id) => (dispatch, getState, api) => {
+    return api.get(`/hotels/${id}/nearby`).then((res) => {
+      const data = res.data.map((item) => changeNameKeys(item));
+      dispatch(ActionLoadOfferInfo.loadOffersAround(data));
+    });
+  }
+};
 
-export {OperationOffers, changeStructureLoadData, OperationAuth};
+const OperationComment = {
+  sendComment: (id, commentData) => (dispatch, getState, api) => {
+    return api
+      .post(`/comments/${id}`, {
+        comment: commentData.comment,
+        rating: commentData.rating
+      })
+      .then(() => {
+        dispatch(ActionLoadOfferInfo.sendCommentOffer(true));
+      }).catch(()=> {
+        dispatch(ActionLoadOfferInfo.sendCommentOffer(true));
+      });
+  }
+};
+
+export {
+  OperationOffers,
+  OperationAuth,
+  OperationOffer,
+  OperationComment,
+  changeStructureLoadData
+};
