@@ -57,10 +57,11 @@ const CommentForm = (props) => {
                 value={indexStar}
                 id={`${indexStar}-stars`}
                 type="radio"
-                onClick={(evt) => {
+                onChange={(evt) => {
                   handleChange(evt.target.value);
                 }}
                 checked={indexStar === +value ? `checked` : ``}
+                disabled={isDisabledSending(isSendComment)}
               />
               <label
                 htmlFor={`${indexStar}-stars`}

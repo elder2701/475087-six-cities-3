@@ -95,7 +95,8 @@ const OperationComment = {
         comment: commentData.comment,
         rating: commentData.rating
       })
-      .then(() => {
+      .then((res) => {
+        dispatch(ActionLoadOfferInfo.loadOfferComments(res.data));
         dispatch(ActionLoadOfferInfo.sendCommentOffer(true));
       }).catch(()=> {
         dispatch(ActionLoadOfferInfo.sendCommentOffer(true));
