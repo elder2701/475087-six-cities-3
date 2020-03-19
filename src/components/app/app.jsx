@@ -3,13 +3,16 @@ import Main from "../main/main.jsx";
 import Header from "../header/header.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
 import {getCityOffers} from "../../reducer/data/selectors.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import {OperationAuth} from "../../reducer/operation/operation.js";
+import history from "../../history";
+import {AppRoute} from "../../const.js";
+import Favorites from "../favorites/favorites.jsx";
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
@@ -28,16 +31,15 @@ const App = ({
   }
   // const nearPlaces = cityOffers.filter((item) => item.id !== selectedOffer);
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Header authorizationStatus={authorizationStatus} userInfo={userInfo} />
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.ROOT}>
           {cityOffers ? (
             <React.Fragment>
               {offer ? (
                 <PlaceDetailsWrapper
                   {...offer}
-                  /* nearPlaces={nearPlaces}*/
                   handleSelectOffer={onSelectOffer}
                 />
               ) : (
@@ -48,11 +50,14 @@ const App = ({
             <div>Loading...</div>
           )}
         </Route>
-        <Route exact path="/dev-auth">
+        <Route exact path={AppRoute.LOGIN}>
           <SignIn onSubmit={login}></SignIn>
         </Route>
+        <Route>
+          <Favorites></Favorites>
+        </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 
