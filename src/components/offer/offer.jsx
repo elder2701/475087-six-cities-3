@@ -1,5 +1,8 @@
-import React, {memo} from 'react';
+import React, {memo} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer/offer/offer.js";
+import {OperationOffer} from "../../reducer/operation/operation.js";
 
 const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
@@ -76,4 +79,14 @@ Offer.propTypes = {
   handleSelectOffer: PropTypes.func
 };
 
-export default memo(Offer);
+const mapStateToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+  handleSelectOffer(id) {
+    dispatch(ActionCreator.setSelectedOffer(id));
+    dispatch(OperationOffer.loadOfferComments(id));
+    dispatch(OperationOffer.loadOffersAround(id));
+  }
+});
+
+export {Offer};
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Offer));

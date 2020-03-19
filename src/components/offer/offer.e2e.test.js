@@ -1,22 +1,21 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Offer from "./offer.jsx";
+import {Offer} from "./offer.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
 });
 
-const offer =
-  {
-    id: 12,
-    figurePreview: ``,
-    mark: `Premium`,
-    price: 8220,
-    rating: 3,
-    name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
-  };
+const offer = {
+  id: 12,
+  figurePreview: ``,
+  mark: `Premium`,
+  price: 8220,
+  rating: 3,
+  name: `Beautiful & luxurious apartment at great location`,
+  type: `Apartment`
+};
 
 const mockEvent = {
   preventDefault() {}
@@ -27,7 +26,11 @@ describe(`Mouse events`, () => {
   const onSelectOffer = jest.fn();
 
   const screen = mount(
-      <Offer offer={offer} onHoverActiveCard={onHoverActiveCard} handleSelectOffer={onSelectOffer} />
+      <Offer
+        offer={offer}
+        onHoverActiveCard={onHoverActiveCard}
+        handleSelectOffer={onSelectOffer}
+      />
   );
 
   it(`Title onclick`, () => {

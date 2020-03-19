@@ -10,6 +10,7 @@ import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer
 import {getCityOffers} from "../../reducer/data/selectors.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import {OperationAuth} from "../../reducer/operation/operation.js";
+import {getSelectedOffer} from "../../reducer/offer/selectors.js";
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
@@ -17,7 +18,6 @@ const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 const App = ({
   cityOffers,
   selectedOffer,
-  onSelectOffer,
   login,
   authorizationStatus,
   userInfo
@@ -26,7 +26,6 @@ const App = ({
   if (cityOffers) {
     offer = cityOffers.offers.find((item) => item.id === selectedOffer);
   }
-  // const nearPlaces = cityOffers.filter((item) => item.id !== selectedOffer);
   return (
     <BrowserRouter>
       <Header authorizationStatus={authorizationStatus} userInfo={userInfo} />
@@ -37,11 +36,9 @@ const App = ({
               {offer ? (
                 <PlaceDetailsWrapper
                   {...offer}
-                  /* nearPlaces={nearPlaces}*/
-                  handleSelectOffer={onSelectOffer}
                 />
               ) : (
-                <MainWrapper handleSelectOffer={onSelectOffer} />
+                <MainWrapper />
               )}
             </React.Fragment>
           ) : (
@@ -58,7 +55,7 @@ const App = ({
 
 App.propTypes = {
   selectedOffer: PropTypes.number,
-  onSelectOffer: PropTypes.func.isRequired,
+  onSelectOffer: PropTypes.func,
   cityOffers: PropTypes.object,
   city: PropTypes.string,
   login: PropTypes.func.isRequired,
@@ -67,7 +64,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  cityOffers: getCityOffers(state)
+  cityOffers: getCityOffers(state),
+  selectedOffer: getSelectedOffer(state)
 });
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {

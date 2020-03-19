@@ -253,7 +253,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
           <h2
             className="reviews__title"
           >
-            Reviews · 
+            Reviews ·
             <span
               className="reviews__amount"
             >
@@ -267,6 +267,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             action="#"
             className="reviews__form form"
             method="post"
+            onSubmit={[Function]}
           >
             <label
               className="reviews__label form__label"
@@ -278,11 +279,14 @@ exports[`<PlaceDetails /> sould be render 1`] = `
               className="reviews__rating-form form__rating"
             >
               <input
+                checked=""
                 className="form__rating-input visually-hidden"
+                disabled=""
                 id="5-stars"
                 name="rating"
+                onChange={[Function]}
                 type="radio"
-                value="5"
+                value={5}
               />
               <label
                 className="reviews__rating-label form__rating-label"
@@ -300,11 +304,14 @@ exports[`<PlaceDetails /> sould be render 1`] = `
                 </svg>
               </label>
               <input
+                checked=""
                 className="form__rating-input visually-hidden"
+                disabled=""
                 id="4-stars"
                 name="rating"
+                onChange={[Function]}
                 type="radio"
-                value="4"
+                value={4}
               />
               <label
                 className="reviews__rating-label form__rating-label"
@@ -322,11 +329,14 @@ exports[`<PlaceDetails /> sould be render 1`] = `
                 </svg>
               </label>
               <input
+                checked=""
                 className="form__rating-input visually-hidden"
+                disabled=""
                 id="3-stars"
                 name="rating"
+                onChange={[Function]}
                 type="radio"
-                value="3"
+                value={3}
               />
               <label
                 className="reviews__rating-label form__rating-label"
@@ -344,11 +354,14 @@ exports[`<PlaceDetails /> sould be render 1`] = `
                 </svg>
               </label>
               <input
+                checked=""
                 className="form__rating-input visually-hidden"
+                disabled=""
                 id="2-stars"
                 name="rating"
+                onChange={[Function]}
                 type="radio"
-                value="2"
+                value={2}
               />
               <label
                 className="reviews__rating-label form__rating-label"
@@ -366,15 +379,18 @@ exports[`<PlaceDetails /> sould be render 1`] = `
                 </svg>
               </label>
               <input
+                checked=""
                 className="form__rating-input visually-hidden"
-                id="1-star"
+                disabled=""
+                id="1-stars"
                 name="rating"
+                onChange={[Function]}
                 type="radio"
-                value="1"
+                value={1}
               />
               <label
                 className="reviews__rating-label form__rating-label"
-                htmlFor="1-star"
+                htmlFor="1-stars"
                 title="terribly"
               >
                 <svg
@@ -390,9 +406,12 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             </div>
             <textarea
               className="reviews__textarea form__textarea"
+              disabled=""
               id="review"
               name="review"
+              onChange={[Function]}
               placeholder="Tell how was your stay, what you like and what can be improved"
+              value=""
             />
             <div
               className="reviews__button-wrapper"
@@ -416,7 +435,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
               </p>
               <button
                 className="reviews__submit form__submit button"
-                disabled=""
+                disabled="disabled"
                 type="submit"
               >
                 Submit
@@ -426,6 +445,10 @@ exports[`<PlaceDetails /> sould be render 1`] = `
         </section>
       </div>
     </div>
+    <section
+      className="property__map"
+      id="map"
+    />
   </section>
   <div
     className="container"
@@ -438,6 +461,9 @@ exports[`<PlaceDetails /> sould be render 1`] = `
       >
         Other places in the neighbourhood
       </h2>
+      <div
+        className="near-places__list places__list"
+      />
     </section>
   </div>
 </main>
