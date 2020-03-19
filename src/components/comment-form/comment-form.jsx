@@ -130,4 +130,5 @@ CommentForm.propTypes = {
   sending: PropTypes.func.isRequired
 };
 
+export {CommentForm};
 export default connect(mapStateToProps, mapDispatchToProps)(memo(CommentForm));

@@ -1,12 +1,8 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import CommentForm from "./comment-form.jsx";
-import configureStore from "redux-mock-store";
-import {Provider} from "react-redux";
+import {CommentForm} from "./comment-form.jsx";
 import NameSpace from "../../reducer/name-space.js";
-
-const mockStore = configureStore([]);
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -17,25 +13,21 @@ const mockEvent = {
 };
 
 describe(`Click events`, () => {
-  const store = mockStore({
-    [NameSpace.OFFER]: {
-      offer: 1,
-      isSendComment: true
-    }
-  });
   const text = `qwertqwertqwertqwertqwertqwertqwertqwertqwertqwert`;
   const clickStar = jest.fn();
   const clickSubmit = jest.fn();
 
   const screen = mount(
-      <Provider store={store}>
-        <CommentForm
-          value={`1`}
-          text={text}
-          handleChangeText = {()=>{}}
-          handleChange={()=>{}}
-        />
-      </Provider>
+      <CommentForm
+        value={`1`}
+        text={text}
+        handleChangeText = {()=>{}}
+        handleChange={clickStar}
+        offer={1}
+        isSendComment={true}
+        sendComment={clickSubmit}
+        sending={()=>{}}
+      />
   );
 
   it(`Start click`, () => {
@@ -48,7 +40,7 @@ describe(`Click events`, () => {
   it(`Submit click`, () => {
     const form = screen.find(`form`);
 
-    form.simulate(`click`, mockEvent);
+    form.simulate(`submit`, mockEvent);
     expect(clickSubmit).toHaveBeenCalledTimes(1);
   });
 });

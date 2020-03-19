@@ -1,11 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Offer from "./offer.jsx";
-import configureStore from "redux-mock-store";
-import {Provider} from "react-redux";
-
-const mockStore = configureStore([]);
+import {Offer} from "./offer.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -29,16 +25,12 @@ describe(`Mouse events`, () => {
   const onHoverActiveCard = jest.fn((...args) => [...args]);
   const onSelectOffer = jest.fn();
 
-  const store = mockStore({});
-
   const screen = mount(
-      <Provider store={store}>
-        <Offer
-          offer={offer}
-          onHoverActiveCard={onHoverActiveCard}
-          handleSelectOffer={onSelectOffer}
-        />
-      </Provider>
+      <Offer
+        offer={offer}
+        onHoverActiveCard={onHoverActiveCard}
+        handleSelectOffer={onSelectOffer}
+      />
   );
 
   it(`Title onclick`, () => {

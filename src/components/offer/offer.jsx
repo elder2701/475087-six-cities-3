@@ -88,4 +88,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {Offer};
 export default connect(mapStateToProps, mapDispatchToProps)(memo(Offer));
