@@ -2,7 +2,6 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {CommentForm} from "./comment-form.jsx";
-import NameSpace from "../../reducer/name-space.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -23,10 +22,11 @@ describe(`Click events`, () => {
         text={text}
         handleChangeText = {()=>{}}
         handleChange={clickStar}
-        offer={1}
+        selectedOffer={1}
         isSendComment={true}
         sendComment={clickSubmit}
         sending={()=>{}}
+
       />
   );
 

@@ -3,8 +3,6 @@ import renderer from "react-test-renderer";
 import Offer from "./offer.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import NameSpace from "../../reducer/name-space.js";
-import {ProvidePlugin} from "webpack";
 
 const offer = {
   id: 4,

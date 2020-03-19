@@ -18,65 +18,65 @@ import {
 const api = createAPI(() => {});
 const forTestOffers = [
   {
-    city: {
+    "city": {
       name: `Paris`,
       location: {latitude: 48.85661, longitude: 2.351499, zoom: 13}
     },
-    preview_image: ``,
-    images: [``, ``],
-    title: `Amazing and Extremely Central Flat`,
-    is_favorite: false,
-    is_premium: false,
-    rating: 4.5,
-    type: `apartment`,
-    bedrooms: 4,
-    max_adults: 5,
-    price: 467,
-    goods: [`Breakfast`, `Laptop friendly workspace`, `Washer`],
-    host: {
-      id: 25,
-      name: `Angelina`,
-      is_pro: true,
-      avatar_url: `img/avatar-angelina.jpg`
+    "preview_image": ``,
+    "images": [``, ``],
+    "title": `Amazing and Extremely Central Flat`,
+    "is_favorite": false,
+    "is_premium": false,
+    "rating": 4.5,
+    "type": `apartment`,
+    "bedrooms": 4,
+    "max_adults": 5,
+    "price": 467,
+    "goods": [`Breakfast`, `Laptop friendly workspace`, `Washer`],
+    "host": {
+      "id": 25,
+      "name": `Angelina`,
+      "is_pro": true,
+      "avatar_url": `img/avatar-angelina.jpg`
     },
-    description: ``,
-    location: {latitude: 48.868610000000004, longitude: 2.342499, zoom: 16},
-    id: 1
+    "description": ``,
+    "location": {latitude: 48.868610000000004, longitude: 2.342499, zoom: 16},
+    "id": 1
   },
   {
-    city: {
+    "city": {
       name: `Berlin`,
       location: {latitude: 48.85661, longitude: 2.351499, zoom: 13}
     },
-    preview_image: ``,
-    images: [``, ``],
-    title: `Amazing and Extremely Central Flat`,
-    is_favorite: false,
-    is_premium: false,
-    rating: 4.5,
-    type: `apartment`,
-    bedrooms: 4,
-    max_adults: 5,
-    price: 467,
-    goods: [`Breakfast`, `Laptop friendly workspace`, `Washer`],
-    host: {
-      id: 25,
-      name: `Angelina`,
-      is_pro: true,
-      avatar_url: `img/avatar-angelina.jpg`
+    "preview_image": ``,
+    "images": [``, ``],
+    "title": `Amazing and Extremely Central Flat`,
+    "is_favorite": false,
+    "is_premium": false,
+    "rating": 4.5,
+    "type": `apartment`,
+    "bedrooms": 4,
+    "max_adults": 5,
+    "price": 467,
+    "goods": [`Breakfast`, `Laptop friendly workspace`, `Washer`],
+    "host": {
+      "id": 25,
+      "name": `Angelina`,
+      "is_pro": true,
+      "avatar_url": `img/avatar-angelina.jpg`
     },
-    description: ``,
-    location: {latitude: 48.868610000000004, longitude: 2.342499, zoom: 16},
-    id: 1
+    "description": ``,
+    "location": {latitude: 48.868610000000004, longitude: 2.342499, zoom: 16},
+    "id": 1
   }
 ];
 
 const userInfoTest = {
-  avatar_url: ``,
-  email: `Oliver.conner@gmail.com`,
-  id: 1,
-  is_pro: false,
-  name: `Oliver.conner`
+  "avatar_url": ``,
+  "email": `Oliver.conner@gmail.com`,
+  "id": 1,
+  "is_pro": false,
+  "name": `Oliver.conner`
 };
 
 const hotels = [
@@ -155,10 +155,10 @@ const comments = [
     id: 1,
     rating: 4,
     user: {
-      avatar_url: `img/1.png`,
-      id: 4,
-      is_pro: false,
-      name: `Max`
+      "avatar_url": `img/1.png`,
+      "id": 4,
+      "is_pro": false,
+      "name": `Max`
     }
   }
 ];
