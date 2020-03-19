@@ -15,7 +15,6 @@ const Main = ({
   selectedOffer,
   cityInfo,
   cityOffers,
-  handleSelectOffer,
   changeOptionSorting,
   optionSorting
 }) => {
@@ -49,7 +48,6 @@ const Main = ({
               />
               <OffersList
                 cityOffers={cityOffers}
-                handleSelectOffer={handleSelectOffer}
                 onHoverActiveCard={onSelectOffer}
                 type={`cities__places-list tabs__content`}
               />
