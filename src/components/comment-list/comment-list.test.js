@@ -3,32 +3,36 @@ import renderer from "react-test-renderer";
 import CommentList from "./comment-list.jsx";
 
 const comments = [
-  {avatar: `img/avatar-max.jpg`,
-    name: `Vaya`,
-    rating: 4,
-    text: `A quiet cozy and picturesque that hides behind a a river by the
-  unique lightness of Amsterdam. 
-  century.`,
-    time: `June 3022`
+  {
+    "comment": `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    "date": `2019-05-08T14:13:56.569Z`,
+    "id": 1,
+    "rating": 4,
+    "user": {
+      "avatar_url": `img/1.png`,
+      "id": 4,
+      "is_pro": false,
+      "name": `Max`
+    }
   },
-  {avatar: `img/avatar-max.jpg`,
-    name: `Mx`,
-    rating: 1,
-    text: `ycentury.`,
-    time: `May 2000`
-  },
-  {avatar: `img/avatar-max.jpg`,
-    name: `Ola`,
-    rating: 3,
-    text: `A quiet cozy and picturesque that hides behind a a river by theYiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.`,
-    time: `April 2000`
+  {
+    "comment": `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    "date": `2019-05-08T14:13:56.569Z`,
+    "id": 2,
+    "rating": 3,
+    "user": {
+      "avatar_url": `img/1.png`,
+      "id": 4,
+      "is_pro": true,
+      "name": `Max`
+    }
   }
 ];
 
 
 it(`<CommentList /> sould be render`, () => {
   const tree = renderer
-      .create(<CommentList comments={comments} />)
-      .toJSON();
+    .create(<CommentList comments={comments} />)
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
