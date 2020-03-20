@@ -1,7 +1,7 @@
 import {extend} from "../../utils.js";
 
 const initialState = {
-  favorites: [],
+  favorites: {},
   sending: true
 };
 

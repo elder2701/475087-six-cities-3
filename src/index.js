@@ -6,10 +6,9 @@ import {Provider} from "react-redux";
 import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";
 import {createAPI} from "./api.js";
-import {OperationOffers} from "./reducer/operation/operation.js";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
-import {OperationAuth} from "./reducer/operation/operation.js";
+import {OperationAuth, OperationOffers, OperationFavorites} from "./reducer/operation/operation.js";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -26,6 +25,7 @@ const store = createStore(
 );
 
 store.dispatch(OperationOffers.loadOffers());
+store.dispatch(OperationFavorites.loadFavorites());
 store.dispatch(OperationAuth.checkAuth());
 
 ReactDOM.render(

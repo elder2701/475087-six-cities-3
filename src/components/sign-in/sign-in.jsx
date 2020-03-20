@@ -2,6 +2,9 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getFirstCity} from "../../reducer/data/selectors.js";
+import {getAuthStatus} from "../../reducer/user/selector.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import history from "../../history.js";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -22,7 +25,10 @@ class SignIn extends PureComponent {
   }
 
   render() {
-    const {firstCity} = this.props;
+    const {firstCity, authStatus} = this.props;
+    if (authStatus === AuthorizationStatus.AUTH) {
+      return history.push(`/`);
+    }
     return (
       <div className="page__login-container container">
         <section className="login">
@@ -73,13 +79,15 @@ class SignIn extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  firstCity: getFirstCity(state)
+  firstCity: getFirstCity(state),
+  authStatus: getAuthStatus(state)
 });
 
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  firstCity: PropTypes.string.isRequired
+  firstCity: PropTypes.string.isRequired,
+  authStatus: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps)(SignIn);

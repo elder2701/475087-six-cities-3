@@ -2,6 +2,7 @@ import {ActionCreator as ActionLoadOffer} from "../data/data.js";
 import {ActionCreator as ActionChangeCity} from "../city/city.js";
 import {ActionCreator, AuthorizationStatus} from "../user/user.js";
 import {ActionCreator as ActionLoadOfferInfo} from "../offer/offer.js";
+import {ActionCreator as ActionLoadFavorites} from "../favorite/favorite.js";
 
 const changeNameKeys = (offer) => {
   const newObj = Object.assign({}, offer, {
@@ -52,6 +53,7 @@ const OperationAuth = {
       .get(`/login`)
       .then((res) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        console.log(`bla`);
         dispatch(ActionCreator.loadUserInfo(res.data));
       })
       .catch(() => {
@@ -69,6 +71,7 @@ const OperationAuth = {
       })
       .then((res) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        console.log(`bla`)
         dispatch(ActionCreator.loadUserInfo(res.data));
       });
   }
@@ -98,9 +101,29 @@ const OperationComment = {
       .then((res) => {
         dispatch(ActionLoadOfferInfo.loadOfferComments(res.data));
         dispatch(ActionLoadOfferInfo.sendCommentOffer(true));
-      }).catch(()=> {
+      })
+      .catch(() => {
         dispatch(ActionLoadOfferInfo.sendCommentOffer(true));
       });
+  }
+};
+
+const OperationFavorites = {
+  loadFavorites: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`).then((res) => {
+      const myOffers = changeStructureLoadData(res.data);
+      dispatch(ActionLoadFavorites.loadFavorites(myOffers));
+    }).catch(()=>{
+      dispatch(ActionLoadFavorites.loadFavorites({}));
+    });
+  },
+
+  changeStatusFavorite: (id, status) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/${status}`).then((res) => {
+      const myOffers = changeStructureLoadData(res.data);
+      dispatch(ActionLoadFavorites.loadFavorites(myOffers));
+      dispatch(ActionLoadFavorites.changeStatus(true));
+    });
   }
 };
 
@@ -109,5 +132,6 @@ export {
   OperationAuth,
   OperationOffer,
   OperationComment,
+  OperationFavorites,
   changeStructureLoadData
 };
