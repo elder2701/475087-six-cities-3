@@ -12,7 +12,7 @@ import SignIn from "../sign-in/sign-in.jsx";
 import {OperationAuth} from "../../reducer/operation/operation.js";
 import history from "../../history";
 import {AppRoute} from "../../const.js";
-import Favorites from "../favorites/favorites.jsx";
+import FavoritesList from "../favorites-list/favorites-list.jsx";
 import {getSelectedOffer} from "../../reducer/offer/selectors.js";
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
@@ -51,8 +51,8 @@ const App = ({
         <Route exact path={AppRoute.LOGIN}>
           <SignIn onSubmit={login}></SignIn>
         </Route>
-        <Route>
-          <Favorites></Favorites>
+        <Route exact path={AppRoute.MYLIST}>
+          <FavoritesList />
         </Route>
       </Switch>
     </Router>

@@ -24,8 +24,10 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.LOAD_OFFERS:
-      return extend(state, {offers: action.payload});
+    case ActionType.LOAD_FAVORITES:
+      return extend(state, {favorites: action.payload});
+    case ActionType.CHANGE_SEND_STATUS:
+      return extend(state, {sending: action.payload});
   }
   return state;
 };

@@ -2,14 +2,19 @@ import React, {memo} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/offer/offer.js";
-import {OperationOffer} from "../../reducer/operation/operation.js";
+import {OperationOffer, OperationFavorites} from "../../reducer/operation/operation.js";
 
 const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
   return {width: `${calculatedWidth}%`};
 };
 
-const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
+const bookMarkClasses = (isFavorite) =>
+  isFavorite
+    ? `place-card__bookmark-button place-card__bookmark-button--active button`
+    : `place-card__bookmark-button button`;
+
+const Offer = ({offer, onHoverActiveCard, handleSelectOffer, handleChangeFavorite}) => (
   <article
     className="cities__place-card place-card"
     onMouseOver={(evt) => {
@@ -21,7 +26,7 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
       onHoverActiveCard(null);
     }}
   >
-    {offer.is_premium ? (
+    {offer.isPremium ? (
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
@@ -44,8 +49,11 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer}) => (
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
         <button
-          className="place-card__bookmark-button place-card__bookmark-button--active button"
+          className={bookMarkClasses(offer.isFavorite)}
           type="button"
+          onClick={()=>{
+            handleChangeFavorite(offer.id, offer.isFavorite);
+          }}
         >
           <svg className="place-card__bookmark-icon" width="18" height="19">
             <use xlinkHref="#icon-bookmark"></use>
@@ -85,6 +93,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setSelectedOffer(id));
     dispatch(OperationOffer.loadOfferComments(id));
     dispatch(OperationOffer.loadOffersAround(id));
+  },
+  handleChangeFavorite(id, status) {
+    dispatch(OperationFavorites.changeStatusFavorite(id, !status));
   }
 });
 
