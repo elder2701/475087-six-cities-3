@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Router} from "react-router-dom";
 import NameSpace from "../../reducer/name-space.js";
+import history from "../../history";
 
 const mockStore = configureStore([]);
 
@@ -92,7 +93,7 @@ it(`<SignIn /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Router>
+          <Router history={history}>
             <SignIn onSubmit={()=>{}} />
           </Router>
         </Provider>

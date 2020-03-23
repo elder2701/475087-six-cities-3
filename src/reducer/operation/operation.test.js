@@ -174,99 +174,6 @@ const comments = [
   }
 ];
 
-const favoritesOrigin = {
-  favorites: {
-    Amsterdam: {
-      city: {
-        name: `Amsterdam`,
-        location: {
-          latitude: 52.37454,
-          longitude: 4.897976,
-          zoom: 13
-        }
-      },
-      offers: [
-        {
-          "bedrooms": 5,
-          "city": {
-            location: {
-              latitude: 52.370216,
-              longitude: 4.895168,
-              zoom: 10
-            },
-            name: `Amsterdam`
-          },
-          "description": `test`,
-          "goods": [
-            `test1`, `test2`
-          ],
-          "host": {
-            "avatar_url": ``,
-            "id": 25,
-            "is_pro": true,
-            "name": `Angelina`
-          },
-          "id": 1,
-          "images": [``, ``],
-          "is_favorite": true,
-          "is_premium": false,
-          "location": {
-            latitude: 52.37854,
-            longitude: 4.894976,
-            zoom: 16
-          },
-          "max_adults": 7,
-          "preview_image": ``,
-          "price": 327,
-          "rating": 2.1,
-          "title": `Test`,
-          "type": `apartment`
-        }
-      ]
-    }
-  }
-};
-
-const favorites = {
-  favorites: {
-    Amsterdam: {
-      city: {
-        name: `Amsterdam`,
-        location: {
-          latitude: 52.37454,
-          longitude: 4.897976,
-          zoom: 13
-        }
-      },
-      offers: [
-        {
-          images: [``, ``],
-          title: `Test`,
-          rating: 2.1,
-          type: `apartment`,
-          bedrooms: 5,
-          price: 327,
-          goods: [`test1`, `test2`],
-          description: `test`,
-          location: {
-            latitude: 52.37854,
-            longitude: 4.894976,
-            zoom: 16
-          },
-          id: 5,
-          previewImage: ``,
-          isFavorite: true,
-          isPremium: false,
-          maxAdults: 7,
-          hostId: 25,
-          hostName: `Angelina`,
-          hostIsPro: true,
-          hostAvatarUrl: ``
-        },
-      ]
-    }
-  }
-};
 
 describe(`Operation work correctly`, () => {
   const apiMock = new MockAdapter(api);
@@ -374,12 +281,12 @@ describe(`Operation work correctly`, () => {
   it(`Should make correct API call to /favorite. Get favorites`, () => {
     const dispatch = jest.fn();
     const loader = OperationFavorites.loadFavorites();
-    apiMock.onGet(`/favorite`).reply(200, favoritesOrigin);
+    apiMock.onGet(`/favorite`).reply(200, hotelsOrigin);
 
     return loader(dispatch, ()=>{}, api).then(()=>{
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: FavoriteActionType.LOAD_FAVORITES,
-        payload: favorites
+        payload: changeStructureLoadData(hotelsOrigin)
       });
     });
   });

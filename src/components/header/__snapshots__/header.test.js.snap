@@ -15,6 +15,8 @@ exports[`<Header /> sould be render 1`] = `
       >
         <a
           className="header__logo-link header__logo-link--active"
+          href="/"
+          onClick={[Function]}
         >
           <img
             alt="6 cities logo"
@@ -28,12 +30,28 @@ exports[`<Header /> sould be render 1`] = `
       <nav
         className="header__nav"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <ul
+          className="header__nav-list"
         >
-          Sign in
-        </a>
+          <li
+            className="header__nav-item user"
+          >
+            <a
+              className="header__nav-link header__nav-link--profile"
+              href="/mylist"
+              onClick={[Function]}
+            >
+              <div
+                className="header__avatar-wrapper user__avatar-wrapper"
+              />
+              <span
+                className="header__user-name user__name"
+              >
+                123@123.ru
+              </span>
+            </a>
+          </li>
+        </ul>
       </nav>
     </div>
   </div>

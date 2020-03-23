@@ -111,6 +111,7 @@ const OperationFavorites = {
     return api
       .get(`/favorite`)
       .then((res) => {
+        console.log(res.data)
         const myOffers = changeStructureLoadData(res.data);
         dispatch(ActionLoadFavorites.loadFavorites(myOffers));
       })
