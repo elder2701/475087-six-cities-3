@@ -43,7 +43,7 @@ const favorites = {
   }
 };
 
-it(`<FavoritesList /> sould be render`, () => {
+it(`<Favorite /> sould be render`, () => {
   const tree = renderer
     .create(<Favorite favorites={favorites} updateStatus={() => {}} />)
     .toJSON();

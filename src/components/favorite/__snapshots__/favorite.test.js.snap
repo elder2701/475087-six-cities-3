@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FavoritesList /> sould be render 1`] = `
+exports[`<Favorite /> sould be render 1`] = `
 <article
   className="favorites__card place-card"
 >

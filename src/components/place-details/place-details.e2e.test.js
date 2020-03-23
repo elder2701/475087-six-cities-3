@@ -1,5 +1,6 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import Enzyme, {shallow, mount} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import PlaceDetails from "./place-details.jsx";
 import createMapBlock from "../map/create-map-block.js";
 import cofigureStore from "redux-mock-store";
@@ -69,7 +70,16 @@ const offer = {
   ]
 };
 
-it(`<PlaceDetails /> sould be render`, () => {
+Enzyme.configure({
+  adapter: new Adapter()
+});
+
+const mockEvent = {
+  preventDefault() {}
+};
+
+describe(`Mouse events`, () => {
+  const handleChangeFavorite = jest.fn();
   const store = mockStore({
     [NameSpace.DATA]: {
       offers: {
@@ -141,12 +151,15 @@ it(`<PlaceDetails /> sould be render`, () => {
     }
   });
   createMapBlock();
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <PlaceDetails {...offer} updateStatus={()=>{}}/>
-        </Provider>
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const screen = mount(
+      <Provider store={store}>
+        <PlaceDetails {...offer} updateStatus={handleChangeFavorite}/>
+      </Provider>
+  );
+
+  it(`Button click`, () => {
+    const button = screen.find(`button`).at(0);
+    button.simulate(`click`, mockEvent);
+    expect(handleChangeFavorite).toHaveBeenCalledTimes(1);
+  });
 });
