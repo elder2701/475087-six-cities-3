@@ -5,11 +5,13 @@ import {
   changeStructureLoadData,
   OperationAuth,
   OperationOffer,
-  OperationComment
+  OperationComment,
+  OperationFavorites
 } from "./operation.js";
 import {ActionType as DataActionType} from "../data/data.js";
 import {ActionType as CityActionType} from "../city/city.js";
 import {ActionType as OfferActionType} from "../offer/offer.js";
+import {ActionType as FavoriteActionType} from "../favorite/favorite.js";
 import {
   ActionType as AuthActionType,
   AuthorizationStatus
@@ -113,40 +115,49 @@ const hotels = [
   }
 ];
 
-const hotelsOrigin = [{
-  "bedrooms": 3,
-  "city": {
-    "location": {
-      "latitude": 52.370216,
-      "longitude": 4.895168,
-      "zoom": 10
+const hotelsOrigin = [
+  {
+    "bedrooms": 3,
+    "city": {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: `Amsterdam`
     },
-    "name": `Amsterdam`
-  },
-  "description": `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
-  "goods": [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
-  "host": {
-    "avatar_url": `img/1.png`,
-    "id": 3,
-    "is_pro": true,
-    "name": `Angelina`
-  },
-  "id": 1,
-  "images": [`img/1.png`, `img/2.png`],
-  "is_favorite": false,
-  "is_premium": false,
-  "location": {
-    "latitude": 52.35514938496378,
-    "longitude": 4.673877537499948,
-    "zoom": 8
-  },
-  "max_adults": 4,
-  "preview_image": `img/1.png`,
-  "price": 120,
-  "rating": 4.8,
-  "title": `Beautiful & luxurious studio at great location`,
-  "type": `apartment`
-}];
+    "description": `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    "goods": [
+      `Heating`,
+      `Kitchen`,
+      `Cable TV`,
+      `Washing machine`,
+      `Coffee machine`,
+      `Dishwasher`
+    ],
+    "host": {
+      "avatar_url": `img/1.png`,
+      "id": 3,
+      "is_pro": true,
+      "name": `Angelina`
+    },
+    "id": 1,
+    "images": [`img/1.png`, `img/2.png`],
+    "is_favorite": false,
+    "is_premium": false,
+    "location": {
+      latitude: 52.35514938496378,
+      longitude: 4.673877537499948,
+      zoom: 8
+    },
+    "max_adults": 4,
+    "preview_image": `img/1.png`,
+    "price": 120,
+    "rating": 4.8,
+    "title": `Beautiful & luxurious studio at great location`,
+    "type": `apartment`
+  }
+];
 
 const comments = [
   {
@@ -162,6 +173,100 @@ const comments = [
     }
   }
 ];
+
+const favoritesOrigin = {
+  favorites: {
+    Amsterdam: {
+      city: {
+        name: `Amsterdam`,
+        location: {
+          latitude: 52.37454,
+          longitude: 4.897976,
+          zoom: 13
+        }
+      },
+      offers: [
+        {
+          "bedrooms": 5,
+          "city": {
+            location: {
+              latitude: 52.370216,
+              longitude: 4.895168,
+              zoom: 10
+            },
+            name: `Amsterdam`
+          },
+          "description": `test`,
+          "goods": [
+            `test1`, `test2`
+          ],
+          "host": {
+            "avatar_url": ``,
+            "id": 25,
+            "is_pro": true,
+            "name": `Angelina`
+          },
+          "id": 1,
+          "images": [``, ``],
+          "is_favorite": true,
+          "is_premium": false,
+          "location": {
+            latitude: 52.37854,
+            longitude: 4.894976,
+            zoom: 16
+          },
+          "max_adults": 7,
+          "preview_image": ``,
+          "price": 327,
+          "rating": 2.1,
+          "title": `Test`,
+          "type": `apartment`
+        }
+      ]
+    }
+  }
+};
+
+const favorites = {
+  favorites: {
+    Amsterdam: {
+      city: {
+        name: `Amsterdam`,
+        location: {
+          latitude: 52.37454,
+          longitude: 4.897976,
+          zoom: 13
+        }
+      },
+      offers: [
+        {
+          images: [``, ``],
+          title: `Test`,
+          rating: 2.1,
+          type: `apartment`,
+          bedrooms: 5,
+          price: 327,
+          goods: [`test1`, `test2`],
+          description: `test`,
+          location: {
+            latitude: 52.37854,
+            longitude: 4.894976,
+            zoom: 16
+          },
+          id: 5,
+          previewImage: ``,
+          isFavorite: true,
+          isPremium: false,
+          maxAdults: 7,
+          hostId: 25,
+          hostName: `Angelina`,
+          hostIsPro: true,
+          hostAvatarUrl: ``
+        },
+      ]
+    }
+  }
+};
 
 describe(`Operation work correctly`, () => {
   const apiMock = new MockAdapter(api);
@@ -262,6 +367,19 @@ describe(`Operation work correctly`, () => {
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: OfferActionType.LOAD_OFFERS_AROUND,
         payload: hotels
+      });
+    });
+  });
+
+  it(`Should make correct API call to /favorite. Get favorites`, () => {
+    const dispatch = jest.fn();
+    const loader = OperationFavorites.loadFavorites();
+    apiMock.onGet(`/favorite`).reply(200, favoritesOrigin);
+
+    return loader(dispatch, ()=>{}, api).then(()=>{
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: FavoriteActionType.LOAD_FAVORITES,
+        payload: favorites
       });
     });
   });

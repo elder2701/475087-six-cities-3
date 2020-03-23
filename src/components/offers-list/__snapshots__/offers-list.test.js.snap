@@ -45,7 +45,8 @@ exports[`<OffersList /> sould be render 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button place-card__bookmark-button--active button"
+          className="place-card__bookmark-button button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -140,7 +141,8 @@ exports[`<OffersList /> sould be render 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button place-card__bookmark-button--active button"
+          className="place-card__bookmark-button button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -235,7 +237,8 @@ exports[`<OffersList /> sould be render 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button place-card__bookmark-button--active button"
+          className="place-card__bookmark-button button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -330,7 +333,8 @@ exports[`<OffersList /> sould be render 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button place-card__bookmark-button--active button"
+          className="place-card__bookmark-button button"
+          onClick={[Function]}
           type="button"
         >
           <svg

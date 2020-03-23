@@ -3,6 +3,8 @@ import renderer from "react-test-renderer";
 import SignIn from "./sign-in.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Router} from "react-router-dom";
 import NameSpace from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
@@ -84,12 +86,15 @@ it(`<SignIn /> sould be render`, () => {
         offers: []
       }
     },
-    [NameSpace.CITY]: {city: `Amsterdam`}
+    [NameSpace.CITY]: {city: `Amsterdam`},
+    [NameSpace.USER]: {authorizationStatus: AuthorizationStatus.AUTH}
   });
   const tree = renderer
     .create(
         <Provider store={store}>
-          <SignIn onSubmit={()=>{}} />
+          <Router>
+            <SignIn onSubmit={()=>{}} />
+          </Router>
         </Provider>
     )
     .toJSON();

@@ -6,15 +6,23 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getNearOffers, getComments} from "../../reducer/offer/selectors.js";
 import {getCityInfo} from "../../reducer/data/selectors.js";
+import {OperationFavorites} from "../../reducer/operation/operation.js";
 
 const spanStyles = (rating) => {
-  let calculatedWidth = rating * 20;
+  let calculatedWidth = Math.round(rating) * 20;
   return {width: `${calculatedWidth}%`};
 };
 
+const bookMarkClasses = (isFavorite) =>
+  isFavorite
+    ? `property__bookmark-button property__bookmark-button--active button`
+    : `property__bookmark-button button`;
+
 const PlaceDetails = ({
+  id,
   selectedOffer,
   onSelectOffer,
+  isFavorite,
   isPremium,
   price,
   rating,
@@ -30,7 +38,8 @@ const PlaceDetails = ({
   description,
   nearPlaces,
   comments,
-  cityInfo
+  cityInfo,
+  updateStatus
 }) => {
   const {location} = cityInfo;
   const offersCoords = Array.from(nearPlaces, (item) => {
@@ -62,8 +71,9 @@ const PlaceDetails = ({
             <div className="property__name-wrapper">
               <h1 className="property__name">{title}</h1>
               <button
-                className="property__bookmark-button button"
+                className={bookMarkClasses(isFavorite)}
                 type="button"
+                onClick={updateStatus(id, !isFavorite)}
               >
                 <svg className="property__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
@@ -163,9 +173,18 @@ const mapStateToProps = (state) => ({
   cityInfo: getCityInfo(state)
 });
 
-export default connect(mapStateToProps)(PlaceDetails);
+const mapDispatchToProps = (dispatch) => ({
+  updateStatus(id, status) {
+    dispatch(OperationFavorites.changeStatusFavorite(id, status));
+  }
+});
+
+export {PlaceDetails};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);
 
 PlaceDetails.propTypes = {
+  id: PropTypes.number,
   selectedOffer: PropTypes.number,
   handleSelectOffer: PropTypes.func,
   onSelectOffer: PropTypes.func,
@@ -184,5 +203,7 @@ PlaceDetails.propTypes = {
   type: PropTypes.string,
   maxAdults: PropTypes.number,
   bedrooms: PropTypes.number,
-  cityInfo: PropTypes.object
+  cityInfo: PropTypes.object,
+  isFavorite: PropTypes.bool,
+  updateStatus: PropTypes.func
 };

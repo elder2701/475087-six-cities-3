@@ -10,7 +10,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {OperationAuth, OperationOffers} from "./reducer/operation/operation.js";
 import history from "./history.js";
-import {AppRoute} from "./const.js"
+import {AppRoute} from "./const.js";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));

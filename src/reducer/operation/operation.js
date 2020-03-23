@@ -120,46 +120,28 @@ const OperationFavorites = {
   },
 
   changeStatusFavorite: (id, status) => (dispatch, getState, api) => {
-    return api
-      .post(`/favorite/${id}/${+status}`)
-      .then((res) => {
-        /*  const myOffers = changeStructureLoadData(res.data);
-      dispatch(ActionLoadFavorites.loadFavorites(myOffers));*/
-        dispatch(ActionLoadFavorites.changeStatus(true));
-      })
-      .then(() => {
-        return api
-          .get(`/hotels`)
-          .then((response) => {
-            const myOffers = changeStructureLoadData(response.data);
-            const cities = Object.keys(myOffers).sort();
-            dispatch(ActionLoadOffer.loadOffers(myOffers));
-            dispatch(ActionChangeCity.changeCity(cities[0]));
-          });
+    return api.post(`/favorite/${id}/${+status}`).then(() => {
+      return api.get(`/hotels`).then((response) => {
+        const myOffers = changeStructureLoadData(response.data);
+        dispatch(ActionLoadOffer.loadOffers(myOffers));
       });
+    });
   },
   changeStatusAndUpdateFavorite: (id, status) => (dispatch, getState, api) => {
-    return api
-      .post(`/favorite/${id}/${+status}`)
-      .then(() => {
-        dispatch(ActionLoadFavorites.changeStatus(true));
-      })
-      .then(() => {
-        return api
-          .get(`/hotels`)
-          .then((response) => {
-            const myOffers = changeStructureLoadData(response.data);
-            const cities = Object.keys(myOffers).sort();
-            dispatch(ActionLoadOffer.loadOffers(myOffers));
-            dispatch(ActionChangeCity.changeCity(cities[0]));
-          })
-          .then(() => {
-            return api.get(`/favorite`).then((res) => {
-              const myOffers = changeStructureLoadData(res.data);
-              dispatch(ActionLoadFavorites.loadFavorites(myOffers));
-            });
+    return api.post(`/favorite/${id}/${+status}`).then(() => {
+      return api
+        .get(`/hotels`)
+        .then((response) => {
+          const myOffers = changeStructureLoadData(response.data);
+          dispatch(ActionLoadOffer.loadOffers(myOffers));
+        })
+        .then(() => {
+          return api.get(`/favorite`).then((res) => {
+            const myOffers = changeStructureLoadData(res.data);
+            dispatch(ActionLoadFavorites.loadFavorites(myOffers));
           });
-      });
+        });
+    });
   }
 };
 

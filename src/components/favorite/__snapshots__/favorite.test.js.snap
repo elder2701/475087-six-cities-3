@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Offer /> sould be render 1`] = `
+exports[`<FavoritesList /> sould be render 1`] = `
 <article
-  className="cities__place-card place-card"
-  onMouseOut={[Function]}
-  onMouseOver={[Function]}
+  className="favorites__card place-card"
 >
   <div
-    className="cities__image-wrapper place-card__image-wrapper"
+    className="favorites__image-wrapper place-card__image-wrapper"
   >
     <a
       href="#"
@@ -15,13 +13,13 @@ exports[`<Offer /> sould be render 1`] = `
       <img
         alt="Place image"
         className="place-card__image"
-        height="200"
-        width="260"
+        height="110"
+        width="150"
       />
     </a>
   </div>
   <div
-    className="place-card__info"
+    className="favorites__card-info place-card__info"
   >
     <div
       className="place-card__price-wrapper"
@@ -33,7 +31,6 @@ exports[`<Offer /> sould be render 1`] = `
           className="place-card__price-value"
         >
           €
-          8210
         </b>
         <span
           className="place-card__price-text"
@@ -71,7 +68,7 @@ exports[`<Offer /> sould be render 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "NaN%",
             }
           }
         />
@@ -84,7 +81,6 @@ exports[`<Offer /> sould be render 1`] = `
     </div>
     <h2
       className="place-card__name"
-      onClick={[Function]}
     >
       <a
         href="#"
@@ -92,9 +88,7 @@ exports[`<Offer /> sould be render 1`] = `
     </h2>
     <p
       className="place-card__type"
-    >
-      Apartment
-    </p>
+    />
   </div>
 </article>
 `;

@@ -63,6 +63,8 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {Header};
+
 export default connect(mapStateToProps, mapDispatchToProps)(memo(Header));
 
 Header.propTypes = {
