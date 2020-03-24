@@ -19,7 +19,11 @@ const mockStore = configureStore([]);
 it(`<Offer /> sould be render`, () => {
   const store = mockStore({});
   const tree = renderer
-    .create(<Provider store={store}><Offer offer={offer} onHoverActiveCard={() => {}} /></Provider>)
+    .create(
+        <Provider store={store}>
+          <Offer offer={offer} onHoverActiveCard={() => {}} />
+        </Provider>
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

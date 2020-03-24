@@ -24,12 +24,14 @@ const mockEvent = {
 describe(`Mouse events`, () => {
   const onHoverActiveCard = jest.fn((...args) => [...args]);
   const onSelectOffer = jest.fn();
+  const handleChangeFavorite = jest.fn();
 
   const screen = mount(
       <Offer
         offer={offer}
         onHoverActiveCard={onHoverActiveCard}
         handleSelectOffer={onSelectOffer}
+        handleChangeFavorite = {handleChangeFavorite}
       />
   );
 
@@ -47,5 +49,11 @@ describe(`Mouse events`, () => {
     firstCard.simulate(`mouseover`, mockEvent);
     expect(onHoverActiveCard).toHaveBeenCalledTimes(1);
     expect(onHoverActiveCard.mock.calls[0][0]).toBe(offer.id);
+  });
+
+  it(`Button change favorite status click`, ()=>{
+    const button = screen.find(`button`);
+    button.simulate(`click`, mockEvent);
+    expect(handleChangeFavorite).toHaveBeenCalledTimes(1);
   });
 });

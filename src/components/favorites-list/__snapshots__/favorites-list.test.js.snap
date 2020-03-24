@@ -1,129 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Main /> sould be render 1`] = `
-<main
-  className="page__main page__main--index"
+exports[`<FavoritesList /> sould be render 1`] = `
+<div
+  className="page__favorites-container container"
 >
-  <h1
-    className="visually-hidden"
+  <section
+    className="favorites"
   >
-    Cities
-  </h1>
-  <div
-    className="tabs"
-  >
-    <section
-      className="locations container"
+    <h1
+      className="favorites__title"
     >
-      <ul
-        className="locations__list tabs__list"
-      >
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-            onClick={[Function]}
-          >
-            <span>
-              Amsterdam
-            </span>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </div>
-  <div
-    className="cities"
-  >
-    <div
-      className="cities__places-container container "
+      Saved listing
+    </h1>
+    <ul
+      className="favorites__list"
     >
-      <section
-        className="cities__places places"
+      <li
+        className="favorites__locations-items"
       >
-        <h2
-          className="visually-hidden"
-        >
-          Places
-        </h2>
-        <b
-          className="places__found"
-        >
-          2
-           places to stay in 
-          Amsterdam
-        </b>
-        <form
-          action="#"
-          className="places__sorting"
-          method="get"
-        >
-          <span
-            className="places__sorting-caption"
-          >
-            Sort by
-          </span>
-          <span
-            className="places__sorting-type"
-            onClick={[Function]}
-            tabIndex="0"
-          >
-            
-            <svg
-              className="places__sorting-arrow"
-              height="4"
-              width="7"
-            >
-              <use
-                xlinkHref="#icon-arrow-select"
-              />
-            </svg>
-          </span>
-          <ul
-            className="places__options places__options--custom"
-          >
-            <li
-              className="places__option"
-              onClick={[Function]}
-              tabIndex="0"
-            >
-              Popular
-            </li>
-            <li
-              className="places__option"
-              onClick={[Function]}
-              tabIndex="0"
-            >
-              Price: low to high
-            </li>
-            <li
-              className="places__option"
-              onClick={[Function]}
-              tabIndex="0"
-            >
-              Price: high to low
-            </li>
-            <li
-              className="places__option"
-              onClick={[Function]}
-              tabIndex="0"
-            >
-              Top rated first
-            </li>
-          </ul>
-        </form>
         <div
-          className="cities__places-list tabs__content places__list"
+          className="favorites__locations locations locations--current"
+        >
+          <div
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link"
+              href="/"
+              onClick={[Function]}
+            >
+              <span>
+                Amsterdam
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="favorites__places"
         >
           <article
-            className="cities__place-card place-card"
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
+            className="favorites__card place-card"
           >
             <div
-              className="cities__image-wrapper place-card__image-wrapper"
+              className="favorites__image-wrapper place-card__image-wrapper"
             >
               <a
                 href="#"
@@ -131,14 +50,14 @@ exports[`<Main /> sould be render 1`] = `
                 <img
                   alt="Place image"
                   className="place-card__image"
-                  height="200"
+                  height="110"
                   src=""
-                  width="260"
+                  width="150"
                 />
               </a>
             </div>
             <div
-              className="place-card__info"
+              className="favorites__card-info place-card__info"
             >
               <div
                 className="place-card__price-wrapper"
@@ -150,7 +69,7 @@ exports[`<Main /> sould be render 1`] = `
                     className="place-card__price-value"
                   >
                     €
-                    467
+                    633
                   </b>
                   <span
                     className="place-card__price-text"
@@ -159,7 +78,7 @@ exports[`<Main /> sould be render 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button place-card__bookmark-button--active button"
                   onClick={[Function]}
                   type="button"
                 >
@@ -188,7 +107,7 @@ exports[`<Main /> sould be render 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "20%",
+                        "width": "80%",
                       }
                     }
                   />
@@ -201,28 +120,57 @@ exports[`<Main /> sould be render 1`] = `
               </div>
               <h2
                 className="place-card__name"
-                onClick={[Function]}
               >
                 <a
                   href="#"
                 >
-                  Amazing and Extremely Central Flat
+                  The house among olive 
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                apartment
+                house
               </p>
             </div>
           </article>
+        </div>
+      </li>
+      <li
+        className="favorites__locations-items"
+      >
+        <div
+          className="favorites__locations locations locations--current"
+        >
+          <div
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link"
+              href="/"
+              onClick={[Function]}
+            >
+              <span>
+                Brussels
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="favorites__places"
+        >
           <article
-            className="cities__place-card place-card"
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
+            className="favorites__card place-card"
           >
             <div
-              className="cities__image-wrapper place-card__image-wrapper"
+              className="place-card__mark"
+            >
+              <span>
+                Premium
+              </span>
+            </div>
+            <div
+              className="favorites__image-wrapper place-card__image-wrapper"
             >
               <a
                 href="#"
@@ -230,14 +178,14 @@ exports[`<Main /> sould be render 1`] = `
                 <img
                   alt="Place image"
                   className="place-card__image"
-                  height="200"
+                  height="110"
                   src=""
-                  width="260"
+                  width="150"
                 />
               </a>
             </div>
             <div
-              className="place-card__info"
+              className="favorites__card-info place-card__info"
             >
               <div
                 className="place-card__price-wrapper"
@@ -249,7 +197,7 @@ exports[`<Main /> sould be render 1`] = `
                     className="place-card__price-value"
                   >
                     €
-                    133
+                    274
                   </b>
                   <span
                     className="place-card__price-text"
@@ -258,7 +206,7 @@ exports[`<Main /> sould be render 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button place-card__bookmark-button--active button"
                   onClick={[Function]}
                   type="button"
                 >
@@ -300,12 +248,11 @@ exports[`<Main /> sould be render 1`] = `
               </div>
               <h2
                 className="place-card__name"
-                onClick={[Function]}
               >
                 <a
                   href="#"
                 >
-                  Waterfront with extraordinary view
+                  The Joshua Tree House
                 </a>
               </h2>
               <p
@@ -316,16 +263,8 @@ exports[`<Main /> sould be render 1`] = `
             </div>
           </article>
         </div>
-      </section>
-      <div
-        className="cities__right-section"
-      >
-        <section
-          className="cities__map"
-          id="map"
-        />
-      </div>
-    </div>
-  </div>
-</main>
+      </li>
+    </ul>
+  </section>
+</div>
 `;
