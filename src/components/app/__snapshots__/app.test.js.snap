@@ -16,6 +16,8 @@ Array [
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -30,7 +32,7 @@ Array [
           className="header__nav"
         >
           <a
-            href=""
+            href="/login"
             onClick={[Function]}
           >
             Sign in
@@ -197,7 +199,8 @@ Array [
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button place-card__bookmark-button--active button"
+                    className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -295,7 +298,8 @@ Array [
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button place-card__bookmark-button--active button"
+                    className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg

@@ -2,6 +2,7 @@ import {ActionCreator as ActionLoadOffer} from "../data/data.js";
 import {ActionCreator as ActionChangeCity} from "../city/city.js";
 import {ActionCreator, AuthorizationStatus} from "../user/user.js";
 import {ActionCreator as ActionLoadOfferInfo} from "../offer/offer.js";
+import {ActionCreator as ActionLoadFavorites} from "../favorite/favorite.js";
 
 const changeNameKeys = (offer) => {
   const newObj = Object.assign({}, offer, {
@@ -98,9 +99,49 @@ const OperationComment = {
       .then((res) => {
         dispatch(ActionLoadOfferInfo.loadOfferComments(res.data));
         dispatch(ActionLoadOfferInfo.sendCommentOffer(true));
-      }).catch(()=> {
+      })
+      .catch(() => {
         dispatch(ActionLoadOfferInfo.sendCommentOffer(true));
       });
+  }
+};
+
+const OperationFavorites = {
+  loadFavorites: () => (dispatch, getState, api) => {
+    return api
+      .get(`/favorite`)
+      .then((res) => {
+        const myOffers = changeStructureLoadData(res.data);
+        dispatch(ActionLoadFavorites.loadFavorites(myOffers));
+      })
+      .catch(() => {
+        dispatch(ActionLoadFavorites.loadFavorites({}));
+      });
+  },
+
+  changeStatusFavorite: (id, status) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/${+status}`).then(() => {
+      return api.get(`/hotels`).then((response) => {
+        const myOffers = changeStructureLoadData(response.data);
+        dispatch(ActionLoadOffer.loadOffers(myOffers));
+      });
+    });
+  },
+  changeStatusAndUpdateFavorite: (id, status) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/${+status}`).then(() => {
+      return api
+        .get(`/hotels`)
+        .then((response) => {
+          const myOffers = changeStructureLoadData(response.data);
+          dispatch(ActionLoadOffer.loadOffers(myOffers));
+        })
+        .then(() => {
+          return api.get(`/favorite`).then((res) => {
+            const myOffers = changeStructureLoadData(res.data);
+            dispatch(ActionLoadFavorites.loadFavorites(myOffers));
+          });
+        });
+    });
   }
 };
 
@@ -109,5 +150,6 @@ export {
   OperationAuth,
   OperationOffer,
   OperationComment,
+  OperationFavorites,
   changeStructureLoadData
 };

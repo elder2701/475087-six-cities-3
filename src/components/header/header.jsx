@@ -3,13 +3,19 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getAuthStatus, getUserInfo} from "../../reducer/user/selector.js";
+import {OperationFavorites} from "../../reducer/operation/operation.js";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../const.js";
 
-const Header = ({authorizationStatus, userInfo}) => (
+const Header = ({authorizationStatus, userInfo, loadFavorites}) => (
   <header className="header">
     <div className="container">
       <div className="header__wrapper">
         <div className="header__left">
-          <a className="header__logo-link header__logo-link--active">
+          <Link
+            className="header__logo-link header__logo-link--active"
+            to={AppRoute.ROOT}
+          >
             <img
               className="header__logo"
               src="img/logo.svg"
@@ -17,33 +23,28 @@ const Header = ({authorizationStatus, userInfo}) => (
               width="81"
               height="41"
             />
-          </a>
+          </Link>
         </div>
         <nav className="header__nav">
           {authorizationStatus === AuthorizationStatus.AUTH ? (
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a
+                <Link
                   className="header__nav-link header__nav-link--profile"
-                  href="#"
+                  to={AppRoute.MYLIST}
+                  onClick={() => {
+                    loadFavorites();
+                  }}
                 >
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
+                  <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                   <span className="header__user-name user__name">
                     {userInfo.email}
                   </span>
-                </a>
+                </Link>
               </li>
             </ul>
           ) : (
-            <a
-              href=""
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-            >
-              Sign in
-            </a>
+            <Link to={AppRoute.LOGIN}>Sign in</Link>
           )}
         </nav>
       </div>
@@ -56,9 +57,18 @@ const mapStateToProps = (state) => ({
   userInfo: getUserInfo(state)
 });
 
-export default connect(mapStateToProps)(memo(Header));
+const mapDispatchToProps = (dispatch) => ({
+  loadFavorites() {
+    dispatch(OperationFavorites.loadFavorites());
+  }
+});
+
+export {Header};
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Header));
 
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  userInfo: PropTypes.object.isRequired
+  userInfo: PropTypes.object.isRequired,
+  loadFavorites: PropTypes.func.isRequired
 };

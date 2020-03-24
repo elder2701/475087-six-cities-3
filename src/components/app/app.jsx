@@ -3,13 +3,16 @@ import Main from "../main/main.jsx";
 import Header from "../header/header.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
 import {getCityOffers} from "../../reducer/data/selectors.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import {OperationAuth} from "../../reducer/operation/operation.js";
+import history from "../../history";
+import {AppRoute} from "../../const.js";
+import FavoritesList from "../favorites-list/favorites-list.jsx";
 import {getSelectedOffer} from "../../reducer/offer/selectors.js";
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
@@ -27,10 +30,10 @@ const App = ({
     offer = cityOffers.offers.find((item) => item.id === selectedOffer);
   }
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Header authorizationStatus={authorizationStatus} userInfo={userInfo} />
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.ROOT}>
           {cityOffers ? (
             <React.Fragment>
               {offer ? (
@@ -45,11 +48,14 @@ const App = ({
             <div>Loading...</div>
           )}
         </Route>
-        <Route exact path="/dev-auth">
+        <Route exact path={AppRoute.LOGIN}>
           <SignIn onSubmit={login}></SignIn>
         </Route>
+        <Route exact path={AppRoute.MYLIST}>
+          <FavoritesList />
+        </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

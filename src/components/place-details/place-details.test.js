@@ -5,8 +5,12 @@ import createMapBlock from "../map/create-map-block.js";
 import cofigureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import thunk from "redux-thunk";
+import {createAPI} from "../../api.js";
 
-const mockStore = cofigureStore([]);
+const api = createAPI(()=>{});
+
+const mockStore = cofigureStore([thunk.withExtraArgument(api)]);
 
 const offer = {
   id: 1,
@@ -140,7 +144,7 @@ it(`<PlaceDetails /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <PlaceDetails {...offer} />
+          <PlaceDetails {...offer} updateStatus={()=>{}}/>
         </Provider>
     )
     .toJSON();
