@@ -84,7 +84,8 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer, handleChangeFavorit
 Offer.propTypes = {
   offer: PropTypes.object.isRequired,
   onHoverActiveCard: PropTypes.func,
-  handleSelectOffer: PropTypes.func
+  handleSelectOffer: PropTypes.func,
+  handleChangeFavorite: PropTypes.func
 };
 
 const mapStateToProps = () => ({});

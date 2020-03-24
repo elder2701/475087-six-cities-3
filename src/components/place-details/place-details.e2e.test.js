@@ -74,7 +74,7 @@ describe(`Mouse events`, () => {
       <PlaceDetails
         {...offer}
         updateStatus={handleChangeFavorite}
-        cityInfo={{location: 0.0}}
+        cityInfo={{location: {longitude: 1, latitude: 1, zoom: 1}}}
         nearPlaces={[]}
       />
   );
