@@ -158,7 +158,7 @@ class PlaceDetails extends Component {
                   <p className="property__text">{description}</p>
                 </div>
               </div>
-              <PlaceReviews comments={comments} />
+              <PlaceReviews comments={comments} selectedOffer={id}/>
             </div>
           </div>
           {offersCoords ? (

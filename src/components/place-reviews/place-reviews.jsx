@@ -9,14 +9,17 @@ import {connect} from "react-redux";
 
 const CommentFormWrapper = withChange(CommentForm);
 
-const PlaceReviews = ({comments, authStatus}) => (
+const PlaceReviews = ({comments, authStatus, selectedOffer}) => (
   <section className="property__reviews reviews">
+    {console.log(selectedOffer)}
     <h2 className="reviews__title">
       Reviews &middot;
       <span className="reviews__amount">{comments.length}</span>
     </h2>
     <CommentList comments={comments} />
-    {authStatus === AuthorizationStatus.AUTH ? <CommentFormWrapper /> : null}
+    {authStatus === AuthorizationStatus.AUTH ? (
+      <CommentFormWrapper selectedOffer={selectedOffer} />
+    ) : null}
   </section>
 );
 
@@ -28,5 +31,6 @@ export default connect(mapStateToProps)(memo(PlaceReviews));
 
 PlaceReviews.propTypes = {
   comments: PropTypes.array.isRequired,
-  authStatus: PropTypes.string.isRequired
+  authStatus: PropTypes.string.isRequired,
+  selectedOffer: PropTypes.number.isRequired
 };
