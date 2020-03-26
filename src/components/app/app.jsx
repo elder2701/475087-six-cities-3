@@ -3,7 +3,7 @@ import Main from "../main/main.jsx";
 import Header from "../header/header.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Router, Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
