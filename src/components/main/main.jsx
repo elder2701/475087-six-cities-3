@@ -24,7 +24,6 @@ const Main = ({
   const offersCoords = Array.from(cityOffers, (item) => {
     return [item.id, item.location];
   });
-
   const cityPlaceContainerType = placesCount
     ? ``
     : `cities__places-container--empty`;

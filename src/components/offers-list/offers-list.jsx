@@ -1,25 +1,45 @@
 import React, {memo} from "react";
 import PropTypes from "prop-types";
 import Offer from "../offer/offer.jsx";
+import {connect} from "react-redux";
+import {OperationFavorites} from "../../reducer/operation/operation.js";
 
-const OffersList = ({onHoverActiveCard, cityOffers, handleSelectOffer, type}) => (
+const OffersList = ({onHoverActiveCard, cityOffers, type, updateStatus}) => (
   <div className={`${type} places__list`}>
     {cityOffers.map((offer) => (
-      <Offer
-        offer={offer}
+      <article
+        className="cities__place-card place-card"
         key={offer.id}
-        onHoverActiveCard={onHoverActiveCard}
-        handleSelectOffer={handleSelectOffer}
-      />
+        onMouseOver={(evt) => {
+          evt.preventDefault();
+          onHoverActiveCard(offer.id);
+        }}
+        onMouseOut={(evt) => {
+          evt.preventDefault();
+          onHoverActiveCard(null);
+        }}
+      >
+        <Offer offer={offer} typeCard={`cities`} updateStatus={updateStatus} />
+      </article>
     ))}
   </div>
 );
 
 OffersList.propTypes = {
-  onHoverActiveCard: PropTypes.func,
+  onHoverActiveCard: PropTypes.func.isRequired,
   cityOffers: PropTypes.array.isRequired,
-  handleSelectOffer: PropTypes.func,
-  type: PropTypes.string
+  type: PropTypes.string.isRequired,
+  updateStatus: PropTypes.func.isRequired
 };
 
-export default memo(OffersList);
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  updateStatus(id, status) {
+    dispatch(OperationFavorites.changeStatusFavorite(id, !status));
+  }
+});
+
+export {OffersList};
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(OffersList));

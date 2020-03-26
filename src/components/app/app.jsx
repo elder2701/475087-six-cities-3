@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Main from "../main/main.jsx";
 import Header from "../header/header.jsx";
 import PropTypes from "prop-types";
@@ -10,7 +10,6 @@ import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer
 import {getCityOffers} from "../../reducer/data/selectors.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import {OperationAuth} from "../../reducer/operation/operation.js";
-import history from "../../history";
 import {AppRoute} from "../../const.js";
 import FavoritesList from "../favorites-list/favorites-list.jsx";
 import {getSelectedOffer} from "../../reducer/offer/selectors.js";
@@ -20,34 +19,22 @@ const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
 const App = ({
   cityOffers,
-  selectedOffer,
   login,
   authorizationStatus,
   userInfo
 }) => {
-  let offer = null;
-  if (cityOffers) {
-    offer = cityOffers.offers.find((item) => item.id === selectedOffer);
-  }
   return (
-    <Router history={history}>
+    <Fragment>
       <Header authorizationStatus={authorizationStatus} userInfo={userInfo} />
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          {cityOffers ? (
-            <React.Fragment>
-              {offer ? (
-                <PlaceDetailsWrapper
-                  {...offer}
-                />
-              ) : (
-                <MainWrapper />
-              )}
-            </React.Fragment>
-          ) : (
-            <div>Loading...</div>
-          )}
+          {cityOffers ? <MainWrapper /> : <div>Loading...</div>}
         </Route>
+        {cityOffers ? cityOffers.offers.map((item) => (
+          <Route key={item.id} exact path={`/offer/${item.id}`}>
+            <PlaceDetailsWrapper {...item} />
+          </Route>
+        )) : <div>...Loading</div>}
         <Route exact path={AppRoute.LOGIN}>
           <SignIn onSubmit={login}></SignIn>
         </Route>
@@ -55,7 +42,7 @@ const App = ({
           <FavoritesList />
         </Route>
       </Switch>
-    </Router>
+    </Fragment>
   );
 };
 

@@ -3,15 +3,21 @@ import {ActionCreator} from "../../reducer/city/city.js";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {getCities} from "../../reducer/data/selectors.js";
+import {getCity} from "../../reducer/city/selectors.js";
 
-const NavCities = ({onChangeCity, cities}) => (
+const classLink = (city, activeCity) =>
+  city === activeCity
+    ? `locations__item-link tabs__item tabs__item--active`
+    : `locations__item-link tabs__item`;
+
+const NavCities = ({onChangeCity, cities, activeCity}) => (
   <div className="tabs">
     <section className="locations container">
       <ul className="locations__list tabs__list">
         {cities.map((city) => (
           <li className="locations__item" key={city}>
             <a
-              className="locations__item-link tabs__item"
+              className={classLink(city, activeCity)}
               href="#"
               onClick={() => {
                 onChangeCity(city);
@@ -27,7 +33,8 @@ const NavCities = ({onChangeCity, cities}) => (
 );
 
 const mapStateToProps = (state) => ({
-  cities: getCities(state)
+  cities: getCities(state),
+  activeCity: getCity(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -38,7 +45,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 NavCities.propTypes = {
   onChangeCity: PropTypes.func.isRequired,
-  cities: PropTypes.array.isRequired
+  cities: PropTypes.array.isRequired,
+  activeCity: PropTypes.string.isRequired
 };
 
 export {NavCities};

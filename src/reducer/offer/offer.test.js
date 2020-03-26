@@ -1,13 +1,5 @@
 import {reducer, ActionCreator, ActionType} from "./offer.js";
 
-it(`Reducer should get correct offer`, () => {
-  const state = reducer(
-      {offer: -1},
-      {type: ActionType.SET_SELECTED_OFFER, payload: 2}
-  );
-  expect(state.offer).toBe(2);
-});
-
 it(`Reducer should get correct offer around structure`, () => {
   const state = reducer(
       {offerAround: []},
@@ -32,11 +24,6 @@ it(`Reducer should change send status`, () => {
   expect(state.isSendComment).toBeFalsy();
 });
 
-it(`Action creator for changing offer`, () => {
-  const actCreatorResult = ActionCreator.setSelectedOffer(2);
-  expect(actCreatorResult.type).toEqual(ActionType.SET_SELECTED_OFFER);
-  expect(actCreatorResult.payload).toBe(2);
-});
 
 it(`Action creator for changing comments`, () => {
   const actCreatorResult = ActionCreator.loadOfferComments([1, 2]);
