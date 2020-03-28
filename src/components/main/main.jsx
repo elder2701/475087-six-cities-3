@@ -11,7 +11,7 @@ import {getSortedOffers, getCityInfo} from "../../reducer/data/selectors.js";
 const SortingOptionsWrapper = withOpen(SortingOptions);
 
 const Main = ({
-  onSelectOffer,
+  selectOffer,
   selectedOffer,
   cityInfo,
   cityOffers,
@@ -42,12 +42,12 @@ const Main = ({
                 {placesCount} places to stay in {city}
               </b>
               <SortingOptionsWrapper
-                onSelectOption={changeOptionSorting}
+                selectOption={changeOptionSorting}
                 optionSorting={optionSorting}
               />
               <OffersList
                 cityOffers={cityOffers}
-                onHoverActiveCard={onSelectOffer}
+                hoverActiveCard={selectOffer}
                 type={`cities__places-list tabs__content`}
               />
             </section>
@@ -92,7 +92,7 @@ Main.propTypes = {
   selectedOffer: PropTypes.number,
   handleSelectOffer: PropTypes.func,
   type: PropTypes.string,
-  onSelectOffer: PropTypes.func,
+  selectOffer: PropTypes.func,
   cityInfo: PropTypes.object.isRequired,
   cityOffers: PropTypes.array.isRequired
 };

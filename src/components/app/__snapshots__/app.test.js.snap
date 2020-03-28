@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> sould be render 1`] = `
-Array [
+<div
+  className="page page--gray page--main"
+>
   <header
     className="header"
   >
@@ -23,7 +25,7 @@ Array [
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -40,7 +42,7 @@ Array [
         </nav>
       </div>
     </div>
-  </header>,
+  </header>
   <main
     className="page__main page__main--index"
   >
@@ -62,7 +64,7 @@ Array [
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className="locations__item-link tabs__item tabs__item--active"
               href="#"
               onClick={[Function]}
             >
@@ -178,7 +180,7 @@ Array [
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className="cities__card-info place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -241,10 +243,10 @@ Array [
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
+                    onClick={[Function]}
                   >
                     Amazing and Extremely Central Flat
                   </a>
@@ -277,7 +279,7 @@ Array [
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className="cities__card-info place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -340,10 +342,10 @@ Array [
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/2"
+                    onClick={[Function]}
                   >
                     Waterfront with extraordinary view
                   </a>
@@ -361,12 +363,12 @@ Array [
           className="cities__right-section"
         >
           <section
-            className="cities__map"
+            className="cities__map map"
             id="map"
           />
         </div>
       </div>
     </div>
-  </main>,
-]
+  </main>
+</div>
 `;

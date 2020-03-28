@@ -55,11 +55,12 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             Beautiful & luxurious apartment at great location
           </h1>
           <button
-            className="property__bookmark-button button"
+            className="property__bookmark-button property__bookmark-button--active button"
+            onClick={[Function]}
             type="button"
           >
             <svg
-              className="property__bookmark-icon"
+              className="property__bookmark-icon place-card__bookmark-icon"
               height="33"
               width="31"
             >
@@ -227,7 +228,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
                 alt="Host avatar"
                 className="property__avatar user__avatar"
                 height="74"
-                src=""
+                src="/"
                 width="74"
               />
             </div>
@@ -446,7 +447,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
       </div>
     </div>
     <section
-      className="property__map"
+      className="property__map map"
       id="map"
     />
   </section>

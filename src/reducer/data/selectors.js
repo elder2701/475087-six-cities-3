@@ -11,11 +11,11 @@ const getFirstCity = createSelector(
     (cities) => cities[0]
 );
 
-const citySelector = (state) => state[NameSpace.CITY].city;
+const getCityFromState = (state) => state[NameSpace.CITY].city;
 const cityOffersSelector = (state) => state[NameSpace.DATA].offers;
-const optionSelector = (state, props) => props.optionSorting;
+const getoptionSelector = (state, props) => props.optionSorting;
 const getSortedOffers = createSelector(
-    [cityOffersSelector, citySelector, optionSelector],
+    [cityOffersSelector, getCityFromState, getoptionSelector],
     (offers, city, option) => {
       switch (option) {
         case `Price: low to high`:

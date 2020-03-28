@@ -91,7 +91,10 @@ it(`<FavoritesList /> sould be render`, () => {
         <Router history={history}>
           <FavoritesList
             favorites={favorites}
-            updateFavoritesWithStaus={() => {}}
+            updateStatus={() => {}}
+            selectCity={()=>{}}
+            loadFavorites={()=>{}}
+            resetFavorites={()=>{}}
           />
         </Router>
     )

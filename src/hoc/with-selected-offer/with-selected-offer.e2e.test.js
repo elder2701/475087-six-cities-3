@@ -15,6 +15,6 @@ const MockComponentWrapper = withSelectedOffer(MockComponent);
 
 it(`MockComponent should select offer`, ()=>{
   const renderComponent = shallow(<MockComponentWrapper/>);
-  renderComponent.instance().onSelectOffer(`test`);
+  renderComponent.instance().selectOffer(`test`);
   expect(renderComponent.state().selectedOffer).toBe(`test`);
 });

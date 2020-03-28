@@ -6,7 +6,7 @@ it(`<SortingOptions /> sould be render`, () => {
   const tree = renderer
     .create(
         <SortingOptions
-          onSelectOption={() => {}}
+          selectOption={() => {}}
           optionSorting={`Popular`}
           open={false}
           handleClose={() => {}}

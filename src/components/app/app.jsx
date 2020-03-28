@@ -1,6 +1,5 @@
 import React, {Fragment} from "react";
 import Main from "../main/main.jsx";
-import Header from "../header/header.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Route, Switch} from "react-router-dom";
@@ -10,50 +9,60 @@ import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer
 import {getCityOffers} from "../../reducer/data/selectors.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import {OperationAuth} from "../../reducer/operation/operation.js";
-import {AppRoute} from "../../const.js";
+import {AppRoute, ClassPage} from "../../const.js";
 import FavoritesList from "../favorites-list/favorites-list.jsx";
 import {getSelectedOffer} from "../../reducer/offer/selectors.js";
+import PrivateRoute from "../private-route/private-route.jsx";
+import Common from "../common/common.jsx";
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
-const App = ({
-  cityOffers,
-  login,
-  authorizationStatus,
-  userInfo
-}) => {
+const App = ({cityOffers, login}) => {
   return (
     <Fragment>
-      <Header authorizationStatus={authorizationStatus} userInfo={userInfo} />
-      <Switch>
-        <Route exact path={AppRoute.ROOT}>
-          {cityOffers ? <MainWrapper /> : <div>Loading...</div>}
-        </Route>
-        {cityOffers ? cityOffers.offers.map((item) => (
-          <Route key={item.id} exact path={`/offer/${item.id}`}>
-            <PlaceDetailsWrapper {...item} />
+      {cityOffers ? (
+        <Switch>
+          <Route exact path={AppRoute.ROOT}>
+            <Common classPage={ClassPage.ROOT}>
+              <MainWrapper />
+            </Common>
           </Route>
-        )) : <div>...Loading</div>}
-        <Route exact path={AppRoute.LOGIN}>
-          <SignIn onSubmit={login}></SignIn>
-        </Route>
-        <Route exact path={AppRoute.MYLIST}>
-          <FavoritesList />
-        </Route>
-      </Switch>
+          {cityOffers.offers.map((item) => (
+            <Route key={item.id} path={`/offer/${item.id}`}>
+              <Common classPage={ClassPage.OFFER}>
+                <PlaceDetailsWrapper {...item} />
+              </Common>
+            </Route>
+          ))}
+          <Route exact path={AppRoute.LOGIN}>
+            <Common classPage={ClassPage.LOGIN}>
+              <SignIn submit={login}></SignIn>
+            </Common>
+          </Route>
+          <PrivateRoute
+            exact
+            path={AppRoute.MYLIST}
+            render={() => {
+              return (
+                <Common classPage={ClassPage.MYLIST}>
+                  <FavoritesList />
+                </Common>
+              );
+            }}
+          />
+        </Switch>
+      ) : (
+        <div>Loadign...</div>
+      )}
     </Fragment>
   );
 };
 
 App.propTypes = {
-  selectedOffer: PropTypes.number,
-  onSelectOffer: PropTypes.func,
   cityOffers: PropTypes.object,
   city: PropTypes.string,
-  login: PropTypes.func.isRequired,
-  userInfo: PropTypes.object,
-  authorizationStatus: PropTypes.string
+  login: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

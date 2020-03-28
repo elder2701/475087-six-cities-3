@@ -2,7 +2,7 @@
 
 exports[`<OffersList /> sould be render 1`] = `
 <div
-  className="undefined places__list"
+  className=" places__list"
 >
   <article
     className="cities__place-card place-card"
@@ -24,7 +24,7 @@ exports[`<OffersList /> sould be render 1`] = `
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="cities__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -87,10 +87,10 @@ exports[`<OffersList /> sould be render 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/2"
+          onClick={[Function]}
         />
       </h2>
       <p
@@ -120,7 +120,7 @@ exports[`<OffersList /> sould be render 1`] = `
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="cities__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -183,10 +183,10 @@ exports[`<OffersList /> sould be render 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/10"
+          onClick={[Function]}
         />
       </h2>
       <p
@@ -216,7 +216,7 @@ exports[`<OffersList /> sould be render 1`] = `
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="cities__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -279,10 +279,10 @@ exports[`<OffersList /> sould be render 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/3"
+          onClick={[Function]}
         />
       </h2>
       <p
@@ -312,7 +312,7 @@ exports[`<OffersList /> sould be render 1`] = `
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="cities__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -375,10 +375,10 @@ exports[`<OffersList /> sould be render 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/4"
+          onClick={[Function]}
         />
       </h2>
       <p

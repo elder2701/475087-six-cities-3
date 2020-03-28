@@ -15,6 +15,7 @@ const mockStore = cofigureStore([thunk.withExtraArgument(api)]);
 const offer = {
   id: 1,
   isPremium: true,
+  isFavorite: true,
   price: 822,
   rating: 4,
   title: `Beautiful & luxurious apartment at great location`,
@@ -144,7 +145,7 @@ it(`<PlaceDetails /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <PlaceDetails {...offer} updateStatus={()=>{}}/>
+          <PlaceDetails {...offer} updateStatus={()=>{}} selectOffer={()=>{}}/>
         </Provider>
     )
     .toJSON();

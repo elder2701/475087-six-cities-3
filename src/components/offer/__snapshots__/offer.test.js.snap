@@ -1,13 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Offer /> sould be render 1`] = `
-<article
-  className="cities__place-card place-card"
-  onMouseOut={[Function]}
-  onMouseOver={[Function]}
->
+Array [
   <div
-    className="cities__image-wrapper place-card__image-wrapper"
+    className="__image-wrapper place-card__image-wrapper"
   >
     <a
       href="#"
@@ -19,9 +15,9 @@ exports[`<Offer /> sould be render 1`] = `
         width="260"
       />
     </a>
-  </div>
+  </div>,
   <div
-    className="place-card__info"
+    className="__card-info place-card__info"
   >
     <div
       className="place-card__price-wrapper"
@@ -84,10 +80,10 @@ exports[`<Offer /> sould be render 1`] = `
     </div>
     <h2
       className="place-card__name"
-      onClick={[Function]}
     >
       <a
-        href="#"
+        href="/offer/4"
+        onClick={[Function]}
       />
     </h2>
     <p
@@ -95,6 +91,6 @@ exports[`<Offer /> sould be render 1`] = `
     >
       Apartment
     </p>
-  </div>
-</article>
+  </div>,
+]
 `;

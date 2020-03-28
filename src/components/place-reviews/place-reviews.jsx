@@ -11,7 +11,6 @@ const CommentFormWrapper = withChange(CommentForm);
 
 const PlaceReviews = ({comments, authStatus, selectedOffer}) => (
   <section className="property__reviews reviews">
-    {console.log(selectedOffer)}
     <h2 className="reviews__title">
       Reviews &middot;
       <span className="reviews__amount">{comments.length}</span>

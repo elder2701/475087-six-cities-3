@@ -35,7 +35,7 @@ class PlaceDetails extends Component {
     const {
       id,
       selectedOffer,
-      onSelectOffer,
+      selectOffer,
       isFavorite,
       isPremium,
       price,
@@ -93,7 +93,7 @@ class PlaceDetails extends Component {
                   }}
                 >
                   <svg
-                    className="property__bookmark-icon"
+                    className="property__bookmark-icon place-card__bookmark-icon"
                     width="31"
                     height="33"
                   >
@@ -179,7 +179,7 @@ class PlaceDetails extends Component {
             </h2>
             <OffersList
               cityOffers={nearPlaces}
-              onHoverActiveCard={onSelectOffer}
+              hoverActiveCard={selectOffer}
               type={`near-places__list`}
             />
           </section>
@@ -214,27 +214,27 @@ export {PlaceDetails};
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);
 
 PlaceDetails.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.number.isRequired,
   selectedOffer: PropTypes.number,
-  handleSelectOffer: PropTypes.func,
-  onSelectOffer: PropTypes.func,
-  price: PropTypes.number,
-  rating: PropTypes.number,
-  hostName: PropTypes.string,
-  description: PropTypes.string,
-  hostAvatarUrl: PropTypes.string,
-  comments: PropTypes.array,
-  nearPlaces: PropTypes.array,
-  isPremium: PropTypes.bool,
-  hostIsPro: PropTypes.bool,
-  goods: PropTypes.array,
-  images: PropTypes.array,
-  title: PropTypes.string,
-  type: PropTypes.string,
-  maxAdults: PropTypes.number,
-  bedrooms: PropTypes.number,
-  cityInfo: PropTypes.object,
-  isFavorite: PropTypes.bool,
-  updateStatus: PropTypes.func,
-  resetOfferCommentAndNearPlaces: PropTypes.func
+  handleSelectOffer: PropTypes.func.isRequired,
+  selectOffer: PropTypes.func.isRequired,
+  price: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  hostName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  hostAvatarUrl: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
+  nearPlaces: PropTypes.array.isRequired,
+  isPremium: PropTypes.bool.isRequired,
+  hostIsPro: PropTypes.bool.isRequired,
+  goods: PropTypes.array.isRequired,
+  images: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  maxAdults: PropTypes.number.isRequired,
+  bedrooms: PropTypes.number.isRequired,
+  cityInfo: PropTypes.object.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  updateStatus: PropTypes.func.isRequired,
+  resetOfferCommentAndNearPlaces: PropTypes.func.isRequired
 };

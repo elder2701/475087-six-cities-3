@@ -1,16 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import SignIn from "./sign-in.jsx";
-import configureStore from "redux-mock-store";
+import Common from "./common.jsx";
 import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Router} from "react-router-dom";
-import NameSpace from "../../reducer/name-space.js";
-import history from "../../history";
+import history from "../../history.js";
 
 const mockStore = configureStore([]);
 
-it(`<SignIn /> sould be render`, () => {
+it(`<Common /> sould be render`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
       offers: {
@@ -88,13 +88,18 @@ it(`<SignIn /> sould be render`, () => {
       }
     },
     [NameSpace.CITY]: {city: `Amsterdam`},
-    [NameSpace.USER]: {authorizationStatus: AuthorizationStatus.AUTH}
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      userInfo: {id: 1, email: ``}
+    }
   });
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router history={history}>
-            <SignIn submit={()=>{}} />
+            <Common classPage="">
+              <div></div>
+            </Common>
           </Router>
         </Provider>
     )

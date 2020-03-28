@@ -4,7 +4,7 @@ import Offer from "../offer/offer.jsx";
 import {connect} from "react-redux";
 import {OperationFavorites} from "../../reducer/operation/operation.js";
 
-const OffersList = ({onHoverActiveCard, cityOffers, type, updateStatus}) => (
+const OffersList = ({hoverActiveCard, cityOffers, type, updateStatus}) => (
   <div className={`${type} places__list`}>
     {cityOffers.map((offer) => (
       <article
@@ -12,11 +12,11 @@ const OffersList = ({onHoverActiveCard, cityOffers, type, updateStatus}) => (
         key={offer.id}
         onMouseOver={(evt) => {
           evt.preventDefault();
-          onHoverActiveCard(offer.id);
+          hoverActiveCard(offer.id);
         }}
         onMouseOut={(evt) => {
           evt.preventDefault();
-          onHoverActiveCard(null);
+          hoverActiveCard(null);
         }}
       >
         <Offer offer={offer} typeCard={`cities`} updateStatus={updateStatus} />
@@ -26,7 +26,7 @@ const OffersList = ({onHoverActiveCard, cityOffers, type, updateStatus}) => (
 );
 
 OffersList.propTypes = {
-  onHoverActiveCard: PropTypes.func.isRequired,
+  hoverActiveCard: PropTypes.func.isRequired,
   cityOffers: PropTypes.array.isRequired,
   type: PropTypes.string.isRequired,
   updateStatus: PropTypes.func.isRequired

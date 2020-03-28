@@ -5,8 +5,11 @@ import {getFavorites} from "../../reducer/favorite/selector.js";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const.js";
-import {ActionCreator} from "../../reducer/favorite/favorite.js";
+import {ActionCreator as FavoriteActionCreator} from "../../reducer/favorite/favorite.js";
 import Offer from "../offer/offer.jsx";
+import EmptyFavorite from "../empty-favorite/empty-favorite.jsx";
+import {ActionCreator as CityActionCreator} from "../../reducer/city/city.js";
+
 
 class FavoritesList extends Component {
   componentDidMount() {
@@ -19,46 +22,54 @@ class FavoritesList extends Component {
     resetFavorites();
   }
   render() {
-    const {favorites, updateStatus} = this.props;
+    const {favorites, updateStatus, selectCity} = this.props;
+    const empty = Object.keys(favorites).length;
     return (
       <Fragment>
-        <main className="page__main page__main--favorites">
-          <div className="page__favorites-container container">
-            <section className="favorites">
-              <h1 className="favorites__title">Saved listing</h1>
-              <ul className="favorites__list">
-                {Object.keys(favorites).map((city) => (
-                  <li key={city} className="favorites__locations-items">
-                    <div className="favorites__locations locations locations--current">
-                      <div className="locations__item">
-                        <Link
-                          className="locations__item-link"
-                          to={AppRoute.ROOT}
-                        >
-                          <span>{city}</span>
-                        </Link>
+        {empty ? (
+          <main className="page__main page__main--favorites">
+            <div className="page__favorites-container container">
+              <section className="favorites">
+                <h1 className="favorites__title">Saved listing</h1>
+                <ul className="favorites__list">
+                  {Object.keys(favorites).map((city) => (
+                    <li key={city} className="favorites__locations-items">
+                      <div className="favorites__locations locations locations--current">
+                        <div className="locations__item">
+                          <Link
+                            className="locations__item-link"
+                            to={AppRoute.ROOT}
+                            onClick={()=>{
+                              selectCity(city);
+                            }}
+                          >
+                            <span>{city}</span>
+                          </Link>
+                        </div>
                       </div>
-                    </div>
-                    <div className="favorites__places">
-                      {favorites[city].offers.map((offer) => (
-                        <article
-                          className="favorites__card place-card"
-                          key={offer.id}
-                        >
-                          <Offer
-                            offer={offer}
-                            typeCard={`favorites`}
-                            updateStatus={updateStatus}
-                          />
-                        </article>
-                      ))}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </div>
-        </main>
+                      <div className="favorites__places">
+                        {favorites[city].offers.map((offer) => (
+                          <article
+                            className="favorites__card place-card"
+                            key={offer.id}
+                          >
+                            <Offer
+                              offer={offer}
+                              typeCard={`favorites`}
+                              updateStatus={updateStatus}
+                            />
+                          </article>
+                        ))}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+          </main>
+        ) : (
+          <EmptyFavorite />
+        )}
         <footer className="footer container">
           <Link className="footer__logo-link" to={AppRoute.ROOT}>
             <img
@@ -84,10 +95,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(OperationFavorites.loadFavorites());
   },
   resetFavorites() {
-    dispatch(ActionCreator.loadFavorites([]));
+    dispatch(FavoriteActionCreator.loadFavorites({}));
   },
   updateStatus(id, status) {
     dispatch(OperationFavorites.changeStatusAndUpdateFavorite(id, !status));
+  },
+  selectCity(city) {
+    dispatch(CityActionCreator.changeCity(city));
   }
 });
 
@@ -99,5 +113,6 @@ FavoritesList.propTypes = {
   favorites: PropTypes.object.isRequired,
   loadFavorites: PropTypes.func.isRequired,
   resetFavorites: PropTypes.func.isRequired,
-  updateStatus: PropTypes.func
+  updateStatus: PropTypes.func,
+  selectCity: PropTypes.func.isRequired
 };

@@ -5,6 +5,8 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import createMapBlock from "../map/create-map-block.js";
 import NameSpace from "../../reducer/name-space.js";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const places = [
   `Beautiful & luxurious apartment at great location`,
@@ -98,7 +100,15 @@ it(`<Main /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main city={city} places={places} optionSorting="" />
+          <Router history={history}>
+            <Main
+              city={city}
+              places={places}
+              optionSorting=""
+              selectOffer={() => {}}
+              changeOptionSorting={() => {}}
+            />
+          </Router>
         </Provider>
     )
     .toJSON();

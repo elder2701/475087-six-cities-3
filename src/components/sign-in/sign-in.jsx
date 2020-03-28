@@ -17,9 +17,9 @@ class SignIn extends PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
+    const {submit} = this.props;
     evt.preventDefault();
-    onSubmit({
+    submit({
       login: this.loginRef.current.value,
       password: this.passRef.current.value
     });
@@ -91,7 +91,7 @@ const mapStateToProps = (state) => ({
 });
 
 SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired,
   firstCity: PropTypes.string.isRequired,
   authStatus: PropTypes.string.isRequired
 };

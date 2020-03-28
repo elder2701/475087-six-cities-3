@@ -5,6 +5,7 @@ import {PlaceDetails} from "./place-details.jsx";
 
 const offer = {
   id: 1,
+  isFavorite: true,
   isPremium: true,
   price: 822,
   rating: 4,
@@ -76,6 +77,9 @@ describe(`Mouse events`, () => {
         updateStatus={handleChangeFavorite}
         cityInfo={{location: {longitude: 1, latitude: 1, zoom: 1}}}
         nearPlaces={[]}
+        handleSelectOffer={()=>{}}
+        selectOffer={()=>{}}
+        resetOfferCommentAndNearPlaces={()=>{}}
       />
   );
 

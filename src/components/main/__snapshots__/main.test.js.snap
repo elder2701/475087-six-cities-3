@@ -22,7 +22,7 @@ exports[`<Main /> sould be render 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item"
+            className="locations__item-link tabs__item tabs__item--active"
             href="#"
             onClick={[Function]}
           >
@@ -138,7 +138,7 @@ exports[`<Main /> sould be render 1`] = `
               </a>
             </div>
             <div
-              className="place-card__info"
+              className="cities__card-info place-card__info"
             >
               <div
                 className="place-card__price-wrapper"
@@ -201,10 +201,10 @@ exports[`<Main /> sould be render 1`] = `
               </div>
               <h2
                 className="place-card__name"
-                onClick={[Function]}
               >
                 <a
-                  href="#"
+                  href="/offer/1"
+                  onClick={[Function]}
                 >
                   Amazing and Extremely Central Flat
                 </a>
@@ -237,7 +237,7 @@ exports[`<Main /> sould be render 1`] = `
               </a>
             </div>
             <div
-              className="place-card__info"
+              className="cities__card-info place-card__info"
             >
               <div
                 className="place-card__price-wrapper"
@@ -300,10 +300,10 @@ exports[`<Main /> sould be render 1`] = `
               </div>
               <h2
                 className="place-card__name"
-                onClick={[Function]}
               >
                 <a
-                  href="#"
+                  href="/offer/2"
+                  onClick={[Function]}
                 >
                   Waterfront with extraordinary view
                 </a>
@@ -321,7 +321,7 @@ exports[`<Main /> sould be render 1`] = `
         className="cities__right-section"
       >
         <section
-          className="cities__map"
+          className="cities__map map"
           id="map"
         />
       </div>

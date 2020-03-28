@@ -32,7 +32,7 @@ it(`<PlaceReviews /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <PlaceReviews comments={comments} />
+          <PlaceReviews comments={comments} selectedOffer={1} />
         </Provider>
     )
     .toJSON();

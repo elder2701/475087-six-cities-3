@@ -1,7 +1,9 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {Offer} from "./offer.jsx";
+import Offer from "./offer.jsx";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -21,39 +23,16 @@ const mockEvent = {
   preventDefault() {}
 };
 
-describe(`Mouse events`, () => {
-  const onHoverActiveCard = jest.fn((...args) => [...args]);
-  const onSelectOffer = jest.fn();
-  const handleChangeFavorite = jest.fn();
+it(`Title onclick`, () => {
+  const updateStatus = jest.fn();
 
   const screen = mount(
-      <Offer
-        offer={offer}
-        onHoverActiveCard={onHoverActiveCard}
-        handleSelectOffer={onSelectOffer}
-        handleChangeFavorite = {handleChangeFavorite}
-      />
+      <Router history={history}>
+        <Offer offer={offer} updateStatus={updateStatus} typeCard={``} />
+      </Router>
   );
+  const title = screen.find(`button`);
 
-  it(`Title onclick`, () => {
-    const title = screen.find(`h2`);
-
-    title.simulate(`click`, mockEvent);
-    expect(onSelectOffer).toHaveBeenCalledTimes(1);
-  });
-
-  it(`Mouseover on place card should pass to the callback id of place card`, () => {
-    const card = screen.find(`article`);
-    const firstCard = card.at(0);
-
-    firstCard.simulate(`mouseover`, mockEvent);
-    expect(onHoverActiveCard).toHaveBeenCalledTimes(1);
-    expect(onHoverActiveCard.mock.calls[0][0]).toBe(offer.id);
-  });
-
-  it(`Button change favorite status click`, ()=>{
-    const button = screen.find(`button`);
-    button.simulate(`click`, mockEvent);
-    expect(handleChangeFavorite).toHaveBeenCalledTimes(1);
-  });
+  title.simulate(`click`, mockEvent);
+  expect(updateStatus).toHaveBeenCalledTimes(1);
 });
