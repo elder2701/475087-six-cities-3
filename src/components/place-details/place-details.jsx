@@ -4,7 +4,11 @@ import PlaceReviews from "../place-reviews/place-reviews.jsx";
 import Map from "../map/map.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getNearOffers, getComments} from "../../reducer/offer/selectors.js";
+import {
+  getNearOffers,
+  getComments,
+  getSelectedOffer
+} from "../../reducer/offer/selectors.js";
 import {getCityInfo} from "../../reducer/data/selectors.js";
 import {OperationFavorites} from "../../reducer/operation/operation.js";
 import {OperationOffer} from "../../reducer/operation/operation.js";
@@ -22,20 +26,28 @@ const bookMarkClasses = (isFavorite) =>
 
 class PlaceDetails extends Component {
   componentDidMount() {
-    const {id, handleSelectOffer} = this.props;
-    handleSelectOffer(id);
+    const {details, handleSelectOffer} = this.props;
+    handleSelectOffer(details.id);
   }
 
   componentWillUnmount() {
-    const {resetOfferCommentAndNearPlaces} = this.props;
+    const {resetOfferCommentAndNearPlaces, resetId} = this.props;
     resetOfferCommentAndNearPlaces();
+    resetId();
   }
 
   render() {
     const {
-      id,
       selectedOffer,
       selectOffer,
+      details,
+      nearPlaces,
+      comments,
+      cityInfo,
+      updateStatus
+    } = this.props;
+    const {
+      id,
       isFavorite,
       isPremium,
       price,
@@ -49,13 +61,8 @@ class PlaceDetails extends Component {
       bedrooms,
       images,
       goods,
-      description,
-      nearPlaces,
-      comments,
-      cityInfo,
-      updateStatus
-    } = this.props;
-
+      description
+    } = details;
     const {location} = cityInfo;
     const offersCoords = Array.from(nearPlaces, (item) => {
       return [item.id, item.location];
@@ -158,7 +165,7 @@ class PlaceDetails extends Component {
                   <p className="property__text">{description}</p>
                 </div>
               </div>
-              <PlaceReviews comments={comments} selectedId={id}/>
+              <PlaceReviews comments={comments} selectedId={id} />
             </div>
           </div>
           {offersCoords ? (
@@ -192,7 +199,8 @@ class PlaceDetails extends Component {
 const mapStateToProps = (state) => ({
   nearPlaces: getNearOffers(state),
   comments: getComments(state),
-  cityInfo: getCityInfo(state)
+  cityInfo: getCityInfo(state),
+  details: getSelectedOffer(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -207,6 +215,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.loadOfferComments([]));
     dispatch(ActionCreator.loadOffersAround([]));
   },
+  resetId() {
+    dispatch(ActionCreator.setIdOffer(``));
+  }
 });
 
 export {PlaceDetails};
@@ -214,27 +225,30 @@ export {PlaceDetails};
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);
 
 PlaceDetails.propTypes = {
-  id: PropTypes.number.isRequired,
+  details: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    hostName: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    hostAvatarUrl: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    hostIsPro: PropTypes.bool.isRequired,
+    goods: PropTypes.array.isRequired,
+    images: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired
+  }).isRequired,
+  comments: PropTypes.array.isRequired,
   selectedOffer: PropTypes.number,
   handleSelectOffer: PropTypes.func.isRequired,
   selectOffer: PropTypes.func.isRequired,
-  price: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
-  hostName: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  hostAvatarUrl: PropTypes.string.isRequired,
-  comments: PropTypes.array.isRequired,
   nearPlaces: PropTypes.array.isRequired,
-  isPremium: PropTypes.bool.isRequired,
-  hostIsPro: PropTypes.bool.isRequired,
-  goods: PropTypes.array.isRequired,
-  images: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  maxAdults: PropTypes.number.isRequired,
-  bedrooms: PropTypes.number.isRequired,
   cityInfo: PropTypes.object.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
   updateStatus: PropTypes.func.isRequired,
-  resetOfferCommentAndNearPlaces: PropTypes.func.isRequired
+  resetOfferCommentAndNearPlaces: PropTypes.func.isRequired,
+  resetId: PropTypes.func.isRequired
 };

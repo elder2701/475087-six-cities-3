@@ -38,12 +38,17 @@ const changeStructureLoadData = (data) =>
 
 const OperationOffers = {
   loadOffers: () => (dispatch, getState, api) => {
-    return api.get(`/hotels`).then((response) => {
-      const myOffers = changeStructureLoadData(response.data);
-      const cities = Object.keys(myOffers).sort();
-      dispatch(ActionLoadOffer.loadOffers(myOffers));
-      dispatch(ActionChangeCity.changeCity(cities[0]));
-    });
+    return api
+      .get(`/hotels`)
+      .then((response) => {
+        const myOffers = changeStructureLoadData(response.data);
+        const cities = Object.keys(myOffers).sort();
+        dispatch(ActionLoadOffer.loadOffers(myOffers));
+        dispatch(ActionChangeCity.changeCity(cities[0]));
+      })
+      .catch(() => {
+        dispatch(ActionLoadOffer.setFailStatus(true));
+      });
   }
 };
 
@@ -71,21 +76,32 @@ const OperationAuth = {
       .then((res) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.loadUserInfo(res.data));
-      });
+      })
+      .catch(() => {});
   }
 };
 
 const OperationOffer = {
   loadOfferComments: (id) => (dispatch, getState, api) => {
-    return api.get(`/comments/${id}`).then((res) => {
-      dispatch(ActionLoadOfferInfo.loadOfferComments(res.data));
-    });
+    return api
+      .get(`/comments/${id}`)
+      .then((res) => {
+        dispatch(ActionLoadOfferInfo.loadOfferComments(res.data));
+      })
+      .catch(() => {
+        dispatch(ActionLoadOfferInfo.loadOfferComments([]));
+      });
   },
   loadOffersAround: (id) => (dispatch, getState, api) => {
-    return api.get(`/hotels/${id}/nearby`).then((res) => {
-      const data = res.data.map((item) => changeNameKeys(item));
-      dispatch(ActionLoadOfferInfo.loadOffersAround(data));
-    });
+    return api
+      .get(`/hotels/${id}/nearby`)
+      .then((res) => {
+        const data = res.data.map((item) => changeNameKeys(item));
+        dispatch(ActionLoadOfferInfo.loadOffersAround(data));
+      })
+      .catch(() => {
+        dispatch(ActionLoadOfferInfo.loadOffersAround([]));
+      });
   }
 };
 
@@ -140,6 +156,9 @@ const OperationFavorites = {
             const myOffers = changeStructureLoadData(res.data);
             dispatch(ActionLoadFavorites.loadFavorites(myOffers));
           });
+        })
+        .catch(() => {
+          dispatch(ActionLoadFavorites.setFailStatus(true));
         });
     });
   }

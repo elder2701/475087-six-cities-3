@@ -22,7 +22,7 @@ describe(`Click events`, () => {
         text={text}
         handleChangeText = {()=>{}}
         handleChange={clickStar}
-        selectedOffer={1}
+        selectedId={1}
         isSendComment={true}
         sendComment={clickSubmit}
         sending={()=>{}}

@@ -1,6 +1,8 @@
 import React, {memo, Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer/offer/offer.js";
 
 const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
@@ -12,7 +14,7 @@ const bookMarkClasses = (isFavorite) =>
     ? `place-card__bookmark-button place-card__bookmark-button--active button`
     : `place-card__bookmark-button button`;
 
-const Offer = ({offer, typeCard, updateStatus}) => (
+const Offer = ({offer, typeCard, updateStatus, setIdOffer}) => (
   <Fragment>
     {offer.isPremium ? (
       <div className="place-card__mark">
@@ -39,7 +41,7 @@ const Offer = ({offer, typeCard, updateStatus}) => (
         <button
           className={bookMarkClasses(offer.isFavorite)}
           type="button"
-          onClick={()=>{
+          onClick={() => {
             updateStatus(offer.id, offer.isFavorite);
           }}
         >
@@ -55,10 +57,15 @@ const Offer = ({offer, typeCard, updateStatus}) => (
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
-      <h2
-        className="place-card__name"
-      >
-        <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+      <h2 className="place-card__name">
+        <Link
+          to={`/offer/${offer.id}`}
+          onClick={() => {
+            setIdOffer(offer.id);
+          }}
+        >
+          {offer.title}
+        </Link>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>
@@ -68,7 +75,17 @@ const Offer = ({offer, typeCard, updateStatus}) => (
 Offer.propTypes = {
   offer: PropTypes.object.isRequired,
   updateStatus: PropTypes.func.isRequired,
-  typeCard: PropTypes.string.isRequired
+  typeCard: PropTypes.string.isRequired,
+  setIdOffer: PropTypes.func.isRequired
 };
 
-export default memo(Offer);
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  setIdOffer(id) {
+    dispatch(ActionCreator.setIdOffer(id.toString()));
+  }
+});
+
+export {Offer};
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Offer));

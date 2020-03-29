@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Offer from "./offer.jsx";
+import {Offer} from "./offer.jsx";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
 
@@ -23,16 +23,27 @@ const mockEvent = {
   preventDefault() {}
 };
 
-it(`Title onclick`, () => {
+describe(`Clicks events`, () => {
   const updateStatus = jest.fn();
-
+  const setId = jest.fn();
   const screen = mount(
       <Router history={history}>
-        <Offer offer={offer} updateStatus={updateStatus} typeCard={``} />
+        <Offer offer={offer} updateStatus={updateStatus} typeCard={``} setIdOffer={setId}/>
       </Router>
   );
-  const title = screen.find(`button`);
+  it(`bookmark onclick`, () => {
+    const title = screen.find(`button`);
 
-  title.simulate(`click`, mockEvent);
-  expect(updateStatus).toHaveBeenCalledTimes(1);
+    title.simulate(`click`, mockEvent);
+    expect(updateStatus).toHaveBeenCalledTimes(1);
+  });
+
+  it(`Title onclick`, () => {
+    const title = screen.find(`a`).at(1);
+
+    title.simulate(`click`, mockEvent);
+    expect(setId).toHaveBeenCalledTimes(1);
+  });
+
+
 });

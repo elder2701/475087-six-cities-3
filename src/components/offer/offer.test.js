@@ -28,6 +28,7 @@ it(`<Offer /> sould be render`, () => {
               offer={offer}
               typeCard={``}
               updateStatus={() => {}}
+              setIdOffer={()=>{}}
             />
           </Router>
         </Provider>

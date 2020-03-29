@@ -6,19 +6,21 @@ import {Route, Switch, Redirect} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
-import {getCityOffers} from "../../reducer/data/selectors.js";
+import {getCityOffers, getFailStatus} from "../../reducer/data/selectors.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import {OperationAuth} from "../../reducer/operation/operation.js";
 import {AppRoute, ClassPage} from "../../const.js";
 import FavoritesList from "../favorites-list/favorites-list.jsx";
-import {getSelectedOffer} from "../../reducer/offer/selectors.js";
 import PrivateRoute from "../private-route/private-route.jsx";
 import Common from "../common/common.jsx";
 
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
-const App = ({cityOffers, login}) => {
+const App = ({cityOffers, login, failStatus}) => {
+  if (failStatus) {
+    return (<div>Server is not available </div>);
+  }
   if (!cityOffers) {
     return (<div>Loading...</div>);
   }
@@ -29,13 +31,11 @@ const App = ({cityOffers, login}) => {
           <MainWrapper />
         </Common>
       </Route>
-      {cityOffers.offers.map((item) => (
-        <Route key={item.id} path={`${AppRoute.OFFER}/${item.id}`}>
-          <Common classPage={ClassPage.OFFER}>
-            <PlaceDetailsWrapper {...item} />
-          </Common>
-        </Route>
-      ))}
+      <Route path={AppRoute.OFFER}>
+        <Common classPage={ClassPage.OFFER}>
+          <PlaceDetailsWrapper />
+        </Common>
+      </Route>
       <Route path={AppRoute.LOGIN}>
         <Common classPage={ClassPage.LOGIN}>
           <SignIn submit={login}></SignIn>
@@ -43,6 +43,7 @@ const App = ({cityOffers, login}) => {
       </Route>
       <PrivateRoute
         path={AppRoute.MYLIST}
+        exact
         render={() => {
           return (
             <Common classPage={ClassPage.MYLIST}>
@@ -59,12 +60,13 @@ const App = ({cityOffers, login}) => {
 App.propTypes = {
   cityOffers: PropTypes.object,
   city: PropTypes.string,
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  failStatus: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   cityOffers: getCityOffers(state),
-  selectedOffer: getSelectedOffer(state)
+  failStatus: getFailStatus(state)
 });
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {

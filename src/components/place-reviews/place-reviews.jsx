@@ -31,5 +31,5 @@ export default connect(mapStateToProps)(memo(PlaceReviews));
 PlaceReviews.propTypes = {
   comments: PropTypes.array.isRequired,
   authStatus: PropTypes.string.isRequired,
-  selectedOffer: PropTypes.number.isRequired
+  selectedId: PropTypes.number.isRequired
 };
