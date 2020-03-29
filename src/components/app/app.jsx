@@ -2,7 +2,7 @@ import React from "react";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, Redirect} from "react-router-dom";
 import PlaceDetails from "../place-details/place-details.jsx";
 import withOptionSorting from "../../hoc/with-option-sorting/with-option-sorting.js";
 import withSelectedOffer from "../../hoc/with-selected-offer/with-selected-offer.js";
@@ -36,13 +36,12 @@ const App = ({cityOffers, login}) => {
           </Common>
         </Route>
       ))}
-      <Route exact path={AppRoute.LOGIN}>
+      <Route path={AppRoute.LOGIN}>
         <Common classPage={ClassPage.LOGIN}>
           <SignIn submit={login}></SignIn>
         </Common>
       </Route>
       <PrivateRoute
-        exact
         path={AppRoute.MYLIST}
         render={() => {
           return (
@@ -52,6 +51,7 @@ const App = ({cityOffers, login}) => {
           );
         }}
       />
+      <Redirect to={AppRoute.ROOT}/>
     </Switch>
   );
 };

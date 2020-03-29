@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 
 const CommentFormWrapper = withChange(CommentForm);
 
-const PlaceReviews = ({comments, authStatus, selectedOffer}) => (
+const PlaceReviews = ({comments, authStatus, selectedId}) => (
   <section className="property__reviews reviews">
     <h2 className="reviews__title">
       Reviews &middot;
@@ -17,7 +17,7 @@ const PlaceReviews = ({comments, authStatus, selectedOffer}) => (
     </h2>
     <CommentList comments={comments} />
     {authStatus === AuthorizationStatus.AUTH ? (
-      <CommentFormWrapper selectedOffer={selectedOffer} />
+      <CommentFormWrapper selectedId={selectedId} />
     ) : null}
   </section>
 );

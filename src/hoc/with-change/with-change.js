@@ -22,6 +22,7 @@ const withChange = (Component) => {
 
     render() {
       const {value, text} = this.state;
+      console.log(this.props);
       return (
         <Component
           {...this.props}

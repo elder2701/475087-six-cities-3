@@ -26,7 +26,7 @@ const CommentForm = (props) => {
     handleChange,
     handleChangeText,
     isSendComment,
-    selectedOffer,
+    selectedId,
     sendComment,
     sending
   } = props;
@@ -37,7 +37,7 @@ const CommentForm = (props) => {
       method="post"
       onSubmit={(evt) => {
         evt.preventDefault();
-        sendComment(selectedOffer, {comment: text, rating: value});
+        sendComment(selectedId, {comment: text, rating: value});
         sending(false);
         handleChange(``);
         handleChangeText(``);
@@ -125,7 +125,7 @@ CommentForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleChangeText: PropTypes.func.isRequired,
   isSendComment: PropTypes.bool.isRequired,
-  selectedOffer: PropTypes.number.isRequired,
+  selectedId: PropTypes.number.isRequired,
   sendComment: PropTypes.func.isRequired,
   sending: PropTypes.func.isRequired
 };
