@@ -24,16 +24,17 @@ const Main = ({
   const offersCoords = Array.from(cityOffers, (item) => {
     return [item.id, item.location];
   });
-  const cityPlaceContainerType = placesCount
+  const commonDivClasses = placesCount
     ? ``
     : `cities__places-container--empty`;
+  const mainClasses = placesCount ? `` : `page__main--index-empty`;
   return (
-    <main className="page__main page__main--index">
+    <main className={`page__main page__main--index ${mainClasses}`}>
       <h1 className="visually-hidden">Cities</h1>
       <NavCities />
       <div className="cities">
         <div
-          className={`cities__places-container container ${cityPlaceContainerType}`}
+          className={`cities__places-container container ${commonDivClasses}`}
         >
           {placesCount ? (
             <section className="cities__places places">

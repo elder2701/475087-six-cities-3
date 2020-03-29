@@ -44,7 +44,7 @@ exports[`<App /> sould be render 1`] = `
     </div>
   </header>
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--index "
   >
     <h1
       className="visually-hidden"

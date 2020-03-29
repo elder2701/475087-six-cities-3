@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
@@ -19,43 +19,40 @@ const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
 const App = ({cityOffers, login}) => {
+  if (!cityOffers) {
+    return (<div>Loading...</div>);
+  }
   return (
-    <Fragment>
-      {cityOffers ? (
-        <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            <Common classPage={ClassPage.ROOT}>
-              <MainWrapper />
+    <Switch>
+      <Route exact path={AppRoute.ROOT}>
+        <Common classPage={ClassPage.ROOT}>
+          <MainWrapper />
+        </Common>
+      </Route>
+      {cityOffers.offers.map((item) => (
+        <Route key={item.id} path={`${AppRoute.OFFER}/${item.id}`}>
+          <Common classPage={ClassPage.OFFER}>
+            <PlaceDetailsWrapper {...item} />
+          </Common>
+        </Route>
+      ))}
+      <Route exact path={AppRoute.LOGIN}>
+        <Common classPage={ClassPage.LOGIN}>
+          <SignIn submit={login}></SignIn>
+        </Common>
+      </Route>
+      <PrivateRoute
+        exact
+        path={AppRoute.MYLIST}
+        render={() => {
+          return (
+            <Common classPage={ClassPage.MYLIST}>
+              <FavoritesList />
             </Common>
-          </Route>
-          {cityOffers.offers.map((item) => (
-            <Route key={item.id} path={`/offer/${item.id}`}>
-              <Common classPage={ClassPage.OFFER}>
-                <PlaceDetailsWrapper {...item} />
-              </Common>
-            </Route>
-          ))}
-          <Route exact path={AppRoute.LOGIN}>
-            <Common classPage={ClassPage.LOGIN}>
-              <SignIn submit={login}></SignIn>
-            </Common>
-          </Route>
-          <PrivateRoute
-            exact
-            path={AppRoute.MYLIST}
-            render={() => {
-              return (
-                <Common classPage={ClassPage.MYLIST}>
-                  <FavoritesList />
-                </Common>
-              );
-            }}
-          />
-        </Switch>
-      ) : (
-        <div>Loadign...</div>
-      )}
-    </Fragment>
+          );
+        }}
+      />
+    </Switch>
   );
 };
 
