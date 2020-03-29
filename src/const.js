@@ -2,7 +2,7 @@ export const AppRoute = {
   LOGIN: `/login`,
   ROOT: `/`,
   MYLIST: `/mylist`,
-  OFFER: `/offer`
+  OFFER: `/offer/:id`
 };
 
 export const ClassPage = {
