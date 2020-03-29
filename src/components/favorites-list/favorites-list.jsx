@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {OperationFavorites} from "../../reducer/operation/operation.js";
 import {getFavorites} from "../../reducer/favorite/selector.js";
@@ -10,6 +10,10 @@ import Offer from "../offer/offer.jsx";
 import EmptyFavorite from "../empty-favorite/empty-favorite.jsx";
 import {ActionCreator as CityActionCreator} from "../../reducer/city/city.js";
 
+const setMainClasses = (empty) =>
+  empty
+    ? `page__main page__main--favorites`
+    : `page__main page__main--favorites page__main--favorites-empty`;
 
 class FavoritesList extends Component {
   componentDidMount() {
@@ -25,63 +29,50 @@ class FavoritesList extends Component {
     const {favorites, updateStatus, selectCity} = this.props;
     const empty = Object.keys(favorites).length;
     return (
-      <Fragment>
-        {empty ? (
-          <main className="page__main page__main--favorites">
-            <div className="page__favorites-container container">
-              <section className="favorites">
-                <h1 className="favorites__title">Saved listing</h1>
-                <ul className="favorites__list">
-                  {Object.keys(favorites).map((city) => (
-                    <li key={city} className="favorites__locations-items">
-                      <div className="favorites__locations locations locations--current">
-                        <div className="locations__item">
-                          <Link
-                            className="locations__item-link"
-                            to={AppRoute.ROOT}
-                            onClick={()=>{
-                              selectCity(city);
-                            }}
-                          >
-                            <span>{city}</span>
-                          </Link>
-                        </div>
+      <main className={setMainClasses(empty)}>
+        <div className="page__favorites-container container">
+          {empty ? (
+            <section className="favorites">
+              <h1 className="favorites__title">Saved listing</h1>
+              <ul className="favorites__list">
+                {Object.keys(favorites).map((city) => (
+                  <li key={city} className="favorites__locations-items">
+                    <div className="favorites__locations locations locations--current">
+                      <div className="locations__item">
+                        <Link
+                          className="locations__item-link"
+                          to={AppRoute.ROOT}
+                          onClick={() => {
+                            selectCity(city);
+                          }}
+                        >
+                          <span>{city}</span>
+                        </Link>
                       </div>
-                      <div className="favorites__places">
-                        {favorites[city].offers.map((offer) => (
-                          <article
-                            className="favorites__card place-card"
-                            key={offer.id}
-                          >
-                            <Offer
-                              offer={offer}
-                              typeCard={`favorites`}
-                              updateStatus={updateStatus}
-                            />
-                          </article>
-                        ))}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            </div>
-          </main>
-        ) : (
-          <EmptyFavorite />
-        )}
-        <footer className="footer container">
-          <Link className="footer__logo-link" to={AppRoute.ROOT}>
-            <img
-              className="footer__logo"
-              src="/img/logo.svg"
-              alt="6 cities logo"
-              width="64"
-              height="33"
-            />
-          </Link>
-        </footer>
-      </Fragment>
+                    </div>
+                    <div className="favorites__places">
+                      {favorites[city].offers.map((offer) => (
+                        <article
+                          className="favorites__card place-card"
+                          key={offer.id}
+                        >
+                          <Offer
+                            offer={offer}
+                            typeCard={`favorites`}
+                            updateStatus={updateStatus}
+                          />
+                        </article>
+                      ))}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : (
+            <EmptyFavorite />
+          )}
+        </div>
+      </main>
     );
   }
 }

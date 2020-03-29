@@ -11,4 +11,3 @@ export const ClassPage = {
   MYLIST: `page`,
   OFFER: `page`
 };
-
