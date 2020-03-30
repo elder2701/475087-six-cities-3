@@ -1,7 +1,13 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {FavoritesList} from "./favorites-list.jsx";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
+import {Provider} from "react-redux";
+import cofigureStore from "redux-mock-store";
+import {createAPI} from "../../api.js";
+import thunk from "redux-thunk";
 
 const favorites = {
   Amsterdam: {
@@ -20,6 +26,9 @@ const favorites = {
   }
 };
 
+const api = createAPI(()=>{});
+
+const mockStore = cofigureStore([thunk.withExtraArgument(api)]);
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -30,18 +39,29 @@ const mockEvent = {
 };
 
 it(`Link onclick`, () => {
+  jest.mock(`../../reducer/operation/operation.js`, () => ({
+    OperationFavorites: {
+      loadFavorites: jest.fn(),
+      reserFavorites: jest.fn()
+    }
+  }));
+  const store = mockStore({});
   const selectCity = jest.fn();
 
-  const screen = shallow(
-
-      <FavoritesList
-        updateStatus={() => {}}
-        selectCity={selectCity}
-        favorites = {favorites}
-        loadFavorites={()=>{}}
-      />
+  const screen = mount(
+      <Provider store={store}>
+        <Router history={history}>
+          <FavoritesList
+            resetFavorites={()=>{}}
+            favorites={favorites}
+            loadFavorites={()=>{}}
+            updateStatus={() => {}}
+            selectCity={selectCity}
+          />
+        </Router>
+      </Provider>
   );
-  const cityLink = screen.find(`a`);
+  const cityLink = screen.find(`a`).at(0);
 
   cityLink.simulate(`click`, mockEvent);
   expect(selectCity).toHaveBeenCalledTimes(1);

@@ -2,8 +2,7 @@ import React, {Fragment, memo} from "react";
 import {OperationComment} from "../../reducer/operation/operation.js";
 import {ActionCreator} from "../../reducer/offer/offer.js";
 import {
-  getIsSendComment,
-  getSelectedOffer
+  getIsSendComment
 } from "../../reducer/offer/selectors.js";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -107,8 +106,7 @@ const CommentForm = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  isSendComment: getIsSendComment(state),
-  selectedOffer: getSelectedOffer(state)
+  isSendComment: getIsSendComment(state)
 });
 const mapDispatchToProps = (dispatch) => ({
   sendComment(id, commentData) {

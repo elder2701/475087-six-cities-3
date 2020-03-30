@@ -58,6 +58,9 @@ const Offer = ({offer, typeCard, updateStatus}) => (
       <h2 className="place-card__name">
         <Link
           to={`/offer/${offer.id}`}
+          onClick={()=>{
+            window.scrollTo(0, 0);
+          }}
         >
           {offer.title}
         </Link>

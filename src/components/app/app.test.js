@@ -148,6 +148,7 @@ it(`<App /> sould be render`, () => {
         <Provider store={store}>
           <Router history={history}>
             <App
+              failStatus={false}
               city={``}
               login={() => {}}
               cityOffers={cityOffers}

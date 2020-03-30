@@ -87,7 +87,7 @@ it(`<PlaceDetails /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <PlaceDetails updateStatus={()=>{}} selectOffer={()=>{}}/>
+          <PlaceDetails idOffer={`1`} updateStatus={()=>{}} selectOffer={()=>{}}/>
         </Provider>
     )
     .toJSON();

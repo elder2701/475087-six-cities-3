@@ -59,6 +59,7 @@ describe(`Mouse events`, () => {
   const handleChangeFavorite = jest.fn();
   const screen = shallow(
       <PlaceDetails
+        idOffer={`1`}
         details={offer}
         updateStatus={handleChangeFavorite}
         cityInfo={{location: {longitude: 1, latitude: 1, zoom: 1}}}
