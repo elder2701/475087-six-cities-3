@@ -9,7 +9,10 @@ const getCommentsFromStore = (state) =>
 const getOffers = (state) =>
   state[NameSpace.DATA].offers[state[NameSpace.CITY].city].offers;
 
-const getId = (state) => +state[NameSpace.OFFER].id;
+const getId = (state, props) =>{
+  console.log(state);
+  console.log(props); 
+  return props.match.params.id;}
 
 const getSelectedOffer = createSelector(
     [getOffers, getId],

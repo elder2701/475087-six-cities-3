@@ -4,6 +4,7 @@ import PlaceReviews from "../place-reviews/place-reviews.jsx";
 import Map from "../map/map.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 import {
   getNearOffers,
   getComments,
@@ -37,6 +38,7 @@ class PlaceDetails extends Component {
   }
 
   render() {
+    const {id} = this.props.match.params;
     const {
       selectedOffer,
       selectOffer,
@@ -47,7 +49,6 @@ class PlaceDetails extends Component {
       updateStatus
     } = this.props;
     const {
-      id,
       isFavorite,
       isPremium,
       price,
@@ -196,11 +197,11 @@ class PlaceDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
   nearPlaces: getNearOffers(state),
   comments: getComments(state),
   cityInfo: getCityInfo(state),
-  details: getSelectedOffer(state)
+  details: getSelectedOffer(state, props)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -222,7 +223,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {PlaceDetails};
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlaceDetails));
 
 PlaceDetails.propTypes = {
   details: PropTypes.shape({
