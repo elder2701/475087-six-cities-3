@@ -1,8 +1,6 @@
 import React, {memo, Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/offer/offer.js";
 
 const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
@@ -14,7 +12,7 @@ const bookMarkClasses = (isFavorite) =>
     ? `place-card__bookmark-button place-card__bookmark-button--active button`
     : `place-card__bookmark-button button`;
 
-const Offer = ({offer, typeCard, updateStatus, setIdOffer}) => (
+const Offer = ({offer, typeCard, updateStatus}) => (
   <Fragment>
     {offer.isPremium ? (
       <div className="place-card__mark">
@@ -60,9 +58,6 @@ const Offer = ({offer, typeCard, updateStatus, setIdOffer}) => (
       <h2 className="place-card__name">
         <Link
           to={`/offer/${offer.id}`}
-          onClick={() => {
-            setIdOffer(offer.id);
-          }}
         >
           {offer.title}
         </Link>
@@ -76,16 +71,7 @@ Offer.propTypes = {
   offer: PropTypes.object.isRequired,
   updateStatus: PropTypes.func.isRequired,
   typeCard: PropTypes.string.isRequired,
-  setIdOffer: PropTypes.func.isRequired
 };
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = (dispatch) => ({
-  setIdOffer(id) {
-    dispatch(ActionCreator.setIdOffer(id.toString()));
-  }
-});
-
 export {Offer};
-export default connect(mapStateToProps, mapDispatchToProps)(memo(Offer));
+export default memo(Offer);

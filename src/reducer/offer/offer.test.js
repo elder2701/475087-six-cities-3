@@ -24,21 +24,6 @@ it(`Reducer should change send status`, () => {
   expect(state.isSendComment).toBeFalsy();
 });
 
-it(`Reducer should change id`, () => {
-  const state = reducer(
-      {isSendComment: true},
-      {type: ActionType.SET_ID_OFFER, payload: 1}
-  );
-  expect(state.id).toBe(1);
-});
-
-it(`Action creator for changing id`, () => {
-  const actCreatorResult = ActionCreator.setIdOffer(1);
-  expect(actCreatorResult.type).toEqual(ActionType.SET_ID_OFFER);
-  expect(actCreatorResult.payload).toBe(1);
-});
-
-
 it(`Action creator for changing comments`, () => {
   const actCreatorResult = ActionCreator.loadOfferComments([1, 2]);
   expect(actCreatorResult.type).toEqual(ActionType.LOAD_OFFER_COMMENTS);

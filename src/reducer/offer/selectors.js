@@ -9,20 +9,26 @@ const getCommentsFromStore = (state) =>
 const getOffers = (state) =>
   state[NameSpace.DATA].offers[state[NameSpace.CITY].city].offers;
 
-const getId = (state, props) =>{
-  console.log(state);
-  console.log(props); 
-  return props.match.params.id;}
+const getId = (state, props) => {
+  return props.idOffer;
+};
 
 const getSelectedOffer = createSelector(
     [getOffers, getId],
-    (offers, id) => offers.filter((item) => item.id === id)[0]
+    (offers, idOffer) => offers.filter((item) => item.id === +idOffer)[0]
 );
 
 const getNearOffers = (state) => state[NameSpace.OFFER].offerAround;
+const getNearOffersId = createSelector([getNearOffers], (offers) =>
+  offers.map((offer) => offer.id)
+);
+const getNearOffersInfo = createSelector(
+    [getOffers, getNearOffersId],
+    (offers, nearOffersId) => offers.filter((offer)=>nearOffersId.indexOf(offer.id) !== -1)
+);
 const getComments = createSelector([getCommentsFromStore], (comments) =>
   comments.slice(0, 10)
 );
 const getIsSendComment = (state) => state[NameSpace.OFFER].isSendComment;
 
-export {getSelectedOffer, getNearOffers, getComments, getIsSendComment};
+export {getSelectedOffer, getNearOffers, getComments, getIsSendComment, getNearOffersInfo};

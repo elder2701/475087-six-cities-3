@@ -1,7 +1,6 @@
 import {extend} from "../../utils.js";
 
 const initialState = {
-  id: ``,
   offerAround: [],
   comments: [],
   isSendComment: true
@@ -11,7 +10,6 @@ const ActionType = {
   LOAD_OFFER_COMMENTS: `LOAD_OFFER_COMMENTS`,
   LOAD_OFFERS_AROUND: `LOAD_OFFERS_AROUND`,
   SEND_COMMENT_OFFER: `SEND_COMMENT_OFFER`,
-  SET_ID_OFFER: `SET_ID_OFFER`
 };
 
 const ActionCreator = {
@@ -26,8 +24,7 @@ const ActionCreator = {
   sendCommentOffer: (isSend) => ({
     type: ActionType.SEND_COMMENT_OFFER,
     payload: isSend
-  }),
-  setIdOffer: (id) => ({type: ActionType.SET_ID_OFFER, payload: id})
+  })
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,8 +35,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {offerAround: action.payload});
     case ActionType.SEND_COMMENT_OFFER:
       return extend(state, {isSendComment: action.payload});
-    case ActionType.SET_ID_OFFER:
-      return extend(state, {id: action.payload});
     case ActionType.LOAD_OFFERS_AROUND_FAIL:
       return extend(state, {failAroundStatus: action.payload});
     case ActionType.LOAD_OFFER_COMMENTS_FAIL:

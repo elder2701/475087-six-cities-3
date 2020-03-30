@@ -25,10 +25,9 @@ const mockEvent = {
 
 describe(`Clicks events`, () => {
   const updateStatus = jest.fn();
-  const setId = jest.fn();
   const screen = mount(
       <Router history={history}>
-        <Offer offer={offer} updateStatus={updateStatus} typeCard={``} setIdOffer={setId}/>
+        <Offer offer={offer} updateStatus={updateStatus} typeCard={``}/>
       </Router>
   );
   it(`bookmark onclick`, () => {
@@ -36,13 +35,6 @@ describe(`Clicks events`, () => {
 
     title.simulate(`click`, mockEvent);
     expect(updateStatus).toHaveBeenCalledTimes(1);
-  });
-
-  it(`Title onclick`, () => {
-    const title = screen.find(`a`).at(1);
-
-    title.simulate(`click`, mockEvent);
-    expect(setId).toHaveBeenCalledTimes(1);
   });
 
 

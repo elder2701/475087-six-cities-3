@@ -4,9 +4,8 @@ import PlaceReviews from "../place-reviews/place-reviews.jsx";
 import Map from "../map/map.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
 import {
-  getNearOffers,
+  getNearOffersInfo,
   getComments,
   getSelectedOffer
 } from "../../reducer/offer/selectors.js";
@@ -27,19 +26,18 @@ const bookMarkClasses = (isFavorite) =>
 
 class PlaceDetails extends Component {
   componentDidMount() {
-    const {details, handleSelectOffer} = this.props;
-    handleSelectOffer(details.id);
+    const {idOffer, handleSelectOffer} = this.props;
+    handleSelectOffer(+idOffer);
   }
 
   componentWillUnmount() {
-    const {resetOfferCommentAndNearPlaces, resetId} = this.props;
+    const {resetOfferCommentAndNearPlaces} = this.props;
     resetOfferCommentAndNearPlaces();
-    resetId();
   }
 
   render() {
-    const {id} = this.props.match.params;
     const {
+      idOffer,
       selectedOffer,
       selectOffer,
       details,
@@ -97,7 +95,7 @@ class PlaceDetails extends Component {
                   className={bookMarkClasses(isFavorite)}
                   type="button"
                   onClick={() => {
-                    updateStatus(id, !isFavorite);
+                    updateStatus(idOffer, !isFavorite);
                   }}
                 >
                   <svg
@@ -166,7 +164,7 @@ class PlaceDetails extends Component {
                   <p className="property__text">{description}</p>
                 </div>
               </div>
-              <PlaceReviews comments={comments} selectedId={id} />
+              <PlaceReviews comments={comments} selectedId={+idOffer} />
             </div>
           </div>
           {offersCoords ? (
@@ -198,7 +196,7 @@ class PlaceDetails extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  nearPlaces: getNearOffers(state),
+  nearPlaces: getNearOffersInfo(state),
   comments: getComments(state),
   cityInfo: getCityInfo(state),
   details: getSelectedOffer(state, props)
@@ -215,19 +213,16 @@ const mapDispatchToProps = (dispatch) => ({
   resetOfferCommentAndNearPlaces() {
     dispatch(ActionCreator.loadOfferComments([]));
     dispatch(ActionCreator.loadOffersAround([]));
-  },
-  resetId() {
-    dispatch(ActionCreator.setIdOffer(``));
   }
 });
 
 export {PlaceDetails};
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlaceDetails));
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);
 
 PlaceDetails.propTypes = {
+  idOffer: PropTypes.string.isRequired,
   details: PropTypes.shape({
-    id: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     hostName: PropTypes.string.isRequired,
@@ -251,5 +246,4 @@ PlaceDetails.propTypes = {
   cityInfo: PropTypes.object.isRequired,
   updateStatus: PropTypes.func.isRequired,
   resetOfferCommentAndNearPlaces: PropTypes.func.isRequired,
-  resetId: PropTypes.func.isRequired
 };

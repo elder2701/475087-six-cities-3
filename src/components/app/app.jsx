@@ -19,10 +19,10 @@ const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
 const App = ({cityOffers, login, failStatus}) => {
   if (failStatus) {
-    return (<div>Server is not available </div>);
+    return <div>Server is not available </div>;
   }
   if (!cityOffers) {
-    return (<div>Loading...</div>);
+    return <div>Loading...</div>;
   }
   return (
     <Switch>
@@ -31,11 +31,17 @@ const App = ({cityOffers, login, failStatus}) => {
           <MainWrapper />
         </Common>
       </Route>
-      <Route path={AppRoute.OFFER}>
-        <Common classPage={ClassPage.OFFER}>
-          <PlaceDetailsWrapper />
-        </Common>
-      </Route>
+      <Route
+        path={AppRoute.OFFER}
+        render={(routeProps) => {
+          const id = routeProps.match.params.id;
+          return (
+            <Common classPage={ClassPage.OFFER}>
+              <PlaceDetailsWrapper idOffer={id} />
+            </Common>
+          );
+        }}
+      />
       <Route path={AppRoute.LOGIN}>
         <Common classPage={ClassPage.LOGIN}>
           <SignIn submit={login}></SignIn>
@@ -52,7 +58,7 @@ const App = ({cityOffers, login, failStatus}) => {
           );
         }}
       />
-      <Redirect to={AppRoute.ROOT}/>
+      <Redirect to={AppRoute.ROOT} />
     </Switch>
   );
 };
