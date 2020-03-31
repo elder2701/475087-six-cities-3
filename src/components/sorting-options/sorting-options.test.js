@@ -6,11 +6,11 @@ it(`<SortingOptions /> sould be render`, () => {
   const tree = renderer
     .create(
         <SortingOptions
-          selectOption={() => {}}
+          onSelectOption={() => {}}
           optionSorting={`Popular`}
           open={false}
-          handleClose={() => {}}
-          handleCloseOrOpen={() => {}}
+          onClose={() => {}}
+          onCloseOrOpen={() => {}}
         />
     )
     .toJSON();

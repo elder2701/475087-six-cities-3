@@ -105,8 +105,8 @@ it(`<Main /> sould be render`, () => {
               city={city}
               places={places}
               optionSorting=""
-              selectOffer={() => {}}
-              changeOptionSorting={() => {}}
+              onSelectOffer={() => {}}
+              onChangeOptionSorting={() => {}}
             />
           </Router>
         </Provider>

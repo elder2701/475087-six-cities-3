@@ -37,11 +37,11 @@ const Comment = ({user, rating, comment, date}) => {
   );
 };
 
-export default memo(Comment);
-
 Comment.propTypes = {
   user: PropTypes.object.isRequired,
   rating: PropTypes.number.isRequired,
   comment: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired
 };
+
+export default memo(Comment);

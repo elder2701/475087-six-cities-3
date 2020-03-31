@@ -28,9 +28,9 @@ describe(`Mouse events`, () => {
   const screen = shallow(
       <OffersList
         cityOffers={cityOffers}
-        updateStatus={()=>{}}
+        onUpdateStatus={()=>{}}
         type={``}
-        hoverActiveCard={hoverActiveCard}
+        onHoverActiveCard={hoverActiveCard}
       />
   );
   it(`Mouseover on place card should pass to the callback id of place card`, () => {

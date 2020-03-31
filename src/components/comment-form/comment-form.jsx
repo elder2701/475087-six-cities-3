@@ -22,12 +22,12 @@ const CommentForm = (props) => {
   const {
     value,
     text,
-    handleChange,
-    handleChangeText,
+    onChange,
+    onChangeText,
     isSendComment,
     selectedId,
-    sendComment,
-    sending
+    onSendComment,
+    onSending
   } = props;
   return (
     <form
@@ -36,10 +36,10 @@ const CommentForm = (props) => {
       method="post"
       onSubmit={(evt) => {
         evt.preventDefault();
-        sendComment(selectedId, {comment: text, rating: value});
-        sending(false);
-        handleChange(``);
-        handleChangeText(``);
+        onSendComment(selectedId, {comment: text, rating: value});
+        onSending(false);
+        onChange(``);
+        onChangeText(``);
       }}
     >
       <label className="reviews__label form__label" htmlFor="review">
@@ -57,7 +57,7 @@ const CommentForm = (props) => {
                 id={`${indexStar}-stars`}
                 type="radio"
                 onChange={(evt) => {
-                  handleChange(evt.target.value);
+                  onChange(evt.target.value);
                 }}
                 checked={indexStar === +value ? `checked` : ``}
                 disabled={isDisabledSending(isSendComment)}
@@ -80,7 +80,7 @@ const CommentForm = (props) => {
         id="review"
         name="review"
         onChange={(evt) => {
-          handleChangeText(evt.target.value);
+          onChangeText(evt.target.value);
         }}
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={text}
@@ -105,28 +105,29 @@ const CommentForm = (props) => {
   );
 };
 
+CommentForm.propTypes = {
+  value: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onChangeText: PropTypes.func.isRequired,
+  isSendComment: PropTypes.bool.isRequired,
+  selectedId: PropTypes.number.isRequired,
+  onSendComment: PropTypes.func.isRequired,
+  onSending: PropTypes.func.isRequired
+};
+
+
 const mapStateToProps = (state) => ({
   isSendComment: getIsSendComment(state)
 });
 const mapDispatchToProps = (dispatch) => ({
-  sendComment(id, commentData) {
+  onSendComment(id, commentData) {
     dispatch(OperationComment.sendComment(id, commentData));
   },
-  sending(flag) {
+  onSending(flag) {
     dispatch(ActionCreator.sendCommentOffer(flag));
   }
 });
-
-CommentForm.propTypes = {
-  value: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleChangeText: PropTypes.func.isRequired,
-  isSendComment: PropTypes.bool.isRequired,
-  selectedId: PropTypes.number.isRequired,
-  sendComment: PropTypes.func.isRequired,
-  sending: PropTypes.func.isRequired
-};
 
 export {CommentForm};
 export default connect(mapStateToProps, mapDispatchToProps)(memo(CommentForm));

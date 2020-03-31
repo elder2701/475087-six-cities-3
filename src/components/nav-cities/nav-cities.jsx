@@ -10,7 +10,7 @@ const classLink = (city, activeCity) =>
     ? `locations__item-link tabs__item tabs__item--active`
     : `locations__item-link tabs__item`;
 
-const NavCities = ({changeCity, cities, activeCity}) => (
+const NavCities = ({onChangeCity, cities, activeCity}) => (
   <div className="tabs">
     <section className="locations container">
       <ul className="locations__list tabs__list">
@@ -20,7 +20,7 @@ const NavCities = ({changeCity, cities, activeCity}) => (
               className={classLink(city, activeCity)}
               href="#"
               onClick={() => {
-                changeCity(city);
+                onChangeCity(city);
               }}
             >
               <span>{city}</span>
@@ -32,22 +32,22 @@ const NavCities = ({changeCity, cities, activeCity}) => (
   </div>
 );
 
+NavCities.propTypes = {
+  onChangeCity: PropTypes.func.isRequired,
+  cities: PropTypes.array.isRequired,
+  activeCity: PropTypes.string.isRequired
+};
+
 const mapStateToProps = (state) => ({
   cities: getCities(state),
   activeCity: getCity(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeCity(city) {
+  onChangeCity(city) {
     dispatch(ActionCreator.changeCity(city));
   }
 });
-
-NavCities.propTypes = {
-  changeCity: PropTypes.func.isRequired,
-  cities: PropTypes.array.isRequired,
-  activeCity: PropTypes.string.isRequired
-};
 
 export {NavCities};
 export default connect(mapStateToProps, mapDispatchToProps)(memo(NavCities));

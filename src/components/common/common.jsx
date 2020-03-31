@@ -19,9 +19,11 @@ const Common = (props) => {
     </Fragment>
   );
 };
-export default Common;
 
 Common.propTypes = {
   children: PropTypes.node.isRequired,
   classPage: PropTypes.string.isRequired
 };
+
+export default Common;
+

@@ -17,16 +17,16 @@ const setMainClasses = (empty) =>
 
 class FavoritesList extends Component {
   componentDidMount() {
-    const {loadFavorites} = this.props;
-    loadFavorites();
+    const {onLoadFavorites} = this.props;
+    onLoadFavorites();
   }
 
   componentWillUnmount() {
-    const {resetFavorites} = this.props;
-    resetFavorites();
+    const {onResetFavorites} = this.props;
+    onResetFavorites();
   }
   render() {
-    const {favorites, updateStatus, selectCity} = this.props;
+    const {favorites, onUpdateStatus, onSelectCity} = this.props;
     const empty = Object.keys(favorites).length;
     return (
       <main className={setMainClasses(empty)}>
@@ -43,7 +43,7 @@ class FavoritesList extends Component {
                           className="locations__item-link"
                           to={AppRoute.ROOT}
                           onClick={() => {
-                            selectCity(city);
+                            onSelectCity(city);
                           }}
                         >
                           <span>{city}</span>
@@ -59,7 +59,7 @@ class FavoritesList extends Component {
                           <Offer
                             offer={offer}
                             typeCard={`favorites`}
-                            updateStatus={updateStatus}
+                            onUpdateStatus={onUpdateStatus}
                           />
                         </article>
                       ))}
@@ -77,33 +77,32 @@ class FavoritesList extends Component {
   }
 }
 
+FavoritesList.propTypes = {
+  favorites: PropTypes.object.isRequired,
+  onLoadFavorites: PropTypes.func.isRequired,
+  onResetFavorites: PropTypes.func.isRequired,
+  onUpdateStatus: PropTypes.func,
+  onSelectCity: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => ({
   favorites: getFavorites(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFavorites() {
+  onLoadFavorites() {
     dispatch(OperationFavorites.loadFavorites());
   },
-  resetFavorites() {
+  onResetFavorites() {
     dispatch(FavoriteActionCreator.loadFavorites({}));
   },
-  updateStatus(id, status) {
+  onUpdateStatus(id, status) {
     dispatch(OperationFavorites.changeStatusAndUpdateFavorite(id, !status));
   },
-  selectCity(city) {
+  onSelectCity(city) {
     dispatch(CityActionCreator.changeCity(city));
   }
 });
 
 export {FavoritesList};
-
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritesList);
-
-FavoritesList.propTypes = {
-  favorites: PropTypes.object.isRequired,
-  loadFavorites: PropTypes.func.isRequired,
-  resetFavorites: PropTypes.func.isRequired,
-  updateStatus: PropTypes.func,
-  selectCity: PropTypes.func.isRequired
-};

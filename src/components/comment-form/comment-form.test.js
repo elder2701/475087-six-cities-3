@@ -8,10 +8,10 @@ it(`<CommentForm /> sould be render`, () => {
         <CommentForm
           value={``}
           text={``}
-          handleChange={() => {}}
-          handleChangeText={() => {}}
-          sending={()=>{}}
-          sendComment={()=>{}}
+          onChange={() => {}}
+          onChangeText={() => {}}
+          onSending={()=>{}}
+          onSendComment={()=>{}}
           selectedId={1}
           isSendComment={true}
         />

@@ -27,7 +27,7 @@ it(`<Offer /> sould be render`, () => {
             <Offer
               offer={offer}
               typeCard={``}
-              updateStatus={() => {}}
+              onUpdateStatus={() => {}}
             />
           </Router>
         </Provider>

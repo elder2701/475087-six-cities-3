@@ -8,7 +8,7 @@ import NameSpace from "../../reducer/name-space.js";
 import thunk from "redux-thunk";
 import {createAPI} from "../../api.js";
 
-const api = createAPI(()=>{});
+const api = createAPI(() => {});
 
 const mockStore = cofigureStore([thunk.withExtraArgument(api)]);
 
@@ -67,14 +67,7 @@ it(`<PlaceDetails /> sould be render`, () => {
       city: `Amsterdam`
     },
     [NameSpace.USER]: {
-      authorizationStatus: `AUTH`,
-      userInfo: {
-        "id": 1,
-        "email": `O@gmail.com`,
-        "name": `O`,
-        "avatar_url": `/static/avatar/2.jpg`,
-        "is_pro": false
-      }
+      authorizationStatus: `AUTH`
     },
     [NameSpace.OFFER]: {
       id: `1`,
@@ -87,7 +80,13 @@ it(`<PlaceDetails /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <PlaceDetails idOffer={`1`} updateStatus={()=>{}} selectOffer={()=>{}}/>
+          <PlaceDetails
+            idOffer={`1`}
+            onUpdateStatus={() => {}}
+            onUpdateOfferInfo={() => {}}
+            onResetOfferInfo={()=>{}}
+            onSelectOffer={()=>{}}
+          />
         </Provider>
     )
     .toJSON();

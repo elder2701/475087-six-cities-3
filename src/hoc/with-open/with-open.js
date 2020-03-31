@@ -7,28 +7,28 @@ const withOpen = (Component) => {
       this.state = {
         open: false
       };
-      this.proccesingDocumentClick = this.proccesingDocumentClick.bind(this);
-      this.handleCloseOrOpen = this.handleCloseOrOpen.bind(this);
-      this.handleClose = this.handleClose.bind(this);
+      this._proccesingDocumentClick = this._proccesingDocumentClick.bind(this);
+      this.handleMenuCloseOrOpen = this.handleMenuCloseOrOpen.bind(this);
+      this.handleMenuClose = this.handleMenuClose.bind(this);
     }
 
-    proccesingDocumentClick() {
+    _proccesingDocumentClick() {
       this.setState({open: false});
-      document.removeEventListener(`click`, this.proccesingDocumentClick);
+      document.removeEventListener(`click`, this._proccesingDocumentClick);
     }
 
-    handleClose() {
+    handleMenuClose() {
       this.setState({open: false});
     }
 
-    handleCloseOrOpen() {
+    handleMenuCloseOrOpen() {
       this.setState((prevState) => ({open: !prevState.open}));
     }
 
     componentDidUpdate() {
       const {open} = this.state;
       if (open) {
-        document.addEventListener(`click`, this.proccesingDocumentClick);
+        document.addEventListener(`click`, this._proccesingDocumentClick);
       }
     }
 
@@ -39,8 +39,8 @@ const withOpen = (Component) => {
         <Component
           {...this.props}
           open={open}
-          handleCloseOrOpen={this.handleCloseOrOpen}
-          handleClose={this.handleClose}
+          onCloseOrOpen={this.handleMenuCloseOrOpen}
+          onClose={this.handleMenuClose}
         />
       );
     }

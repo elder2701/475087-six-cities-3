@@ -12,7 +12,7 @@ const bookMarkClasses = (isFavorite) =>
     ? `place-card__bookmark-button place-card__bookmark-button--active button`
     : `place-card__bookmark-button button`;
 
-const Offer = ({offer, typeCard, updateStatus}) => (
+const Offer = ({offer, typeCard, onUpdateStatus}) => (
   <Fragment>
     {offer.isPremium ? (
       <div className="place-card__mark">
@@ -40,7 +40,7 @@ const Offer = ({offer, typeCard, updateStatus}) => (
           className={bookMarkClasses(offer.isFavorite)}
           type="button"
           onClick={() => {
-            updateStatus(offer.id, offer.isFavorite);
+            onUpdateStatus(offer.id, offer.isFavorite);
           }}
         >
           <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -72,7 +72,7 @@ const Offer = ({offer, typeCard, updateStatus}) => (
 
 Offer.propTypes = {
   offer: PropTypes.object.isRequired,
-  updateStatus: PropTypes.func.isRequired,
+  onUpdateStatus: PropTypes.func.isRequired,
   typeCard: PropTypes.string.isRequired,
 };
 

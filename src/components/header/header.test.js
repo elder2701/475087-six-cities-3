@@ -12,7 +12,7 @@ it(`<Header /> sould be render`, () => {
           <Header
             authorizationStatus={AuthorizationStatus.AUTH}
             userInfo={{email: `123@123.ru`}}
-            loadFavorites={() => {}}
+            onLoadFavorites={() => {}}
           />
         </Router>
     )

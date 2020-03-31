@@ -7,7 +7,7 @@ import {OperationFavorites} from "../../reducer/operation/operation.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const.js";
 
-const Header = ({authorizationStatus, userInfo, loadFavorites}) => (
+const Header = ({authorizationStatus, userInfo, onLoadFavorites}) => (
   <header className="header">
     <div className="container">
       <div className="header__wrapper">
@@ -33,7 +33,7 @@ const Header = ({authorizationStatus, userInfo, loadFavorites}) => (
                   className="header__nav-link header__nav-link--profile"
                   to={AppRoute.MYLIST}
                   onClick={() => {
-                    loadFavorites();
+                    onLoadFavorites();
                   }}
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
@@ -52,23 +52,24 @@ const Header = ({authorizationStatus, userInfo, loadFavorites}) => (
   </header>
 );
 
+Header.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  userInfo: PropTypes.object.isRequired,
+  onLoadFavorites: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthStatus(state),
   userInfo: getUserInfo(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFavorites() {
+  onLoadFavorites() {
     dispatch(OperationFavorites.loadFavorites());
   }
 });
 
 export {Header};
-
 export default connect(mapStateToProps, mapDispatchToProps)(memo(Header));
 
-Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  userInfo: PropTypes.object.isRequired,
-  loadFavorites: PropTypes.func.isRequired
-};
+
