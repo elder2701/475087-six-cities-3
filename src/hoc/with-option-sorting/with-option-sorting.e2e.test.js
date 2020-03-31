@@ -16,6 +16,6 @@ const MockComponentWrapper = withOptionSorting(MockComponent);
 
 it(`MockComponent should select option`, ()=>{
   const renderComponent = shallow(<MockComponentWrapper/>);
-  renderComponent.instance().changeOptionSorting(`test`);
+  renderComponent.instance().handleOptionSortingChange(`test`);
   expect(renderComponent.state().optionSorting).toBe(`test`);
 });

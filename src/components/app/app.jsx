@@ -17,7 +17,7 @@ import Common from "../common/common.jsx";
 const MainWrapper = withOptionSorting(withSelectedOffer(Main));
 const PlaceDetailsWrapper = withSelectedOffer(PlaceDetails);
 
-const App = ({cityOffers, login, failStatus}) => {
+const App = ({cityOffers, onLogin, failStatus}) => {
   if (failStatus) {
     return <div>Server is not available </div>;
   }
@@ -44,7 +44,7 @@ const App = ({cityOffers, login, failStatus}) => {
       />
       <Route path={AppRoute.LOGIN}>
         <Common classPage={ClassPage.LOGIN}>
-          <SignIn submit={login}></SignIn>
+          <SignIn onLogin={onLogin}></SignIn>
         </Common>
       </Route>
       <PrivateRoute
@@ -66,7 +66,7 @@ const App = ({cityOffers, login, failStatus}) => {
 App.propTypes = {
   cityOffers: PropTypes.object,
   city: PropTypes.string,
-  login: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
   failStatus: PropTypes.bool.isRequired
 };
 
@@ -75,7 +75,7 @@ const mapStateToProps = (state) => ({
   failStatus: getFailStatus(state)
 });
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
+  onLogin(authData) {
     dispatch(OperationAuth.login(authData));
   }
 });

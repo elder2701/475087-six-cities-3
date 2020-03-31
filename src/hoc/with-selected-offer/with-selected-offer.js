@@ -7,10 +7,10 @@ const withSelectedOffer = (Component) => {
       this.state = {
         selectedOffer: null
       };
-      this.selectOffer = this.selectOffer.bind(this);
+      this.handleOfferSelect = this.handleOfferSelect.bind(this);
     }
 
-    selectOffer(selectedOffer) {
+    handleOfferSelect(selectedOffer) {
       this.setState({selectedOffer});
     }
 
@@ -19,7 +19,7 @@ const withSelectedOffer = (Component) => {
       return (
         <Component
           {...this.props}
-          selectOffer={this.selectOffer}
+          onSelectOffer={this.handleOfferSelect}
           selectedOffer={selectedOffer}
         />
       );

@@ -22,14 +22,15 @@ const PlaceReviews = ({comments, authStatus, selectedId}) => (
   </section>
 );
 
+PlaceReviews.propTypes = {
+  comments: PropTypes.array.isRequired,
+  authStatus: PropTypes.string.isRequired,
+  selectedId: PropTypes.number.isRequired
+};
+
 const mapStateToProps = (state) => ({
   authStatus: getAuthStatus(state)
 });
 
 export default connect(mapStateToProps)(memo(PlaceReviews));
 
-PlaceReviews.propTypes = {
-  comments: PropTypes.array.isRequired,
-  authStatus: PropTypes.string.isRequired,
-  selectedId: PropTypes.number.isRequired
-};

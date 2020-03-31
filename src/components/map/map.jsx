@@ -2,6 +2,19 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import l from "leaflet";
 
+const Size = {
+  ICON_SIZE: `ICON_SIZE`
+};
+
+const getSize = (iconSize) => {
+  switch (iconSize) {
+    case Size.ICON_SIZE:
+      return [30, 30];
+    default:
+      return [];
+  }
+};
+
 class Map extends PureComponent {
   constructor(props) {
     super(props);
@@ -9,11 +22,11 @@ class Map extends PureComponent {
     this.markers = null;
     this.icon = l.icon({
       iconUrl: `/img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: getSize(Size.ICON_SIZE)
     });
     this.iconActive = l.icon({
       iconUrl: `/img/pin-active.svg`,
-      iconSize: [30, 30]
+      iconSize: getSize(Size.ICON_SIZE)
     });
   }
 
@@ -67,8 +80,6 @@ class Map extends PureComponent {
   }
 }
 
-export default Map;
-
 Map.propTypes = {
   offersCoords: PropTypes.array.isRequired,
   selectedOffer: PropTypes.any,
@@ -79,3 +90,6 @@ Map.propTypes = {
     zoom: PropTypes.number.isRequired
   }).isRequired
 };
+
+export default Map;
+

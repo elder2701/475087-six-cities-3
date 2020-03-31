@@ -13,18 +13,18 @@ const mockEvent = {
 };
 
 it(`Option onclick`, () => {
-  const selectOption = jest.fn();
+  const onSelectOption = jest.fn();
   const screen = mount(
       <SortingOptions
-        selectOption={selectOption}
+        onSelectOption={onSelectOption}
         open={true}
-        handleCloseOrOpen={() => {}}
-        handleClose={() => {}}
+        onCloseOrOpen={() => {}}
+        onClose={() => {}}
         optionSorting="Popular"
       />
   );
   const title = screen.find(`li`).at(0);
 
   title.simulate(`click`, mockEvent);
-  expect(selectOption).toHaveBeenCalledTimes(1);
+  expect(onSelectOption).toHaveBeenCalledTimes(1);
 });

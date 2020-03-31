@@ -44,7 +44,7 @@ it(`<FavoritesList /> sould be render`, () => {
     .create(
         <Provider store={store}>
           <Router history={history}>
-            <FavoritesList/>
+            <FavoritesList onUpdateStatus={()=>{}}/>
           </Router>
         </Provider>
     )

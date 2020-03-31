@@ -12,18 +12,17 @@ const openingClass = `places__options places__options--custom places__options--o
 const closingClass = `places__options places__options--custom`;
 
 const SortingOptions = ({
-  selectOption,
+  onSelectOption,
   optionSorting,
   open,
-  handleClose,
-  handleCloseOrOpen
+  onClose,
+  onCloseOrOpen
 }) => (
   <form className="places__sorting" action="#" method="get">
     <span className="places__sorting-caption">Sort by</span>
     <span
-      onClick={(evt) => {
-        evt.preventDefault();
-        handleCloseOrOpen();
+      onClick={() => {
+        onCloseOrOpen();
       }}
       className="places__sorting-type"
       tabIndex="0"
@@ -36,10 +35,9 @@ const SortingOptions = ({
     <ul className={open ? openingClass : closingClass}>
       {sortingOptions.map((option, index) => (
         <li
-          onClick={(evt) => {
-            evt.preventDefault();
-            handleClose();
-            selectOption(option);
+          onClick={() => {
+            onClose();
+            onSelectOption(option);
           }}
           key={index}
           className={
@@ -56,12 +54,13 @@ const SortingOptions = ({
   </form>
 );
 
-export default memo(SortingOptions);
-
 SortingOptions.propTypes = {
-  handleCloseOrOpen: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  onCloseOrOpen: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  selectOption: PropTypes.func,
+  onSelectOption: PropTypes.func,
   optionSorting: PropTypes.string.isRequired
 };
+
+export default memo(SortingOptions);
+
