@@ -6,6 +6,8 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const cityOffers = {
   offers: [
@@ -144,12 +146,15 @@ it(`<App /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App
-            city={``}
-            login={() => {}}
-            cityOffers={cityOffers}
-            onSelectOffer={() => {}}
-          />
+          <Router history={history}>
+            <App
+              failStatus={false}
+              city={``}
+              login={() => {}}
+              cityOffers={cityOffers}
+              selectOffer={() => {}}
+            />
+          </Router>
         </Provider>
     )
     .toJSON();

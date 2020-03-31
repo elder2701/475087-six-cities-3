@@ -2,7 +2,7 @@
 
 exports[`<Map /> sould be render 1`] = `
 <section
-  className=""
+  className=" map"
   id="map"
 />
 `;

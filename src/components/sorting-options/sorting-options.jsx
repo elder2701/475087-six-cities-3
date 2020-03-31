@@ -12,7 +12,7 @@ const openingClass = `places__options places__options--custom places__options--o
 const closingClass = `places__options places__options--custom`;
 
 const SortingOptions = ({
-  onSelectOption,
+  selectOption,
   optionSorting,
   open,
   handleClose,
@@ -39,7 +39,7 @@ const SortingOptions = ({
           onClick={(evt) => {
             evt.preventDefault();
             handleClose();
-            onSelectOption(option);
+            selectOption(option);
           }}
           key={index}
           className={
@@ -53,14 +53,6 @@ const SortingOptions = ({
         </li>
       ))}
     </ul>
-    {/* <!--
-                <select class="places__sorting-type" id="places-sorting">
-                  <option class="places__option" value="popular" selected="">Popular</option>
-                  <option class="places__option" value="to-high">Price: low to high</option>
-                  <option class="places__option" value="to-low">Price: high to low</option>
-                  <option class="places__option" value="top-rated">Top rated first</option>
-                </select>
-                -->*/}
   </form>
 );
 
@@ -70,6 +62,6 @@ SortingOptions.propTypes = {
   handleCloseOrOpen: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  onSelectOption: PropTypes.func,
+  selectOption: PropTypes.func,
   optionSorting: PropTypes.string.isRequired
 };

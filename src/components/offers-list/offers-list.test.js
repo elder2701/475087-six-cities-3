@@ -3,6 +3,8 @@ import renderer from "react-test-renderer";
 import OffersList from "./offers-list.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const mockStore = configureStore([]);
 
@@ -54,7 +56,14 @@ it(`<OffersList /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <OffersList cityOffers={offers} />
+          <Router history={history}>
+            <OffersList
+              cityOffers={offers}
+              type={``}
+              updateStatus={() => {}}
+              hoverActiveCard={() => {}}
+            />
+          </Router>
         </Provider>
     )
     .toJSON();

@@ -233,19 +233,27 @@ describe(`Operation work correctly`, () => {
     });
   });
 
-  it(`Should make a correct API call to /comment/:id. Send comment`, () => {
+  it(`Should make a correct API call to /comments/:id. Send comment`, () => {
     const dispatch = jest.fn();
     const loader = OperationComment.sendComment(1, {
       comment: `testnamesstestnamesstestnamesstestnamesstestnamess`,
       rating: `3`
     });
-    apiMock.onPost(`/comment/1`).reply(200, {
+    apiMock.onPost(`/comments/1`).reply(200, {
       comment: `testnamesstestnamesstestnamesstestnamesstestnamess`,
       rating: `3`
     });
 
     return loader(dispatch, () => {}, api).then(() => {
       expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: OfferActionType.LOAD_OFFER_COMMENTS,
+        payload: {
+          comment: `testnamesstestnamesstestnamesstestnamesstestnamess`,
+          rating: `3`
+        }
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
         type: OfferActionType.SEND_COMMENT_OFFER,
         payload: true
       });

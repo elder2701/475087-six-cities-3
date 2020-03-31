@@ -7,8 +7,9 @@ it(`<NavCities /> sould be render`, () => {
     .create(
         <NavCities
           cities={[`qwe`, `das`]}
-          onChangeCity={() => {}}
+          changeCity={() => {}}
           getCityOffers={() => {}}
+          activeCity={``}
         />
     )
     .toJSON();

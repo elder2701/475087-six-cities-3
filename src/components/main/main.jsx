@@ -11,7 +11,7 @@ import {getSortedOffers, getCityInfo} from "../../reducer/data/selectors.js";
 const SortingOptionsWrapper = withOpen(SortingOptions);
 
 const Main = ({
-  onSelectOffer,
+  selectOffer,
   selectedOffer,
   cityInfo,
   cityOffers,
@@ -24,17 +24,17 @@ const Main = ({
   const offersCoords = Array.from(cityOffers, (item) => {
     return [item.id, item.location];
   });
-
-  const cityPlaceContainerType = placesCount
+  const commonDivClasses = placesCount
     ? ``
     : `cities__places-container--empty`;
+  const mainClasses = placesCount ? `` : `page__main--index-empty`;
   return (
-    <main className="page__main page__main--index">
+    <main className={`page__main page__main--index ${mainClasses}`}>
       <h1 className="visually-hidden">Cities</h1>
       <NavCities />
       <div className="cities">
         <div
-          className={`cities__places-container container ${cityPlaceContainerType}`}
+          className={`cities__places-container container ${commonDivClasses}`}
         >
           {placesCount ? (
             <section className="cities__places places">
@@ -43,12 +43,12 @@ const Main = ({
                 {placesCount} places to stay in {city}
               </b>
               <SortingOptionsWrapper
-                onSelectOption={changeOptionSorting}
+                selectOption={changeOptionSorting}
                 optionSorting={optionSorting}
               />
               <OffersList
                 cityOffers={cityOffers}
-                onHoverActiveCard={onSelectOffer}
+                hoverActiveCard={selectOffer}
                 type={`cities__places-list tabs__content`}
               />
             </section>
@@ -93,7 +93,7 @@ Main.propTypes = {
   selectedOffer: PropTypes.number,
   handleSelectOffer: PropTypes.func,
   type: PropTypes.string,
-  onSelectOffer: PropTypes.func,
+  selectOffer: PropTypes.func,
   cityInfo: PropTypes.object.isRequired,
   cityOffers: PropTypes.array.isRequired
 };

@@ -8,11 +8,11 @@ class Map extends PureComponent {
     this.myMap = null;
     this.markers = null;
     this.icon = l.icon({
-      iconUrl: `img/pin.svg`,
+      iconUrl: `/img/pin.svg`,
       iconSize: [30, 30]
     });
     this.iconActive = l.icon({
-      iconUrl: `img/pin-active.svg`,
+      iconUrl: `/img/pin-active.svg`,
       iconSize: [30, 30]
     });
   }
@@ -63,7 +63,7 @@ class Map extends PureComponent {
 
   render() {
     const {name} = this.props;
-    return <section className={name} id="map"></section>;
+    return <section className={name + ` map`} id="map"></section>;
   }
 }
 
