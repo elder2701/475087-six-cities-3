@@ -13,8 +13,6 @@ import {getCityInfo} from "../../reducer/data/selectors.js";
 import {OperationFavorites} from "../../reducer/operation/operation.js";
 import {OperationOffer} from "../../reducer/operation/operation.js";
 import {ActionCreator} from "../../reducer/offer/offer.js";
-import {Redirect} from "react-router-dom";
-import {AppRoute} from "../../const.js";
 
 const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
@@ -48,9 +46,6 @@ class PlaceDetails extends Component {
       cityInfo,
       updateStatus
     } = this.props;
-    if (!details) {
-      return <Redirect to={AppRoute.ROOT}/>;
-    }
     const {
       isFavorite,
       isPremium,

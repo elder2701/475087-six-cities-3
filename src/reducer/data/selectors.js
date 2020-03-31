@@ -1,4 +1,5 @@
 import NameSpace from "../name-space.js";
+import {getCity} from "../city/selectors.js"
 import {createSelector} from "reselect";
 
 const getCities = (state) => Object.keys(state[NameSpace.DATA].offers).sort();
@@ -8,12 +9,11 @@ const getCityOffers = (state) => {
 
 const getFirstCity = createSelector(getCities, (cities) => cities[0]);
 
-const getCityFromState = (state) => state[NameSpace.CITY].city;
 const cityOffersSelector = (state) => state[NameSpace.DATA].offers;
 const getOptionSelector = (state, props) => props.optionSorting;
 const getFailStatus = (state) => state[NameSpace.DATA].failStatus;
 const getSortedOffers = createSelector(
-    [cityOffersSelector, getCityFromState, getOptionSelector],
+    [cityOffersSelector, getCity, getOptionSelector],
     (offers, city, option) => {
       switch (option) {
         case `Price: low to high`:
