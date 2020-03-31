@@ -1,5 +1,5 @@
 import NameSpace from "../name-space.js";
-import {getCity} from "../city/selectors.js"
+import {getCity} from "../city/selectors.js";
 import {createSelector} from "reselect";
 
 const getCities = (state) => Object.keys(state[NameSpace.DATA].offers).sort();
