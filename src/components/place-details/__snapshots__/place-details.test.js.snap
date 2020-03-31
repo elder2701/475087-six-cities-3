@@ -12,26 +12,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
     >
       <div
         className="property__gallery"
-      >
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src=""
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src=""
-          />
-        </div>
-      </div>
+      />
     </div>
     <div
       className="property__container container"
@@ -52,14 +33,15 @@ exports[`<PlaceDetails /> sould be render 1`] = `
           <h1
             className="property__name"
           >
-            Beautiful & luxurious apartment at great location
+            The house among olive 
           </h1>
           <button
             className="property__bookmark-button button"
+            onClick={[Function]}
             type="button"
           >
             <svg
-              className="property__bookmark-icon"
+              className="property__bookmark-icon place-card__bookmark-icon"
               height="33"
               width="31"
             >
@@ -83,7 +65,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             <span
               style={
                 Object {
-                  "width": "80%",
+                  "width": "60%",
                 }
               }
             />
@@ -96,7 +78,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
           <span
             className="property__rating-value rating__value"
           >
-            4
+            3.4
           </span>
         </div>
         <ul
@@ -105,19 +87,19 @@ exports[`<PlaceDetails /> sould be render 1`] = `
           <li
             className="property__feature property__feature--entire"
           >
-            Apartment
+            apartment
           </li>
           <li
             className="property__feature property__feature--bedrooms"
           >
-            0
+            3
              Bedrooms
           </li>
           <li
             className="property__feature property__feature--adults"
           >
             Max 
-            0
+            4
              adults
           </li>
         </ul>
@@ -128,7 +110,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             className="property__price-value"
           >
             €
-            822
+            148
           </b>
           <span
             className="property__price-text"
@@ -150,37 +132,17 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             <li
               className="property__inside-item"
             >
-              Wi-Fi
+              Washer
             </li>
             <li
               className="property__inside-item"
             >
-              Washing machine
+              Breakfast
             </li>
             <li
               className="property__inside-item"
             >
-              Towels
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Heating
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Coffee machine
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Baby seat
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Kitchen
+              Laptop friendly workspace
             </li>
             <li
               className="property__inside-item"
@@ -190,7 +152,12 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             <li
               className="property__inside-item"
             >
-              Cabel TV
+              Towels
+            </li>
+            <li
+              className="property__inside-item"
+            >
+              Baby seat
             </li>
             <li
               className="property__inside-item"
@@ -200,12 +167,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             <li
               className="property__inside-item"
             >
-              Cabel TV
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Fridge
+              Air conditioning
             </li>
           </ul>
         </div>
@@ -227,7 +189,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
                 alt="Host avatar"
                 className="property__avatar user__avatar"
                 height="74"
-                src=""
+                src="/img/avatar-angelina.jpg"
                 width="74"
               />
             </div>
@@ -243,7 +205,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             <p
               className="property__text"
             >
-              A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+              I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!
             </p>
           </div>
         </div>
@@ -446,7 +408,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
       </div>
     </div>
     <section
-      className="property__map"
+      className="property__map map"
       id="map"
     />
   </section>

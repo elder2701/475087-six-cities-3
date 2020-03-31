@@ -3,6 +3,8 @@ import renderer from "react-test-renderer";
 import Offer from "./offer.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const offer = {
   id: 4,
@@ -21,7 +23,13 @@ it(`<Offer /> sould be render`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Offer offer={offer} onHoverActiveCard={() => {}} />
+          <Router history={history}>
+            <Offer
+              offer={offer}
+              typeCard={``}
+              updateStatus={() => {}}
+            />
+          </Router>
         </Provider>
     )
     .toJSON();

@@ -94,7 +94,7 @@ it(`<SignIn /> sould be render`, () => {
     .create(
         <Provider store={store}>
           <Router history={history}>
-            <SignIn onSubmit={()=>{}} />
+            <SignIn submit={()=>{}} />
           </Router>
         </Provider>
     )

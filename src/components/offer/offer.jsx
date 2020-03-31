@@ -1,8 +1,6 @@
-import React, {memo} from "react";
+import React, {memo, Fragment} from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/offer/offer.js";
-import {OperationOffer, OperationFavorites} from "../../reducer/operation/operation.js";
+import {Link} from "react-router-dom";
 
 const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
@@ -14,24 +12,14 @@ const bookMarkClasses = (isFavorite) =>
     ? `place-card__bookmark-button place-card__bookmark-button--active button`
     : `place-card__bookmark-button button`;
 
-const Offer = ({offer, onHoverActiveCard, handleSelectOffer, handleChangeFavorite}) => (
-  <article
-    className="cities__place-card place-card"
-    onMouseOver={(evt) => {
-      evt.preventDefault();
-      onHoverActiveCard(offer.id);
-    }}
-    onMouseOut={(evt) => {
-      evt.preventDefault();
-      onHoverActiveCard(null);
-    }}
-  >
+const Offer = ({offer, typeCard, updateStatus}) => (
+  <Fragment>
     {offer.isPremium ? (
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
     ) : null}
-    <div className="cities__image-wrapper place-card__image-wrapper">
+    <div className={`${typeCard}__image-wrapper place-card__image-wrapper`}>
       <a href="#">
         <img
           className="place-card__image"
@@ -42,7 +30,7 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer, handleChangeFavorit
         />
       </a>
     </div>
-    <div className="place-card__info">
+    <div className={`${typeCard}__card-info place-card__info`}>
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">&euro;{offer.price}</b>
@@ -51,8 +39,8 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer, handleChangeFavorit
         <button
           className={bookMarkClasses(offer.isFavorite)}
           type="button"
-          onClick={()=>{
-            handleChangeFavorite(offer.id, offer.isFavorite);
+          onClick={() => {
+            updateStatus(offer.id, offer.isFavorite);
           }}
         >
           <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -67,38 +55,26 @@ const Offer = ({offer, onHoverActiveCard, handleSelectOffer, handleChangeFavorit
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
-      <h2
-        className="place-card__name"
-        onClick={(evt) => {
-          evt.preventDefault();
-          handleSelectOffer(offer.id);
-        }}
-      >
-        <a href="#">{offer.title}</a>
+      <h2 className="place-card__name">
+        <Link
+          to={`/offer/${offer.id}`}
+          onClick={()=>{
+            window.scrollTo(0, 0);
+          }}
+        >
+          {offer.title}
+        </Link>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>
-  </article>
+  </Fragment>
 );
 
 Offer.propTypes = {
   offer: PropTypes.object.isRequired,
-  onHoverActiveCard: PropTypes.func,
-  handleSelectOffer: PropTypes.func,
-  handleChangeFavorite: PropTypes.func
+  updateStatus: PropTypes.func.isRequired,
+  typeCard: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = () => ({});
-const mapDispatchToProps = (dispatch) => ({
-  handleSelectOffer(id) {
-    dispatch(ActionCreator.setSelectedOffer(id));
-    dispatch(OperationOffer.loadOfferComments(id));
-    dispatch(OperationOffer.loadOffersAround(id));
-  },
-  handleChangeFavorite(id, status) {
-    dispatch(OperationFavorites.changeStatusFavorite(id, !status));
-  }
-});
-
 export {Offer};
-export default connect(mapStateToProps, mapDispatchToProps)(memo(Offer));
+export default memo(Offer);

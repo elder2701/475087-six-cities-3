@@ -1,10 +1,11 @@
-import React, {PureComponent, createRef, Fragment} from "react";
+import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getFirstCity} from "../../reducer/data/selectors.js";
 import {getAuthStatus} from "../../reducer/user/selector.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Redirect} from "react-router-dom";
+import {AppRoute} from "../../const.js";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -16,9 +17,9 @@ class SignIn extends PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
+    const {submit} = this.props;
     evt.preventDefault();
-    onSubmit({
+    submit({
       login: this.loginRef.current.value,
       password: this.passRef.current.value
     });
@@ -27,9 +28,11 @@ class SignIn extends PureComponent {
   render() {
     const {firstCity, authStatus} = this.props;
     return (
-      <Fragment>
-        {authStatus === AuthorizationStatus.AUTH ? (<Redirect to={`/`}/>) :
-          (<div className="page__login-container container">
+      <main className="page__main page__main--login">
+        {authStatus === AuthorizationStatus.AUTH ? (
+          <Redirect to={AppRoute.ROOT} />
+        ) : (
+          <div className="page__login-container container">
             <section className="login">
               <h1 className="login__title">Sign in</h1>
               <form
@@ -60,8 +63,11 @@ class SignIn extends PureComponent {
                     ref={this.passRef}
                   />
                 </div>
-                <button className="login__submit form__submit button" type="submit">
-              Sign in
+                <button
+                  className="login__submit form__submit button"
+                  type="submit"
+                >
+                  Sign in
                 </button>
               </form>
             </section>
@@ -72,8 +78,9 @@ class SignIn extends PureComponent {
                 </a>
               </div>
             </section>
-          </div>)}
-      </Fragment>
+          </div>
+        )}
+      </main>
     );
   }
 }
@@ -83,9 +90,8 @@ const mapStateToProps = (state) => ({
   authStatus: getAuthStatus(state)
 });
 
-
 SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired,
   firstCity: PropTypes.string.isRequired,
   authStatus: PropTypes.string.isRequired
 };
