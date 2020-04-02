@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {OperationFavorites} from "../../reducer/operation/operation.js";
 import {getFavorites} from "../../reducer/favorite/selector.js";
@@ -15,7 +15,7 @@ const setMainClasses = (empty) =>
     ? `page__main page__main--favorites`
     : `page__main page__main--favorites page__main--favorites-empty`;
 
-class FavoritesList extends Component {
+class FavoritesList extends PureComponent {
   componentDidMount() {
     const {onLoadFavorites} = this.props;
     onLoadFavorites();
