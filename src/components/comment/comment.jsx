@@ -38,7 +38,12 @@ const Comment = ({user, rating, comment, date}) => {
 };
 
 Comment.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    "id": PropTypes.number.isRequired,
+    "is_pro": PropTypes.bool.isRequired,
+    "name": PropTypes.string.isRequired,
+    "avatar_url": PropTypes.string.isRequired
+  }).isRequired,
   rating: PropTypes.number.isRequired,
   comment: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired

@@ -4,7 +4,12 @@ import Offer from "../offer/offer.jsx";
 import {connect} from "react-redux";
 import {OperationFavorites} from "../../reducer/operation/operation.js";
 
-const OffersList = ({onHoverActiveCard, cityOffers, type, onUpdateStatus}) => (
+const OffersList = ({
+  onHoverActiveCard,
+  cityOffers,
+  type,
+  onUpdateStatus
+}) => (
   <div className={`${type} places__list`}>
     {cityOffers.map((offer) => (
       <article
@@ -19,7 +24,11 @@ const OffersList = ({onHoverActiveCard, cityOffers, type, onUpdateStatus}) => (
           onHoverActiveCard(null);
         }}
       >
-        <Offer offer={offer} typeCard={`cities`} onUpdateStatus={onUpdateStatus} />
+        <Offer
+          offer={offer}
+          typeCard={`cities`}
+          onUpdateStatus={onUpdateStatus}
+        />
       </article>
     ))}
   </div>
@@ -27,7 +36,23 @@ const OffersList = ({onHoverActiveCard, cityOffers, type, onUpdateStatus}) => (
 
 OffersList.propTypes = {
   onHoverActiveCard: PropTypes.func.isRequired,
-  cityOffers: PropTypes.array.isRequired,
+  cityOffers: PropTypes.arrayOf(
+      PropTypes.shape({
+        images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        title: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        bedrooms: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        description: PropTypes.string.isRequired,
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired
+        }).isRequired
+      }).isRequired
+  ).isRequired,
   type: PropTypes.string.isRequired,
   onUpdateStatus: PropTypes.func.isRequired
 };

@@ -58,7 +58,7 @@ const Offer = ({offer, typeCard, onUpdateStatus}) => (
       <h2 className="place-card__name">
         <Link
           to={`/offer/${offer.id}`}
-          onClick={()=>{
+          onClick={() => {
             window.scrollTo(0, 0);
           }}
         >
@@ -71,9 +71,32 @@ const Offer = ({offer, typeCard, onUpdateStatus}) => (
 );
 
 Offer.propTypes = {
-  offer: PropTypes.object.isRequired,
+  offer: PropTypes.shape({
+    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    title: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    description: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired
+    }).isRequired,
+    id: PropTypes.number.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    hostId: PropTypes.number.isRequired,
+    hostName: PropTypes.string.isRequired,
+    hostIsPro: PropTypes.bool.isRequired,
+    hostAvatarUrl: PropTypes.string.isRequired
+  }).isRequired,
   onUpdateStatus: PropTypes.func.isRequired,
-  typeCard: PropTypes.string.isRequired,
+  typeCard: PropTypes.string.isRequired
 };
 
 export {Offer};

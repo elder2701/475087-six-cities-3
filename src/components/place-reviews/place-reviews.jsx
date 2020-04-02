@@ -23,7 +23,18 @@ const PlaceReviews = ({comments, authStatus, selectedId}) => (
 );
 
 PlaceReviews.propTypes = {
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      "id": PropTypes.number.isRequired,
+      "is_pro": PropTypes.bool.isRequired,
+      "name": PropTypes.string.isRequired,
+      "avatar_url": PropTypes.string.isRequired
+    }).isRequired,
+    rating: PropTypes.number.isRequired,
+    comment: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired
+  })).isRequired,
   authStatus: PropTypes.string.isRequired,
   selectedId: PropTypes.number.isRequired
 };

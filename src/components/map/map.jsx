@@ -81,8 +81,17 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offersCoords: PropTypes.array.isRequired,
-  selectedOffer: PropTypes.any,
+  offersCoords: PropTypes.arrayOf(
+      PropTypes.oneOf([
+        PropTypes.number.isRequired,
+        PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired
+        }).isRequired
+      ]).isRequired
+  ).isRequired,
+  selectedOffer: PropTypes.number,
   name: PropTypes.string.isRequired,
   cityLocation: PropTypes.shape({
     latitude: PropTypes.number.isRequired,
@@ -92,4 +101,3 @@ Map.propTypes = {
 };
 
 export default Map;
-

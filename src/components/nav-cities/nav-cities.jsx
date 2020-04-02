@@ -34,7 +34,7 @@ const NavCities = ({onChangeCity, cities, activeCity}) => (
 
 NavCities.propTypes = {
   onChangeCity: PropTypes.func.isRequired,
-  cities: PropTypes.array.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   activeCity: PropTypes.string.isRequired
 };
 

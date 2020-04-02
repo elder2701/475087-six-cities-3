@@ -220,12 +220,48 @@ PlaceDetails.propTypes = {
     bedrooms: PropTypes.number.isRequired,
     isFavorite: PropTypes.bool.isRequired
   }).isRequired,
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      "id": PropTypes.number.isRequired,
+      "is_pro": PropTypes.bool.isRequired,
+      "name": PropTypes.string.isRequired,
+      "avatar_url": PropTypes.string.isRequired
+    }).isRequired,
+    rating: PropTypes.number.isRequired,
+    comment: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired
+  }).isRequired).isRequired,
   selectedOffer: PropTypes.number,
   onUpdateOfferInfo: PropTypes.func.isRequired,
   onSelectOffer: PropTypes.func.isRequired,
-  nearPlaces: PropTypes.array.isRequired,
-  cityInfo: PropTypes.object.isRequired,
+  nearPlaces: PropTypes.arrayOf(
+      PropTypes.shape({
+        images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        title: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        bedrooms: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        description: PropTypes.string.isRequired,
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired
+        }).isRequired
+      }).isRequired
+  ).isRequired,
+  cityInfo: PropTypes.objectOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired
+        }).isRequired
+      }).isRequired
+  ).isRequired,
   onUpdateStatus: PropTypes.func.isRequired,
   onResetOfferInfo: PropTypes.func.isRequired,
 };
