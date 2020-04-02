@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import OffersList from "../offers-list/offers-list.jsx";
 import PlaceReviews from "../place-reviews/place-reviews.jsx";
 import Map from "../map/map.jsx";
@@ -24,7 +24,7 @@ const bookMarkClasses = (isFavorite) =>
     ? `property__bookmark-button property__bookmark-button--active button`
     : `property__bookmark-button button`;
 
-class PlaceDetails extends Component {
+class PlaceDetails extends PureComponent {
   componentDidMount() {
     const {idOffer, onUpdateOfferInfo} = this.props;
     onUpdateOfferInfo(+idOffer);
