@@ -33,6 +33,21 @@ it(`Reducer should get city offers`, () => {
   expect(state.offers.length).toBe(2);
 });
 
+it(`Reducer should set fail status`, () => {
+  const state = reducer(
+      false,
+      {type: ActionType.LOAD_OFFERS_FAIL, payload: true}
+  );
+  expect(state.failStatus).toBeTruthy();
+});
+
+it(`Action creator for changing status`, () => {
+  const actCreatorResult = ActionCreator.setFailStatus(true);
+  expect(actCreatorResult.type).toEqual(ActionType.LOAD_OFFERS_FAIL);
+  expect(actCreatorResult.payload).toBeTruthy();
+});
+
+
 it(`Action creator for changing city`, () => {
   const actCreatorResult = ActionCreator.loadOffers(cities);
   expect(actCreatorResult.type).toEqual(ActionType.LOAD_OFFERS);

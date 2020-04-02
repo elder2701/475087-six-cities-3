@@ -20,12 +20,12 @@ describe(`Click events`, () => {
       <CommentForm
         value={`1`}
         text={text}
-        handleChangeText = {()=>{}}
-        handleChange={clickStar}
+        onChangeText = {()=>{}}
+        onChange={clickStar}
         selectedId={1}
         isSendComment={true}
-        sendComment={clickSubmit}
-        sending={()=>{}}
+        onSendComment={clickSubmit}
+        onSending={()=>{}}
 
       />
   );

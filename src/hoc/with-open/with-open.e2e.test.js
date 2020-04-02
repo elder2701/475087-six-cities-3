@@ -18,13 +18,13 @@ describe(`State tests`, ()=>{
   const renderComponent = shallow(<MockComponentWrapper/>);
 
   it(`MockComponent is open`, ()=>{
-    renderComponent.instance().handleClose();
+    renderComponent.instance().handleMenuClose();
     expect(renderComponent.state().open).toBeFalsy();
 
   });
 
   it(`MockComponent is open`, ()=>{
-    renderComponent.instance().handleCloseOrOpen(false);
+    renderComponent.instance().handleMenuCloseOrOpen(false);
     expect(renderComponent.state().open).toBeTruthy();
   });
 });

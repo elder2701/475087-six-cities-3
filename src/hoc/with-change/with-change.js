@@ -8,15 +8,15 @@ const withChange = (Component) => {
         value: ``,
         text: ``
       };
-      this.handleChange = this.handleChange.bind(this);
-      this.handleChangeText = this.handleChangeText.bind(this);
+      this.handleInputChange = this.handleInputChange.bind(this);
+      this.handleTextInputChange = this.handleTextInputChange.bind(this);
     }
 
-    handleChange(value) {
+    handleInputChange(value) {
       this.setState({value});
     }
 
-    handleChangeText(text) {
+    handleTextInputChange(text) {
       this.setState({text});
     }
 
@@ -25,8 +25,8 @@ const withChange = (Component) => {
       return (
         <Component
           {...this.props}
-          handleChange={this.handleChange}
-          handleChangeText={this.handleChangeText}
+          onChange={this.handleInputChange}
+          onChangeText={this.handleTextInputChange}
           value={value}
           text={text}
         />

@@ -56,25 +56,25 @@ const mockEvent = {
 };
 
 describe(`Mouse events`, () => {
-  const handleChangeFavorite = jest.fn();
+  const changeFavorite = jest.fn();
   const screen = shallow(
       <PlaceDetails
         idOffer={`1`}
         details={offer}
-        updateStatus={handleChangeFavorite}
+        onUpdateStatus={changeFavorite}
         cityInfo={{location: {longitude: 1, latitude: 1, zoom: 1}}}
         nearPlaces={[]}
-        handleSelectOffer={()=>{}}
-        selectOffer={()=>{}}
+        onUpdateOfferInfo={()=>{}}
+        onSelectOffer={()=>{}}
         comments={[]}
         resetId={()=>{}}
-        resetOfferCommentAndNearPlaces={()=>{}}
+        onResetOfferInfo={()=>{}}
       />
   );
 
   it(`Button click`, () => {
     const button = screen.find(`button`);
     button.simulate(`click`, mockEvent);
-    expect(handleChangeFavorite).toHaveBeenCalledTimes(1);
+    expect(changeFavorite).toHaveBeenCalledTimes(1);
   });
 });

@@ -26,25 +26,25 @@ const bookMarkClasses = (isFavorite) =>
 
 class PlaceDetails extends Component {
   componentDidMount() {
-    const {idOffer, handleSelectOffer} = this.props;
-    handleSelectOffer(+idOffer);
+    const {idOffer, onUpdateOfferInfo} = this.props;
+    onUpdateOfferInfo(+idOffer);
   }
 
   componentWillUnmount() {
-    const {resetOfferCommentAndNearPlaces} = this.props;
-    resetOfferCommentAndNearPlaces();
+    const {onResetOfferInfo} = this.props;
+    onResetOfferInfo();
   }
 
   render() {
     const {
       idOffer,
       selectedOffer,
-      selectOffer,
+      onSelectOffer,
       details,
       nearPlaces,
       comments,
       cityInfo,
-      updateStatus
+      onUpdateStatus
     } = this.props;
     const {
       isFavorite,
@@ -95,7 +95,7 @@ class PlaceDetails extends Component {
                   className={bookMarkClasses(isFavorite)}
                   type="button"
                   onClick={() => {
-                    updateStatus(idOffer, !isFavorite);
+                    onUpdateStatus(idOffer, !isFavorite);
                   }}
                 >
                   <svg
@@ -185,7 +185,7 @@ class PlaceDetails extends Component {
             </h2>
             <OffersList
               cityOffers={nearPlaces}
-              hoverActiveCard={selectOffer}
+              onHoverActiveCard={onSelectOffer}
               type={`near-places__list`}
             />
           </section>
@@ -201,24 +201,6 @@ const mapStateToProps = (state, props) => ({
   cityInfo: getCityInfo(state),
   details: getSelectedOffer(state, props)
 });
-
-const mapDispatchToProps = (dispatch) => ({
-  updateStatus(id, status) {
-    dispatch(OperationFavorites.changeStatusFavorite(id, status));
-  },
-  handleSelectOffer(id) {
-    dispatch(OperationOffer.loadOfferComments(id));
-    dispatch(OperationOffer.loadOffersAround(id));
-  },
-  resetOfferCommentAndNearPlaces() {
-    dispatch(ActionCreator.loadOfferComments([]));
-    dispatch(ActionCreator.loadOffersAround([]));
-  }
-});
-
-export {PlaceDetails};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);
 
 PlaceDetails.propTypes = {
   idOffer: PropTypes.string.isRequired,
@@ -240,10 +222,27 @@ PlaceDetails.propTypes = {
   }).isRequired,
   comments: PropTypes.array.isRequired,
   selectedOffer: PropTypes.number,
-  handleSelectOffer: PropTypes.func.isRequired,
-  selectOffer: PropTypes.func.isRequired,
+  onUpdateOfferInfo: PropTypes.func.isRequired,
+  onSelectOffer: PropTypes.func.isRequired,
   nearPlaces: PropTypes.array.isRequired,
   cityInfo: PropTypes.object.isRequired,
-  updateStatus: PropTypes.func.isRequired,
-  resetOfferCommentAndNearPlaces: PropTypes.func.isRequired,
+  onUpdateStatus: PropTypes.func.isRequired,
+  onResetOfferInfo: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  onUpdateStatus(id, status) {
+    dispatch(OperationFavorites.changeStatusFavorite(id, status));
+  },
+  onUpdateOfferInfo(id) {
+    dispatch(OperationOffer.loadOfferComments(id));
+    dispatch(OperationOffer.loadOffersAround(id));
+  },
+  onResetOfferInfo() {
+    dispatch(ActionCreator.loadOfferComments([]));
+    dispatch(ActionCreator.loadOffersAround([]));
+  }
+});
+
+export {PlaceDetails};
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);

@@ -1,23 +1,29 @@
-import React from 'react';
+import React from "react";
 
 const withOptionSorting = (Component) => {
   class WithOptionSorting extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        optionSorting: `Popular`,
+        optionSorting: `Popular`
       };
-      this.changeOptionSorting = this.changeOptionSorting.bind(this);
+      this.handleOptionSortingChange = this.handleOptionSortingChange.bind(this);
     }
 
-    changeOptionSorting(option) {
+    handleOptionSortingChange(option) {
       this.setState({optionSorting: option});
     }
 
     render() {
       const {optionSorting} = this.state;
 
-      return <Component {...this.props} changeOptionSorting={this.changeOptionSorting} optionSorting={optionSorting}/>;
+      return (
+        <Component
+          {...this.props}
+          onChangeOptionSorting={this.handleOptionSortingChange}
+          optionSorting={optionSorting}
+        />
+      );
     }
   }
   return WithOptionSorting;

@@ -60,8 +60,8 @@ it(`<OffersList /> sould be render`, () => {
             <OffersList
               cityOffers={offers}
               type={``}
-              updateStatus={() => {}}
-              hoverActiveCard={() => {}}
+              onUpdateStatus={() => {}}
+              onHoverActiveCard={() => {}}
             />
           </Router>
         </Provider>

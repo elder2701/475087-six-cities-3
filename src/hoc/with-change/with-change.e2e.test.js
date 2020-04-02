@@ -16,8 +16,8 @@ const MockComponentWrapper = withChange(MockComponent);
 
 it(`MockComponent should select option`, ()=>{
   const renderComponent = shallow(<MockComponentWrapper/>);
-  renderComponent.instance().handleChange(`1`);
-  renderComponent.instance().handleChangeText(`testText`);
+  renderComponent.instance().handleInputChange(`1`);
+  renderComponent.instance().handleTextInputChange(`testText`);
   expect(renderComponent.state().value).toBe(`1`);
   expect(renderComponent.state().text).toBe(`testText`);
 });

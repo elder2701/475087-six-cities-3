@@ -7,7 +7,7 @@ it(`<NavCities /> sould be render`, () => {
     .create(
         <NavCities
           cities={[`qwe`, `das`]}
-          changeCity={() => {}}
+          onChangeCity={() => {}}
           getCityOffers={() => {}}
           activeCity={``}
         />

@@ -27,7 +27,7 @@ describe(`Clicks events`, () => {
   const updateStatus = jest.fn();
   const screen = mount(
       <Router history={history}>
-        <Offer offer={offer} updateStatus={updateStatus} typeCard={``}/>
+        <Offer offer={offer} onUpdateStatus={updateStatus} typeCard={``}/>
       </Router>
   );
   it(`bookmark onclick`, () => {

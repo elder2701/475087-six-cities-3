@@ -150,9 +150,9 @@ it(`<App /> sould be render`, () => {
             <App
               failStatus={false}
               city={``}
-              login={() => {}}
+              onLogin={() => {}}
               cityOffers={cityOffers}
-              selectOffer={() => {}}
+              onSelectOffer={() => {}}
             />
           </Router>
         </Provider>

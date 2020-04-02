@@ -11,11 +11,11 @@ import {getSortedOffers, getCityInfo} from "../../reducer/data/selectors.js";
 const SortingOptionsWrapper = withOpen(SortingOptions);
 
 const Main = ({
-  selectOffer,
+  onSelectOffer,
   selectedOffer,
   cityInfo,
   cityOffers,
-  changeOptionSorting,
+  onChangeOptionSorting,
   optionSorting
 }) => {
   const placesCount = cityOffers.length;
@@ -43,12 +43,12 @@ const Main = ({
                 {placesCount} places to stay in {city}
               </b>
               <SortingOptionsWrapper
-                selectOption={changeOptionSorting}
+                onSelectOption={onChangeOptionSorting}
                 optionSorting={optionSorting}
               />
               <OffersList
                 cityOffers={cityOffers}
-                hoverActiveCard={selectOffer}
+                onHoverActiveCard={onSelectOffer}
                 type={`cities__places-list tabs__content`}
               />
             </section>
@@ -80,22 +80,20 @@ const Main = ({
   );
 };
 
+Main.propTypes = {
+  onChangeOptionSorting: PropTypes.func.isRequired,
+  optionSorting: PropTypes.string.isRequired,
+  selectedOffer: PropTypes.number,
+  onSelectOffer: PropTypes.func.isRequired,
+  cityInfo: PropTypes.object.isRequired,
+  cityOffers: PropTypes.array.isRequired
+};
+
 const mapStateToProps = (state, props) => {
   return {
     cityOffers: getSortedOffers(state, props),
     cityInfo: getCityInfo(state)
   };
-};
-
-Main.propTypes = {
-  changeOptionSorting: PropTypes.func,
-  optionSorting: PropTypes.string,
-  selectedOffer: PropTypes.number,
-  handleSelectOffer: PropTypes.func,
-  type: PropTypes.string,
-  selectOffer: PropTypes.func,
-  cityInfo: PropTypes.object.isRequired,
-  cityOffers: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(Main);

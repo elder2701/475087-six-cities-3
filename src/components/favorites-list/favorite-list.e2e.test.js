@@ -52,11 +52,11 @@ it(`Link onclick`, () => {
       <Provider store={store}>
         <Router history={history}>
           <FavoritesList
-            resetFavorites={()=>{}}
             favorites={favorites}
-            loadFavorites={()=>{}}
-            updateStatus={() => {}}
-            selectCity={selectCity}
+            onLoadFavorites={()=>{}}
+            onUpdateStatus={() => {}}
+            onSelectCity={selectCity}
+            onResetFavorites={()=>{}}
           />
         </Router>
       </Provider>
