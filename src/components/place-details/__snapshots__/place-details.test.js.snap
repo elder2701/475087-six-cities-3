@@ -36,7 +36,7 @@ exports[`<PlaceDetails /> sould be render 1`] = `
             The house among olive 
           </h1>
           <button
-            className="property__bookmark-button button"
+            className="property__bookmark-button button "
             onClick={[Function]}
             type="button"
           >

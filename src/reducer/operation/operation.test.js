@@ -83,6 +83,10 @@ const userInfoTest = {
 
 const hotels = [
   {
+    city: {
+      name: ``,
+      location: {latitude: 1, longitude: 1, zoom: 10}
+    },
     bedrooms: 3,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     goods: [
@@ -120,11 +124,11 @@ const hotelsOrigin = [
     "bedrooms": 3,
     "city": {
       location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
+        latitude: 1,
+        longitude: 1,
         zoom: 10
       },
-      name: `Amsterdam`
+      name: ``
     },
     "description": `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     "goods": [

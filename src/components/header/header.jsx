@@ -54,7 +54,13 @@ const Header = ({authorizationStatus, userInfo, onLoadFavorites}) => (
 
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  userInfo: PropTypes.object.isRequired,
+  userInfo: PropTypes.shape({
+    "id": PropTypes.number,
+    "email": PropTypes.string,
+    "name": PropTypes.string,
+    "avatar_url": PropTypes.string,
+    "is_pro": PropTypes.bool
+  }).isRequired,
   onLoadFavorites: PropTypes.func.isRequired
 };
 

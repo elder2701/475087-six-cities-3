@@ -78,7 +78,52 @@ class FavoritesList extends PureComponent {
 }
 
 FavoritesList.propTypes = {
-  favorites: PropTypes.object.isRequired,
+  favorites: PropTypes.objectOf(
+      PropTypes.shape({
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          location: PropTypes.shape({
+            latitude: PropTypes.number.isRequired,
+            longitude: PropTypes.number.isRequired,
+            zoom: PropTypes.number.isRequired
+          }).isRequired
+        }).isRequired,
+        offers: PropTypes.arrayOf(
+            PropTypes.shape({
+              city: PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                location: PropTypes.shape({
+                  latitude: PropTypes.number.isRequired,
+                  longitude: PropTypes.number.isRequired,
+                  zoom: PropTypes.number.isRequired
+                }).isRequired
+              }).isRequired,
+              images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+              title: PropTypes.string.isRequired,
+              rating: PropTypes.number.isRequired,
+              type: PropTypes.string.isRequired,
+              bedrooms: PropTypes.number.isRequired,
+              price: PropTypes.number.isRequired,
+              goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+              description: PropTypes.string.isRequired,
+              location: PropTypes.shape({
+                latitude: PropTypes.number.isRequired,
+                longitude: PropTypes.number.isRequired,
+                zoom: PropTypes.number.isRequired
+              }).isRequired,
+              id: PropTypes.number.isRequired,
+              previewImage: PropTypes.string.isRequired,
+              isFavorite: PropTypes.bool.isRequired,
+              isPremium: PropTypes.bool.isRequired,
+              maxAdults: PropTypes.number.isRequired,
+              hostId: PropTypes.number.isRequired,
+              hostName: PropTypes.string.isRequired,
+              hostIsPro: PropTypes.bool.isRequired,
+              hostAvatarUrl: PropTypes.string.isRequired
+            }).isRequired
+        ).isRequired
+      })
+  ).isRequired,
   onLoadFavorites: PropTypes.func.isRequired,
   onResetFavorites: PropTypes.func.isRequired,
   onUpdateStatus: PropTypes.func,

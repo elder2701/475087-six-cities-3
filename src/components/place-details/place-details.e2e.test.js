@@ -2,11 +2,21 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {PlaceDetails} from "./place-details.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const offer = {
+  city: {
+    name: ``,
+    location: {latitude: 1, longitude: 1, zoom: 1}
+  },
   id: 1,
   isFavorite: true,
   isPremium: true,
+  location: {
+    latitude: 1,
+    longitude: 1,
+    zoom: 2
+  },
   price: 822,
   rating: 4,
   title: ``,
@@ -14,14 +24,13 @@ const offer = {
   images: [``, ``],
   bedrooms: 0,
   maxAdults: 0,
-  goods: [
-    `Wi-Fi`,
-    `Washing machine`
-  ],
+  goods: [`Wi-Fi`, `Washing machine`],
   description: ``,
   hostName: `Angelina`,
   hostAvatarUrl: ``,
+  hostId: 1,
   hostIsPro: true,
+  previewImage: ``,
   comments: [
     {
       avatar: `img/avatar-max.jpg`,
@@ -59,16 +68,20 @@ describe(`Mouse events`, () => {
   const changeFavorite = jest.fn();
   const screen = shallow(
       <PlaceDetails
+        authStatus ={AuthorizationStatus.AUTH}
         idOffer={`1`}
         details={offer}
         onUpdateStatus={changeFavorite}
-        cityInfo={{location: {longitude: 1, latitude: 1, zoom: 1}}}
+        cityInfo={{
+          name: `Amster`,
+          location: {longitude: 1, latitude: 1, zoom: 1}
+        }}
         nearPlaces={[]}
-        onUpdateOfferInfo={()=>{}}
-        onSelectOffer={()=>{}}
+        onUpdateOfferInfo={() => {}}
+        onSelectOffer={() => {}}
         comments={[]}
-        resetId={()=>{}}
-        onResetOfferInfo={()=>{}}
+        resetId={() => {}}
+        onResetOfferInfo={() => {}}
       />
   );
 

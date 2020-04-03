@@ -24,53 +24,59 @@ it(`<Common /> sould be render`, () => {
             }
           },
           offers: [
-            {
-              images: [``, ``],
-              title: `Amazing and Extremely Central Flat`,
-              rating: 1,
-              type: `apartment`,
-              bedrooms: 4,
-              price: 467,
-              goods: [`Breakfast`, `Laptop friendly workspace`],
-              description: ``,
-              location: {
-                latitude: 4,
-                longitude: 2,
-                zoom: 16
-              },
-              id: 1,
-              previewImage: ``,
-              isFavorite: false,
-              isPremium: false,
-              maxAdults: 5,
-              hostId: 25,
-              hostName: `Angelina`,
-              hostIsPro: true,
-              hostAvatarUrl: ``
+            {city: {
+              name: ``,
+              location: {latitude: 1, longitude: 1, zoom: 1}
             },
-            {
-              images: [``],
-              title: `Waterfront with extraordinary view`,
-              rating: 3,
-              type: `room`,
-              bedrooms: 1,
-              price: 133,
-              goods: [`Washer`, `Laptop friendly workspace`],
-              description: ``,
-              location: {
-                latitude: 78.85761,
-                longitude: 2.358499,
-                zoom: 16
-              },
-              id: 2,
-              previewImage: ``,
-              isFavorite: false,
-              isPremium: false,
-              maxAdults: 2,
-              hostId: 25,
-              hostName: `Angelina`,
-              hostIsPro: true,
-              hostAvatarUrl: ``
+            images: [``, ``],
+            title: `Amazing and Extremely Central Flat`,
+            rating: 1,
+            type: `apartment`,
+            bedrooms: 4,
+            price: 467,
+            goods: [`Breakfast`, `Laptop friendly workspace`],
+            description: ``,
+            location: {
+              latitude: 4,
+              longitude: 2,
+              zoom: 16
+            },
+            id: 1,
+            previewImage: ``,
+            isFavorite: false,
+            isPremium: false,
+            maxAdults: 5,
+            hostId: 25,
+            hostName: `Angelina`,
+            hostIsPro: true,
+            hostAvatarUrl: ``
+            },
+            {city: {
+              name: ``,
+              location: {latitude: 1, longitude: 1, zoom: 1}
+            },
+            images: [``],
+            title: `Waterfront with extraordinary view`,
+            rating: 3,
+            type: `room`,
+            bedrooms: 1,
+            price: 133,
+            goods: [`Washer`, `Laptop friendly workspace`],
+            description: ``,
+            location: {
+              latitude: 78.85761,
+              longitude: 2.358499,
+              zoom: 16
+            },
+            id: 2,
+            previewImage: ``,
+            isFavorite: false,
+            isPremium: false,
+            maxAdults: 2,
+            hostId: 25,
+            hostName: `Angelina`,
+            hostIsPro: true,
+            hostAvatarUrl: ``
             }
           ]
         }

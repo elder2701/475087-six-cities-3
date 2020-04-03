@@ -22,19 +22,21 @@ const Main = ({
   const {location} = cityInfo;
   const city = cityInfo.name;
   const offersCoords = Array.from(cityOffers, (item) => {
-    return [item.id, item.location];
+    return [item.id, item.location.latitude, item.location.longitude];
   });
-  const commonDivClasses = placesCount
-    ? ``
-    : `cities__places-container--empty`;
-  const mainClasses = placesCount ? `` : `page__main--index-empty`;
   return (
-    <main className={`page__main page__main--index ${mainClasses}`}>
+    <main
+      className={`page__main page__main--index ${
+        placesCount ? `` : `page__main--index-empty`
+      }`}
+    >
       <h1 className="visually-hidden">Cities</h1>
       <NavCities />
       <div className="cities">
         <div
-          className={`cities__places-container container ${commonDivClasses}`}
+          className={`cities__places-container container ${
+            placesCount ? `` : `cities__places-container--empty`
+          }`}
         >
           {placesCount ? (
             <section className="cities__places places">
@@ -85,8 +87,48 @@ Main.propTypes = {
   optionSorting: PropTypes.string.isRequired,
   selectedOffer: PropTypes.number,
   onSelectOffer: PropTypes.func.isRequired,
-  cityInfo: PropTypes.object.isRequired,
-  cityOffers: PropTypes.array.isRequired
+  cityInfo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired
+    }).isRequired
+  }).isRequired,
+  cityOffers: PropTypes.arrayOf(
+      PropTypes.shape({
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          location: PropTypes.shape({
+            latitude: PropTypes.number.isRequired,
+            longitude: PropTypes.number.isRequired,
+            zoom: PropTypes.number.isRequired
+          }).isRequired
+        }).isRequired,
+        images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        title: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        bedrooms: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        description: PropTypes.string.isRequired,
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired
+        }).isRequired,
+        id: PropTypes.number.isRequired,
+        previewImage: PropTypes.string.isRequired,
+        isFavorite: PropTypes.bool.isRequired,
+        isPremium: PropTypes.bool.isRequired,
+        maxAdults: PropTypes.number.isRequired,
+        hostId: PropTypes.number.isRequired,
+        hostName: PropTypes.string.isRequired,
+        hostIsPro: PropTypes.bool.isRequired,
+        hostAvatarUrl: PropTypes.string.isRequired
+      }).isRequired
+  ).isRequired
 };
 
 const mapStateToProps = (state, props) => {

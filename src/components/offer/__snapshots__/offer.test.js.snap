@@ -12,6 +12,7 @@ Array [
         alt="Place image"
         className="place-card__image"
         height="200"
+        src=""
         width="260"
       />
     </a>
@@ -38,7 +39,7 @@ Array [
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button"
+        className="place-card__bookmark-button button place-card__bookmark-button--active"
         onClick={[Function]}
         type="button"
       >
@@ -84,7 +85,9 @@ Array [
       <a
         href="/offer/4"
         onClick={[Function]}
-      />
+      >
+        
+      </a>
     </h2>
     <p
       className="place-card__type"

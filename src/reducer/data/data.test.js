@@ -6,7 +6,6 @@ const cities = {
     {
       id: 1,
       figurePreview: `img/room.jpg`,
-      mark: `Premium`,
       price: 822,
       rating: 4,
       name: `Beautiful & luxurious apartment at great location`,
@@ -15,7 +14,6 @@ const cities = {
     {
       id: 2,
       figurePreview: `img/room.jpg`,
-      mark: ``,
       price: 20,
       priceText: `night`,
       rating: 5,
