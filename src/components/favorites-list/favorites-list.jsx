@@ -10,11 +10,6 @@ import Offer from "../offer/offer.jsx";
 import EmptyFavorite from "../empty-favorite/empty-favorite.jsx";
 import {ActionCreator as CityActionCreator} from "../../reducer/city/city.js";
 
-const setMainClasses = (empty) =>
-  empty
-    ? `page__main page__main--favorites`
-    : `page__main page__main--favorites page__main--favorites-empty`;
-
 class FavoritesList extends PureComponent {
   componentDidMount() {
     const {onLoadFavorites} = this.props;
@@ -29,7 +24,11 @@ class FavoritesList extends PureComponent {
     const {favorites, onUpdateStatus, onSelectCity} = this.props;
     const empty = Object.keys(favorites).length;
     return (
-      <main className={setMainClasses(empty)}>
+      <main
+        className={`page__main page__main--favorites ${
+          empty ? `` : `page__main--favorites-empty`
+        }`}
+      >
         <div className="page__favorites-container container">
           {empty ? (
             <section className="favorites">

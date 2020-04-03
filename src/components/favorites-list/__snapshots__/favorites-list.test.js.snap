@@ -2,7 +2,7 @@
 
 exports[`<FavoritesList /> sould be render 1`] = `
 <main
-  className="page__main page__main--favorites"
+  className="page__main page__main--favorites "
 >
   <div
     className="page__favorites-container container"
