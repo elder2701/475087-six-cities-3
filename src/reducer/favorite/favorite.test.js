@@ -13,6 +13,10 @@ const favorites = {
       },
       offers: [
         {
+          city: {
+            name: ``,
+            location: {latitude: 1, longitude: 1, zoom: 1}
+          },
           images: [``, ``],
           title: `Test`,
           rating: 2.1,
@@ -37,6 +41,10 @@ const favorites = {
           hostAvatarUrl: ``
         },
         {
+          city: {
+            name: ``,
+            location: {latitude: 1, longitude: 1, zoom: 1}
+          },
           images: [``, ``],
           title: `Wood and stone place`,
           rating: 3.7,

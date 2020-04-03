@@ -15,7 +15,6 @@ const changeNameKeys = (offer) => {
     hostIsPro: offer.host.is_pro,
     hostAvatarUrl: offer.host.avatar_url
   });
-  delete newObj.city;
   delete newObj.preview_image;
   delete newObj.is_favorite;
   delete newObj.is_premium;

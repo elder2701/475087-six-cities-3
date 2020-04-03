@@ -2,8 +2,13 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {PlaceDetails} from "./place-details.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const offer = {
+  city: {
+    name: ``,
+    location: {latitude: 1, longitude: 1, zoom: 1}
+  },
   id: 1,
   isFavorite: true,
   isPremium: true,
@@ -63,6 +68,7 @@ describe(`Mouse events`, () => {
   const changeFavorite = jest.fn();
   const screen = shallow(
       <PlaceDetails
+        authStatus ={AuthorizationStatus.AUTH}
         idOffer={`1`}
         details={offer}
         onUpdateStatus={changeFavorite}

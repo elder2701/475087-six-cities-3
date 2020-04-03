@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 
 const CommentList = ({comments}) => (
   <ul className="reviews__list">
-    {comments.map((comment, index) => (
-      <Comment {...comment} key={index} />
+    {comments.map((comment) => (
+      <Comment {...comment} key={comment.id} />
     ))}
   </ul>
 );

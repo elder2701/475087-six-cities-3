@@ -12,18 +12,13 @@ const spanStyles = (rating) => {
   return {width: `${calculatedWidth}%`};
 };
 
-const bookMarkClasses = (isFavorite) =>
-  isFavorite
-    ? `place-card__bookmark-button place-card__bookmark-button--active button`
-    : `place-card__bookmark-button button`;
-
 const Offer = ({offer, typeCard, onUpdateStatus, authStatus}) => (
   <Fragment>
-    {offer.isPremium ? (
+    {offer.isPremium && (
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
-    ) : null}
+    )}
     <div className={`${typeCard}__image-wrapper place-card__image-wrapper`}>
       <a href="#">
         <img
@@ -42,7 +37,9 @@ const Offer = ({offer, typeCard, onUpdateStatus, authStatus}) => (
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
         <button
-          className={bookMarkClasses(offer.isFavorite)}
+          className={`place-card__bookmark-button button ${
+            offer.isFavorite ? `place-card__bookmark-button--active` : ``
+          }`}
           type="button"
           onClick={() => {
             if (AuthorizationStatus.NO_AUTH === authStatus) {
@@ -81,6 +78,14 @@ const Offer = ({offer, typeCard, onUpdateStatus, authStatus}) => (
 
 Offer.propTypes = {
   offer: PropTypes.shape({
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired
+      }).isRequired
+    }).isRequired,
     images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     title: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,

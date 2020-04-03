@@ -38,6 +38,14 @@ OffersList.propTypes = {
   onHoverActiveCard: PropTypes.func.isRequired,
   cityOffers: PropTypes.arrayOf(
       PropTypes.shape({
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          location: PropTypes.shape({
+            latitude: PropTypes.number.isRequired,
+            longitude: PropTypes.number.isRequired,
+            zoom: PropTypes.number.isRequired
+          }).isRequired
+        }).isRequired,
         images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
         title: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,

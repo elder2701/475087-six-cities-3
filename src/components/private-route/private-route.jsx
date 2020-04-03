@@ -14,7 +14,6 @@ const PrivateRoute = (props) => {
       path={path}
       exact={exact}
       render={() => {
-        console.log(authStatus)
         return authStatus === AuthorizationStatus.AUTH ? (
           render()
         ) : (

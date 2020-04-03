@@ -25,6 +25,10 @@ it(`<SignIn /> sould be render`, () => {
           },
           offers: [
             {
+              city: {
+                name: ``,
+                location: {latitude: 1, longitude: 1, zoom: 1}
+              },
               images: [``, ``],
               title: `Amazing and Extremely Central Flat`,
               rating: 1,
@@ -49,6 +53,10 @@ it(`<SignIn /> sould be render`, () => {
               hostAvatarUrl: ``
             },
             {
+              city: {
+                name: ``,
+                location: {latitude: 1, longitude: 1, zoom: 1}
+              },
               images: [``],
               title: `Waterfront with extraordinary view`,
               rating: 3,

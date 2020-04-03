@@ -8,9 +8,6 @@ const sortingOptions = [
   `Top rated first`
 ];
 
-const openingClass = `places__options places__options--custom places__options--opened`;
-const closingClass = `places__options places__options--custom`;
-
 const SortingOptions = ({
   onSelectOption,
   optionSorting,
@@ -32,19 +29,21 @@ const SortingOptions = ({
         <use xlinkHref="#icon-arrow-select"></use>
       </svg>
     </span>
-    <ul className={open ? openingClass : closingClass}>
-      {sortingOptions.map((option, index) => (
+    <ul
+      className={`places__options places__options--custom ${
+        open ? `places__options--opened` : ``
+      }`}
+    >
+      {sortingOptions.map((option) => (
         <li
           onClick={() => {
             onClose();
             onSelectOption(option);
           }}
-          key={index}
-          className={
-            option === optionSorting
-              ? `places__option places__option--active`
-              : `places__option`
-          }
+          key={option}
+          className={`places__option ${
+            option === optionSorting ? ` places__option--active` : ``
+          }`}
           tabIndex="0"
         >
           {option}
@@ -63,4 +62,3 @@ SortingOptions.propTypes = {
 };
 
 export default memo(SortingOptions);
-

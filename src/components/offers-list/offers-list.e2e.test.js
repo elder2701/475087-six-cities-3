@@ -8,6 +8,14 @@ Enzyme.configure({
 });
 
 const cityOffers = [{
+  city: {
+    name: ``,
+    location: {
+      longitude: 1,
+      latitude: 1,
+      zoom: 1
+    }
+  },
   id: 12,
   previewImage: ``,
   price: 8220,

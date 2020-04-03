@@ -27,6 +27,10 @@ it(`<PlaceDetails /> sould be render`, () => {
           },
           offers: [
             {
+              city: {
+                name: ``,
+                location: {latitude: 1, longitude: 1, zoom: 1}
+              },
               images: [],
               title: `The house among olive `,
               rating: 3.4,

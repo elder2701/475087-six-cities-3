@@ -8,6 +8,8 @@ import {Provider} from "react-redux";
 import cofigureStore from "redux-mock-store";
 import {createAPI} from "../../api.js";
 import thunk from "redux-thunk";
+import NameSpace from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const favorites = {
   Amsterdam: {
@@ -16,29 +18,32 @@ const favorites = {
       location: {zoom: 1, latitude: 1, longitude: 1}
     },
     offers: [
-      {
-        images: [``, ``],
-        location: {
-          zoom: 1,
-          latitude: 1,
-          longitude: 1
-        },
-        isPremium: false,
-        previewImage: ``,
-        price: 12,
-        rating: 1,
-        id: 1,
-        title: ``,
-        type: ``,
-        bedrooms: 1,
-        goods: [``, ``],
-        description: ``,
-        isFavorite: true,
-        maxAdults: 1,
-        hostId: 1,
-        hostName: ``,
-        hostIsPro: true,
-        hostAvatarUrl: ``
+      {city: {
+        name: ``,
+        location: {latitude: 1, longitude: 1, zoom: 1}
+      },
+      images: [``, ``],
+      location: {
+        zoom: 1,
+        latitude: 1,
+        longitude: 1
+      },
+      isPremium: false,
+      previewImage: ``,
+      price: 12,
+      rating: 1,
+      id: 1,
+      title: ``,
+      type: ``,
+      bedrooms: 1,
+      goods: [``, ``],
+      description: ``,
+      isFavorite: true,
+      maxAdults: 1,
+      hostId: 1,
+      hostName: ``,
+      hostIsPro: true,
+      hostAvatarUrl: ``
       }
     ]
   }
@@ -63,7 +68,9 @@ it(`Link onclick`, () => {
       reserFavorites: jest.fn()
     }
   }));
-  const store = mockStore({});
+  const store = mockStore({[NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+  }});
   const selectCity = jest.fn();
 
   const screen = mount(

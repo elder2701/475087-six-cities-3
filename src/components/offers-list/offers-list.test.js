@@ -5,11 +5,17 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import NameSpace from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
 const offers = [
   {
+    city: {
+      name: ``,
+      location: {latitude: 1, longitude: 1, zoom: 1}
+    },
     id: 12,
     previewImage: ``,
     price: 8220,
@@ -34,6 +40,10 @@ const offers = [
     hostAvatarUrl: ``
   },
   {
+    city: {
+      name: ``,
+      location: {latitude: 1, longitude: 1, zoom: 1}
+    },
     id: 1,
     previewImage: ``,
     price: 8220,
@@ -60,7 +70,9 @@ const offers = [
 ];
 
 it(`<OffersList /> sould be render`, () => {
-  const store = mockStore({});
+  const store = mockStore({[NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+  }});
   const tree = renderer
     .create(
         <Provider store={store}>

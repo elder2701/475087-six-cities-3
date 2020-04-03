@@ -82,31 +82,31 @@ exports[`<Main /> sould be render 1`] = `
             </svg>
           </span>
           <ul
-            className="places__options places__options--custom"
+            className="places__options places__options--custom "
           >
             <li
-              className="places__option"
+              className="places__option "
               onClick={[Function]}
               tabIndex="0"
             >
               Popular
             </li>
             <li
-              className="places__option"
+              className="places__option "
               onClick={[Function]}
               tabIndex="0"
             >
               Price: low to high
             </li>
             <li
-              className="places__option"
+              className="places__option "
               onClick={[Function]}
               tabIndex="0"
             >
               Price: high to low
             </li>
             <li
-              className="places__option"
+              className="places__option "
               onClick={[Function]}
               tabIndex="0"
             >
@@ -159,7 +159,7 @@ exports[`<Main /> sould be render 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button button "
                   onClick={[Function]}
                   type="button"
                 >
@@ -258,7 +258,7 @@ exports[`<Main /> sould be render 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button button "
                   onClick={[Function]}
                   type="button"
                 >

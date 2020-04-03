@@ -9,7 +9,6 @@ import {
   getComments,
   getSelectedOffer
 } from "../../reducer/offer/selectors.js";
-import {getCityInfo} from "../../reducer/data/selectors.js";
 import {OperationFavorites} from "../../reducer/operation/operation.js";
 import {OperationOffer} from "../../reducer/operation/operation.js";
 import {ActionCreator} from "../../reducer/offer/offer.js";
@@ -22,11 +21,6 @@ const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
   return {width: `${calculatedWidth}%`};
 };
-
-const bookMarkClasses = (isFavorite) =>
-  isFavorite
-    ? `property__bookmark-button property__bookmark-button--active button`
-    : `property__bookmark-button button`;
 
 class PlaceDetails extends Component {
   componentDidMount() {
@@ -47,11 +41,11 @@ class PlaceDetails extends Component {
       details,
       nearPlaces,
       comments,
-      cityInfo,
       onUpdateStatus,
       authStatus
     } = this.props;
     const {
+      city,
       isFavorite,
       isPremium,
       price,
@@ -67,7 +61,6 @@ class PlaceDetails extends Component {
       goods,
       description
     } = details;
-    const {location} = cityInfo;
     const offersCoords = Array.from(nearPlaces, (item) => {
       return [item.id, item.location.latitude, item.location.longitude];
     });
@@ -76,8 +69,8 @@ class PlaceDetails extends Component {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((path, index) => (
-                <div className="property__image-wrapper" key={index}>
+              {images.map((path) => (
+                <div className="property__image-wrapper" key={path}>
                   <img
                     className="property__image"
                     src={path}
@@ -89,15 +82,17 @@ class PlaceDetails extends Component {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {isPremium ? (
+              {isPremium && (
                 <div className="property__mark">
                   <span>Premium</span>
                 </div>
-              ) : null}
+              )}
               <div className="property__name-wrapper">
                 <h1 className="property__name">{title}</h1>
                 <button
-                  className={bookMarkClasses(isFavorite)}
+                  className={`property__bookmark-button button ${
+                    isFavorite ? `property__bookmark-button--active` : ``
+                  }`}
                   type="button"
                   onClick={() => {
                     if (AuthorizationStatus.NO_AUTH === authStatus) {
@@ -144,8 +139,8 @@ class PlaceDetails extends Component {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {goods.map((option, index) => (
-                    <li className="property__inside-item" key={index}>
+                  {goods.map((option) => (
+                    <li className="property__inside-item" key={option}>
                       {option}
                     </li>
                   ))}
@@ -180,7 +175,7 @@ class PlaceDetails extends Component {
             <Map
               selectedOffer={selectedOffer}
               offersCoords={offersCoords}
-              cityLocation={location}
+              cityLocation={city.location}
               name={`property__map`}
             />
           ) : (
@@ -207,6 +202,14 @@ class PlaceDetails extends Component {
 PlaceDetails.propTypes = {
   idOffer: PropTypes.string.isRequired,
   details: PropTypes.shape({
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired
+      }).isRequired
+    }).isRequired,
     images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     title: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
@@ -249,6 +252,14 @@ PlaceDetails.propTypes = {
   onSelectOffer: PropTypes.func.isRequired,
   nearPlaces: PropTypes.arrayOf(
       PropTypes.shape({
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          location: PropTypes.shape({
+            latitude: PropTypes.number.isRequired,
+            longitude: PropTypes.number.isRequired,
+            zoom: PropTypes.number.isRequired
+          }).isRequired
+        }).isRequired,
         images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
         title: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
@@ -273,14 +284,6 @@ PlaceDetails.propTypes = {
         hostAvatarUrl: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  cityInfo: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired
-    }).isRequired
-  }).isRequired,
   onUpdateStatus: PropTypes.func.isRequired,
   onResetOfferInfo: PropTypes.func.isRequired,
   authStatus: PropTypes.string.isRequired
@@ -289,7 +292,6 @@ PlaceDetails.propTypes = {
 const mapStateToProps = (state, props) => ({
   nearPlaces: getNearOffersInfo(state),
   comments: getComments(state),
-  cityInfo: getCityInfo(state),
   details: getSelectedOffer(state, props),
   authStatus: getAuthStatus(state)
 });

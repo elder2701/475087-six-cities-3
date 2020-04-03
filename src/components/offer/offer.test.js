@@ -5,8 +5,14 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import NameSpace from "../../reducer/name-space.js";
 
 const offer = {
+  city: {
+    name: ``,
+    location: {latitude: 1, longitude: 1, zoom: 1}
+  },
   id: 4,
   previewImage: ``,
   price: 8210,
@@ -34,16 +40,17 @@ const offer = {
 const mockStore = configureStore([]);
 
 it(`<Offer /> sould be render`, () => {
-  const store = mockStore({});
+  const store = mockStore({
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      userInfo: {id: 1, email: ``}
+    }
+  });
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router history={history}>
-            <Offer
-              offer={offer}
-              typeCard={``}
-              onUpdateStatus={() => {}}
-            />
+            <Offer offer={offer} typeCard={``} onUpdateStatus={() => {}} />
           </Router>
         </Provider>
     )

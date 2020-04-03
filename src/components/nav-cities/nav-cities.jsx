@@ -5,11 +5,6 @@ import PropTypes from "prop-types";
 import {getCities} from "../../reducer/data/selectors.js";
 import {getCity} from "../../reducer/city/selectors.js";
 
-const classLink = (city, activeCity) =>
-  city === activeCity
-    ? `locations__item-link tabs__item tabs__item--active`
-    : `locations__item-link tabs__item`;
-
 const NavCities = ({onChangeCity, cities, activeCity}) => (
   <div className="tabs">
     <section className="locations container">
@@ -17,7 +12,9 @@ const NavCities = ({onChangeCity, cities, activeCity}) => (
         {cities.map((city) => (
           <li className="locations__item" key={city}>
             <a
-              className={classLink(city, activeCity)}
+              className={`locations__item-link tabs__item ${
+                city === activeCity ? `tabs__item--active` : ``
+              }`}
               href="#"
               onClick={() => {
                 onChangeCity(city);
