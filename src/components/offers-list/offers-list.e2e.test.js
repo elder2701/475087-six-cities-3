@@ -9,13 +9,27 @@ Enzyme.configure({
 
 const cityOffers = [{
   id: 12,
-  figurePreview: ``,
-  mark: `Premium`,
+  previewImage: ``,
   price: 8220,
   rating: 3,
-  name: `Beautiful & luxurious apartment at great location`,
+  title: `Beautiful & luxurious apartment at great location`,
   type: `Apartment`,
-  isFavorite: false
+  isFavorite: false,
+  images: [``, ``],
+  bedrooms: 1,
+  goods: [``, ``],
+  description: ``,
+  location: {
+    latitude: 1,
+    longitude: 2,
+    zoom: 3
+  },
+  isPremium: true,
+  maxAdults: 1,
+  hostId: 1,
+  hostName: ``,
+  hostIsPro: true,
+  hostAvatarUrl: ``
 }];
 
 const mockEvent = {

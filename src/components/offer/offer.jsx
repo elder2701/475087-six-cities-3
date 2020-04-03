@@ -1,6 +1,11 @@
 import React, {memo, Fragment} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {AppRoute} from "../../const.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {getAuthStatus} from "../../reducer/user/selector.js";
 import {Link} from "react-router-dom";
+import history from "../../history.js";
 
 const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
@@ -12,7 +17,7 @@ const bookMarkClasses = (isFavorite) =>
     ? `place-card__bookmark-button place-card__bookmark-button--active button`
     : `place-card__bookmark-button button`;
 
-const Offer = ({offer, typeCard, onUpdateStatus}) => (
+const Offer = ({offer, typeCard, onUpdateStatus, authStatus}) => (
   <Fragment>
     {offer.isPremium ? (
       <div className="place-card__mark">
@@ -40,6 +45,10 @@ const Offer = ({offer, typeCard, onUpdateStatus}) => (
           className={bookMarkClasses(offer.isFavorite)}
           type="button"
           onClick={() => {
+            if (AuthorizationStatus.NO_AUTH === authStatus) {
+              history.push(AppRoute.LOGIN);
+              return;
+            }
             onUpdateStatus(offer.id, offer.isFavorite);
           }}
         >
@@ -96,8 +105,13 @@ Offer.propTypes = {
     hostAvatarUrl: PropTypes.string.isRequired
   }).isRequired,
   onUpdateStatus: PropTypes.func.isRequired,
-  typeCard: PropTypes.string.isRequired
+  typeCard: PropTypes.string.isRequired,
+  authStatus: PropTypes.string.isRequired
 };
 
+const mapStateToProps = (state) => ({
+  authStatus: getAuthStatus(state)
+});
+
 export {Offer};
-export default memo(Offer);
+export default connect(mapStateToProps)(memo(Offer));

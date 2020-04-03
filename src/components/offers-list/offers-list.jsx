@@ -50,7 +50,16 @@ OffersList.propTypes = {
           latitude: PropTypes.number.isRequired,
           longitude: PropTypes.number.isRequired,
           zoom: PropTypes.number.isRequired
-        }).isRequired
+        }).isRequired,
+        id: PropTypes.number.isRequired,
+        previewImage: PropTypes.string.isRequired,
+        isFavorite: PropTypes.bool.isRequired,
+        isPremium: PropTypes.bool.isRequired,
+        maxAdults: PropTypes.number.isRequired,
+        hostId: PropTypes.number.isRequired,
+        hostName: PropTypes.string.isRequired,
+        hostIsPro: PropTypes.bool.isRequired,
+        hostAvatarUrl: PropTypes.string.isRequired,
       }).isRequired
   ).isRequired,
   type: PropTypes.string.isRequired,

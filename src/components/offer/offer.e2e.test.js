@@ -10,13 +10,28 @@ Enzyme.configure({
 });
 
 const offer = {
-  id: 12,
-  figurePreview: ``,
-  mark: `Premium`,
-  price: 8220,
-  rating: 3,
-  name: `Beautiful & luxurious apartment at great location`,
-  type: `Apartment`
+  id: 4,
+  previewImage: ``,
+  price: 8210,
+  rating: 4,
+  type: `Apartment`,
+  images: [``, ``],
+  title: ``,
+  bedrooms: 1,
+  goods: [``, ``],
+  description: ``,
+  location: {
+    latitude: 1,
+    longitude: 1,
+    zoom: 2
+  },
+  isFavorite: true,
+  isPremium: false,
+  maxAdults: 2,
+  hostId: 1,
+  hostName: ``,
+  hostIsPro: true,
+  hostAvatarUrl: ``
 };
 
 const mockEvent = {

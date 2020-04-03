@@ -11,22 +11,40 @@ import thunk from "redux-thunk";
 
 const favorites = {
   Amsterdam: {
-    city: {name: `Amsterdam`},
+    city: {
+      name: `Amsterdam`,
+      location: {zoom: 1, latitude: 1, longitude: 1}
+    },
     offers: [
       {
+        images: [``, ``],
+        location: {
+          zoom: 1,
+          latitude: 1,
+          longitude: 1
+        },
         isPremium: false,
         previewImage: ``,
         price: 12,
         rating: 1,
         id: 1,
         title: ``,
-        type: ``
+        type: ``,
+        bedrooms: 1,
+        goods: [``, ``],
+        description: ``,
+        isFavorite: true,
+        maxAdults: 1,
+        hostId: 1,
+        hostName: ``,
+        hostIsPro: true,
+        hostAvatarUrl: ``
       }
     ]
   }
 };
 
-const api = createAPI(()=>{});
+const api = createAPI(() => {});
 
 const mockStore = cofigureStore([thunk.withExtraArgument(api)]);
 
@@ -53,10 +71,10 @@ it(`Link onclick`, () => {
         <Router history={history}>
           <FavoritesList
             favorites={favorites}
-            onLoadFavorites={()=>{}}
+            onLoadFavorites={() => {}}
             onUpdateStatus={() => {}}
             onSelectCity={selectCity}
-            onResetFavorites={()=>{}}
+            onResetFavorites={() => {}}
           />
         </Router>
       </Provider>

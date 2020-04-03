@@ -9,54 +9,6 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
 
-const cityOffers = {
-  offers: [
-    {
-      id: 2,
-      figure: `img/room.jpg`,
-      mark: ``,
-      price: 8220,
-      priceText: `night`,
-      rating: 2,
-      name: `Beautiful & luxurious apartment at great location`,
-      type: `Apartment`,
-      coordinates: [53.369553943508, 5.85309666406198]
-    },
-    {
-      id: 10,
-      figure: `img/room.jpg`,
-      mark: ``,
-      price: 101320,
-      priceText: `night`,
-      rating: 5,
-      name: `Beautiful & luxurious apartment at great location`,
-      type: `Apartment`,
-      coordinates: [53.369553943508, 5.85309666406198]
-    },
-    {
-      id: 3,
-      figure: `img/room.jpg`,
-      mark: `Premium`,
-      price: 83210,
-      priceText: `night`,
-      rating: 1,
-      name: `Beautiful & luxurious apartment at great location`,
-      type: `Apartment`,
-      coordinates: [53.369553943508, 5.85309666406198]
-    },
-    {
-      id: 4,
-      figure: ``,
-      mark: ``,
-      price: 8210,
-      rating: 4,
-      name: `Beautiful & luxurious apartment at great location`,
-      type: `Apartment`,
-      coordinates: [53.369553943508, 5.85309666406198]
-    }
-  ]
-};
-
 const mockStore = configureStore([]);
 
 it(`<App /> sould be render`, () => {
@@ -149,9 +101,8 @@ it(`<App /> sould be render`, () => {
           <Router history={history}>
             <App
               failStatus={false}
-              city={``}
+              city={`Amsterdam`}
               onLogin={() => {}}
-              cityOffers={cityOffers}
               onSelectOffer={() => {}}
             />
           </Router>

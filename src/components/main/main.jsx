@@ -22,11 +22,9 @@ const Main = ({
   const {location} = cityInfo;
   const city = cityInfo.name;
   const offersCoords = Array.from(cityOffers, (item) => {
-    return [item.id, item.location];
+    return [item.id, item.location.latitude, item.location.longitude];
   });
-  const commonDivClasses = placesCount
-    ? ``
-    : `cities__places-container--empty`;
+  const commonDivClasses = placesCount ? `` : `cities__places-container--empty`;
   const mainClasses = placesCount ? `` : `page__main--index-empty`;
   return (
     <main className={`page__main page__main--index ${mainClasses}`}>
@@ -85,16 +83,14 @@ Main.propTypes = {
   optionSorting: PropTypes.string.isRequired,
   selectedOffer: PropTypes.number,
   onSelectOffer: PropTypes.func.isRequired,
-  cityInfo: PropTypes.objectOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        location: PropTypes.shape({
-          latitude: PropTypes.number.isRequired,
-          longitude: PropTypes.number.isRequired,
-          zoom: PropTypes.number.isRequired
-        }).isRequired
-      }).isRequired
-  ).isRequired,
+  cityInfo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired
+    }).isRequired
+  }).isRequired,
   cityOffers: PropTypes.arrayOf(
       PropTypes.shape({
         images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,

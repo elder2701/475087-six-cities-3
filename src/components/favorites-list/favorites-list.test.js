@@ -24,7 +24,10 @@ it(`<FavoritesList /> sould be render`, () => {
     [NameSpace.FAVORITE]: {
       favorites: {
         Amsterdam: {
-          city: {name: `Amsterdam`},
+          city: {
+            name: `Amsterdam`,
+            location: {latitude: 1, longitude: 2, zoom: 3}
+          },
           offers: [
             {
               isPremium: false,
@@ -33,7 +36,22 @@ it(`<FavoritesList /> sould be render`, () => {
               rating: 1,
               id: 1,
               title: ``,
-              type: ``
+              type: ``,
+              images: [``, ``],
+              bedrooms: 1,
+              goods: [``, ``],
+              description: ``,
+              location: {
+                latitude: 1,
+                longitude: 1,
+                zoom: 1
+              },
+              isFavorite: true,
+              maxAdults: 1,
+              hostId: 1,
+              hostName: ``,
+              hostIsPro: true,
+              hostAvatarUrl: ``
             }
           ]
         }
@@ -44,7 +62,7 @@ it(`<FavoritesList /> sould be render`, () => {
     .create(
         <Provider store={store}>
           <Router history={history}>
-            <FavoritesList onUpdateStatus={()=>{}}/>
+            <FavoritesList onUpdateStatus={() => {}} />
           </Router>
         </Provider>
     )

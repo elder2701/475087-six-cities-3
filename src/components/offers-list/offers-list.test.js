@@ -10,44 +10,52 @@ const mockStore = configureStore([]);
 
 const offers = [
   {
-    id: 2,
-    figure: `img/room.jpg`,
-    mark: ``,
+    id: 12,
+    previewImage: ``,
     price: 8220,
-    priceText: `night`,
-    rating: 2,
-    name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
+    rating: 3,
+    title: `Beautiful & luxurious apartment at great location`,
+    type: `Apartment`,
+    isFavorite: false,
+    images: [``, ``],
+    bedrooms: 1,
+    goods: [``, ``],
+    description: ``,
+    location: {
+      latitude: 1,
+      longitude: 2,
+      zoom: 3
+    },
+    isPremium: true,
+    maxAdults: 1,
+    hostId: 1,
+    hostName: ``,
+    hostIsPro: true,
+    hostAvatarUrl: ``
   },
   {
-    id: 10,
-    figure: `img/room.jpg`,
-    mark: ``,
-    price: 101320,
-    priceText: `night`,
-    rating: 5,
-    name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
-  },
-  {
-    id: 3,
-    figure: `img/room.jpg`,
-    mark: `Premium`,
-    price: 83210,
-    priceText: `night`,
-    rating: 1,
-    name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
-  },
-  {
-    id: 4,
-    figure: ``,
-    mark: ``,
-    price: 8210,
-    priceText: `night`,
-    rating: 4,
-    name: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`
+    id: 1,
+    previewImage: ``,
+    price: 8220,
+    rating: 3,
+    title: `Beautiful & luxurious apartment at great location`,
+    type: `Apartment`,
+    isFavorite: false,
+    images: [``, ``],
+    bedrooms: 1,
+    goods: [``, ``],
+    description: ``,
+    location: {
+      latitude: 2,
+      longitude: 2,
+      zoom: 3
+    },
+    isPremium: true,
+    maxAdults: 1,
+    hostId: 3,
+    hostName: ``,
+    hostIsPro: true,
+    hostAvatarUrl: ``
   }
 ];
 

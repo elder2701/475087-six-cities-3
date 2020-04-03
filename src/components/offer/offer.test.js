@@ -8,12 +8,27 @@ import history from "../../history.js";
 
 const offer = {
   id: 4,
-  figurePreview: ``,
-  mark: ``,
+  previewImage: ``,
   price: 8210,
   rating: 4,
-  name: `Beautiful & luxurious apartment at great location`,
-  type: `Apartment`
+  type: `Apartment`,
+  images: [``, ``],
+  title: ``,
+  bedrooms: 1,
+  goods: [``, ``],
+  description: ``,
+  location: {
+    latitude: 1,
+    longitude: 1,
+    zoom: 2
+  },
+  isFavorite: true,
+  isPremium: false,
+  maxAdults: 2,
+  hostId: 1,
+  hostName: ``,
+  hostIsPro: true,
+  hostAvatarUrl: ``
 };
 
 const mockStore = configureStore([]);

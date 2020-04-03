@@ -80,16 +80,14 @@ class FavoritesList extends Component {
 FavoritesList.propTypes = {
   favorites: PropTypes.objectOf(
       PropTypes.shape({
-        city: PropTypes.objectOf(
-            PropTypes.shape({
-              name: PropTypes.string.isRequired,
-              location: PropTypes.shape({
-                latitude: PropTypes.number.isRequired,
-                longitude: PropTypes.number.isRequired,
-                zoom: PropTypes.number.isRequired
-              }).isRequired
-            }).isRequired
-        ).isRequired,
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          location: PropTypes.shape({
+            latitude: PropTypes.number.isRequired,
+            longitude: PropTypes.number.isRequired,
+            zoom: PropTypes.number.isRequired
+          }).isRequired
+        }).isRequired,
         offers: PropTypes.arrayOf(
             PropTypes.shape({
               images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,

@@ -13,6 +13,10 @@ import {getCityInfo} from "../../reducer/data/selectors.js";
 import {OperationFavorites} from "../../reducer/operation/operation.js";
 import {OperationOffer} from "../../reducer/operation/operation.js";
 import {ActionCreator} from "../../reducer/offer/offer.js";
+import {getAuthStatus} from "../../reducer/user/selector.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AppRoute} from "../../const.js";
+import history from "../../history.js";
 
 const spanStyles = (rating) => {
   let calculatedWidth = Math.round(rating) * 20;
@@ -44,7 +48,8 @@ class PlaceDetails extends Component {
       nearPlaces,
       comments,
       cityInfo,
-      onUpdateStatus
+      onUpdateStatus,
+      authStatus
     } = this.props;
     const {
       isFavorite,
@@ -64,7 +69,7 @@ class PlaceDetails extends Component {
     } = details;
     const {location} = cityInfo;
     const offersCoords = Array.from(nearPlaces, (item) => {
-      return [item.id, item.location];
+      return [item.id, item.location.latitude, item.location.longitude];
     });
     return (
       <main className="page__main page__main--property">
@@ -95,6 +100,10 @@ class PlaceDetails extends Component {
                   className={bookMarkClasses(isFavorite)}
                   type="button"
                   onClick={() => {
+                    if (AuthorizationStatus.NO_AUTH === authStatus) {
+                      history.push(AppRoute.LOGIN);
+                      return;
+                    }
                     onUpdateStatus(idOffer, !isFavorite);
                   }}
                 >
@@ -195,43 +204,46 @@ class PlaceDetails extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  nearPlaces: getNearOffersInfo(state),
-  comments: getComments(state),
-  cityInfo: getCityInfo(state),
-  details: getSelectedOffer(state, props)
-});
-
 PlaceDetails.propTypes = {
   idOffer: PropTypes.string.isRequired,
   details: PropTypes.shape({
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    hostName: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    hostAvatarUrl: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    hostIsPro: PropTypes.bool.isRequired,
-    goods: PropTypes.array.isRequired,
-    images: PropTypes.array.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    isFavorite: PropTypes.bool.isRequired
-  }).isRequired,
-  comments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    user: PropTypes.shape({
-      "id": PropTypes.number.isRequired,
-      "is_pro": PropTypes.bool.isRequired,
-      "name": PropTypes.string.isRequired,
-      "avatar_url": PropTypes.string.isRequired
-    }).isRequired,
     rating: PropTypes.number.isRequired,
-    comment: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
-  }).isRequired).isRequired,
+    type: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    description: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired
+    }).isRequired,
+    id: PropTypes.number.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    hostId: PropTypes.number.isRequired,
+    hostName: PropTypes.string.isRequired,
+    hostIsPro: PropTypes.bool.isRequired,
+    hostAvatarUrl: PropTypes.string.isRequired
+  }).isRequired,
+  comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        user: PropTypes.shape({
+          "id": PropTypes.number.isRequired,
+          "is_pro": PropTypes.bool.isRequired,
+          "name": PropTypes.string.isRequired,
+          "avatar_url": PropTypes.string.isRequired
+        }).isRequired,
+        rating: PropTypes.number.isRequired,
+        comment: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired
+      }).isRequired
+  ).isRequired,
   selectedOffer: PropTypes.number,
   onUpdateOfferInfo: PropTypes.func.isRequired,
   onSelectOffer: PropTypes.func.isRequired,
@@ -249,22 +261,38 @@ PlaceDetails.propTypes = {
           latitude: PropTypes.number.isRequired,
           longitude: PropTypes.number.isRequired,
           zoom: PropTypes.number.isRequired
-        }).isRequired
+        }).isRequired,
+        id: PropTypes.number.isRequired,
+        previewImage: PropTypes.string.isRequired,
+        isFavorite: PropTypes.bool.isRequired,
+        isPremium: PropTypes.bool.isRequired,
+        maxAdults: PropTypes.number.isRequired,
+        hostId: PropTypes.number.isRequired,
+        hostName: PropTypes.string.isRequired,
+        hostIsPro: PropTypes.bool.isRequired,
+        hostAvatarUrl: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  cityInfo: PropTypes.objectOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        location: PropTypes.shape({
-          latitude: PropTypes.number.isRequired,
-          longitude: PropTypes.number.isRequired,
-          zoom: PropTypes.number.isRequired
-        }).isRequired
-      }).isRequired
-  ).isRequired,
+  cityInfo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired
+    }).isRequired
+  }).isRequired,
   onUpdateStatus: PropTypes.func.isRequired,
   onResetOfferInfo: PropTypes.func.isRequired,
+  authStatus: PropTypes.string.isRequired
 };
+
+const mapStateToProps = (state, props) => ({
+  nearPlaces: getNearOffersInfo(state),
+  comments: getComments(state),
+  cityInfo: getCityInfo(state),
+  details: getSelectedOffer(state, props),
+  authStatus: getAuthStatus(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onUpdateStatus(id, status) {
